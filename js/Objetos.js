@@ -50,6 +50,24 @@ class Cliente extends Persona {
 
     }
 
+    altaPedido(){
+
+    }
+
+    bajaPedido(idPedido){
+
+    }
+
+    listadoPedidos(){
+
+    }
+
+    toHTMLRow(){
+        let fila ="<tr><td>" + this.dni + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.fechaNacimiento + 
+        "</td><td>" + this.direccion + "</td><td>" + this.telefono + "</td></tr>";
+	    return fila;
+	}
+
 }
 
 class Conductor extends Persona {
@@ -58,6 +76,10 @@ class Conductor extends Persona {
 
         super(sDni,sNombre,sApellidos,dFechaNacimiento,sDireccion,sTelefono);
         this.tipoCarnet=sTipoCarnet;
+    }
+
+    toString(){
+
     }
 
 }
@@ -70,5 +92,35 @@ class Operario extends Persona {
         this.supervisor=bSupervisor;
 
     }
+
+    altaOperario(sDNI){
+
+    }
+
+    bajaOperario(sDNI){
+
+    }
+
+    altaCerveza(nombre,alcohol,precio,stock,foto){
+
+    }
+
+    bajaCerveza(idCerveza){
+
+    }
+
+    añadirStock(cantidad){
+
+    }
+
+    cambiarEstadoPedido(estado) {
+
+    }
+
+    toHTMLRow(){
+        let fila ="<tr><td>" + this.dni + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.fechaNacimiento + 
+        "</td><td>" + this.direccion + "</td><td>" + this.telefono + "</td><td>" + this.supervisor + "</td></tr>";
+	    return fila;
+	}
 
 }

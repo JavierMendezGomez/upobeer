@@ -14,18 +14,22 @@ class Persona {
 
     validarDNI(sDni)
     {
+        /*
         if(sDni==this.dni)
             return true;
         else
             return false;
-    }
+        */
+        }
 
     validarTelefono(sTelefono)
     {
+        /*
         if(sTelefono==this.telefono)
             return true;
         else
             return false;
+        */
     }
 
     modificarDireccion(sDireccion)
@@ -78,9 +82,6 @@ class Conductor extends Persona {
         this.tipoCarnet=sTipoCarnet;
     }
 
-    toString(){
-
-    }
 
 }
 
@@ -119,7 +120,17 @@ class Operario extends Persona {
 
     toHTMLRow(){
         let fila ="<tr><td>" + this.dni + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.fechaNacimiento + 
-        "</td><td>" + this.direccion + "</td><td>" + this.telefono + "</td><td>" + this.supervisor + "</td></tr>";
+        "</td><td>" + this.direccion + "</td><td>" + this.telefono + "</td>";
+
+        if(this.supervisor==true)
+        {
+            fila+="<td>Supervisor</td></tr>";
+        }
+        else
+        {
+            fila+="<td>Operario</td></tr>";
+        }
+
 	    return fila;
 	}
 

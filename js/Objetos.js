@@ -15,22 +15,22 @@ class Persona {
 
     validarDNI(sDni)
     {
-        /*
+        
         if(sDni==this.dni)
             return true;
         else
             return false;
-        */
+        
         }
 
     validarTelefono(sTelefono)
     {
-        /*
+        
         if(sTelefono==this.telefono)
             return true;
         else
             return false;
-        */
+        
     }
 
     modificarDireccion(sDireccion)
@@ -61,6 +61,8 @@ class Cliente extends Persona {
         {
             if(oUpoBeer.tClientes[i]==this)
             {
+                let oLineasPedido=[];
+                UpoBeer.altaPedido(new Pedido(this,oLineasPedido));
                 return true;
             }
         }
@@ -77,6 +79,7 @@ class Cliente extends Persona {
             {
                 if(oUpoBeer.tPedidos[i].idPedido==idPedido)
                 {
+                    UpoBeer.bajaPedido(idPedido);
                     return true;
                 }
             }

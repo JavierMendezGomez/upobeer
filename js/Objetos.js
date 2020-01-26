@@ -57,9 +57,9 @@ class Cliente extends Persona {
 
     altaPedido(){
 
-        for(let i=0;i<oUpoBeer.tPedidos.length;i++)
+        for(let i=0;i<oUpoBeer.tClientes.length;i++)
         {
-            if(oUpoBeer.tPedidos[i].cliente==this)
+            if(oUpoBeer.tClientes[i]==this)
             {
                 return true;
             }
@@ -86,6 +86,19 @@ class Cliente extends Persona {
     }
 
     listadoPedidos(){
+
+        let oArrayPedidos=[];
+
+        for(let i=0;i<oUpoBeer.tPedidos.length;i++)
+        {
+            if(oUpoBeer.tPedidos[i].cliente==this)
+            {
+                oArrayPedidos.push(oUpoBeer.tPedidos[i]);
+            }
+        }
+
+        return oArrayPedidos;
+    }
 
     }
 

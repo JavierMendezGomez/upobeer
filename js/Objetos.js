@@ -103,7 +103,7 @@ class Cliente extends Persona {
         return oArrayPedidos;
     }
 
-    }
+    
 
     toHTMLRow(){
         let fila ="<tr><td>" + this.dni + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.fechaNacimiento + 

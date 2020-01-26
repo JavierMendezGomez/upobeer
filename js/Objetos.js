@@ -2,83 +2,76 @@ var oUpoBeer = new UpoBeer();
 
 class Persona {
 
-    constructor(sDni,sNombre,sApellidos,dFechaNacimiento,sDireccion,sTelefono){
+    constructor(sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono) {
 
-        this.dni=sDni;
-        this.nombre=sNombre;
-        this.apellidos=sApellidos;
-        this.fechaNacimiento=dFechaNacimiento;
-        this.direccion=sDireccion;
-        this.telefono=sTelefono;
+        this.dni = sDni;
+        this.nombre = sNombre;
+        this.apellidos = sApellidos;
+        this.fechaNacimiento = dFechaNacimiento;
+        this.direccion = sDireccion;
+        this.telefono = sTelefono;
 
     }
 
-    validarDNI(sDni)
-    {
-        
-        if(sDni==this.dni)
+    validarDNI(sDni) {
+
+        if (sDni == this.dni)
             return true;
         else
             return false;
-        
-        }
 
-    validarTelefono(sTelefono)
-    {
-        
-        if(sTelefono==this.telefono)
+    }
+
+    validarTelefono(sTelefono) {
+
+        if (sTelefono == this.telefono)
             return true;
         else
             return false;
-        
+
     }
 
-    modificarDireccion(sDireccion)
-    {
-        this.direccion=sDireccion;
-            return true;
+    modificarDireccion(sDireccion) {
+        this.direccion = sDireccion;
+        return true;
     }
 
-    modificarTelefono(sTelefono)
-    {
-        this.telefono=sTelefono;
-            return true;
+    modificarTelefono(sTelefono) {
+        this.telefono = sTelefono;
+        return true;
     }
 
 }
 
 class Cliente extends Persona {
 
-    constructor(sDni,sNombre,sApellidos,dFechaNacimiento,sDireccion,sTelefono) {
+    constructor(sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono) {
 
-        super(sDni,sNombre,sApellidos,dFechaNacimiento,sDireccion,sTelefono);
+        super(sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono);
 
     }
 
-    altaPedido(){
+    altaPedido() {
 
-        for(let i=0;i<oUpoBeer.tClientes.length;i++)
-        {
-            if(oUpoBeer.tClientes[i]==this)
-            {
-                let oLineasPedido=[];
-                UpoBeer.altaPedido(new Pedido(this,oLineasPedido));
+        for (let i = 0; i < oUpoBeer.tClientes.length; i++) {
+            if (oUpoBeer.tClientes[i] == this) {
+                let oLineasPedido = [];
+                UpoBeer.altaPedido(new Pedido(this, oLineasPedido));
                 return true;
             }
         }
 
         return false;
 
+        //REVISIÓN
+
     }
 
-    bajaPedido(idPedido){
+    bajaPedido(idPedido) {
 
-        for(let i=0;i<oUpoBeer.tPedidos.length;i++)
-        {
-            if(oUpoBeer.tPedidos[i].cliente==this)
-            {
-                if(oUpoBeer.tPedidos[i].idPedido==idPedido)
-                {
+        for (let i = 0; i < oUpoBeer.tPedidos.length; i++) {
+            if (oUpoBeer.tPedidos[i].cliente == this) {
+                if (oUpoBeer.tPedidos[i].idPedido == idPedido) {
                     UpoBeer.bajaPedido(idPedido);
                     return true;
                 }
@@ -88,14 +81,12 @@ class Cliente extends Persona {
         return false;
     }
 
-    listadoPedidos(){
+    listadoPedidos() {
 
-        let oArrayPedidos=[];
+        let oArrayPedidos = [];
 
-        for(let i=0;i<oUpoBeer.tPedidos.length;i++)
-        {
-            if(oUpoBeer.tPedidos[i].cliente==this)
-            {
+        for (let i = 0; i < oUpoBeer.tPedidos.length; i++) {
+            if (oUpoBeer.tPedidos[i].cliente == this) {
                 oArrayPedidos.push(oUpoBeer.tPedidos[i]);
             }
         }
@@ -103,22 +94,22 @@ class Cliente extends Persona {
         return oArrayPedidos;
     }
 
-    
 
-    toHTMLRow(){
-        let fila ="<tr><td>" + this.dni + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.fechaNacimiento + 
-        "</td><td>" + this.direccion + "</td><td>" + this.telefono + "</td></tr>";
-	    return fila;
-	}
+
+    toHTMLRow() {
+        let fila = "<tr><td>" + this.dni + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.fechaNacimiento +
+            "</td><td>" + this.direccion + "</td><td>" + this.telefono + "</td></tr>";
+        return fila;
+    }
 
 }
 
 class Conductor extends Persona {
 
-    constructor(sDni,sNombre,sApellidos,dFechaNacimiento,sDireccion,sTelefono,sTipoCarnet) {
+    constructor(sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono, sTipoCarnet) {
 
-        super(sDni,sNombre,sApellidos,dFechaNacimiento,sDireccion,sTelefono);
-        this.tipoCarnet=sTipoCarnet;
+        super(sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono);
+        this.tipoCarnet = sTipoCarnet;
     }
 
 
@@ -126,125 +117,165 @@ class Conductor extends Persona {
 
 class Operario extends Persona {
 
-    constructor(sDni,sNombre,sApellidos,dFechaNacimiento,sDireccion,sTelefono,bSupervisor) {
+    constructor(sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono, bSupervisor) {
 
-        super(sDni,sNombre,sApellidos,dFechaNacimiento,sDireccion,sTelefono);
-        this.supervisor=bSupervisor;
-
-    }
-
-    altaOperario(sDNI){
+        super(sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono);
+        this.supervisor = bSupervisor;
 
     }
 
-    bajaOperario(sDNI){
+    altaOperario(sDNI) {
+
+        for (let i = 0; i < oUpoBeer.tOperarios.length; i++) {
+            if (oUpoBeer.tOperarios[i] == this) {
+                if (this.supervisor == true) {
+                    oUpoBeer.altaOperario(sDNI);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    bajaOperario(sDNI) {
+
+        for (let i = 0; i < oUpoBeer.tOperarios.length; i++) {
+            if (oUpoBeer.tOperarios[i] == this) {
+                if (this.supervisor == true) {
+                    UpoBeer.bajaOperario(sDNI);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    altaCerveza(nombre, alcohol, precio, stock, foto) {
+
+        //esperando constructor de cerveza
 
     }
 
-    altaCerveza(nombre,alcohol,precio,stock,foto){
+    bajaCerveza(idCerveza) {
+
+        for (let i = 0; i < oUpoBeer.tOperarios.length; i++) {
+            if (oUpoBeer.tOperarios[i] == this) {
+                if (this.supervisor == true) {
+                    {
+                        for(let y=0;y<oUpoBeer.catalogo.length;y++)
+                        {
+                            if(oUpoBeer.catalogo[y].idCerveza==idCerveza)
+                            {
+                                oUpoBeer.bajaCerveza(idCerveza);
+                                return true;
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+        return false;
 
     }
 
-    bajaCerveza(idCerveza){
+    añadirStock(cantidad) {
 
-    }
-
-    añadirStock(cantidad){
+        //no se si cantidad es una cerveza o un id, si fuese stock necesito explicación.
 
     }
 
     cambiarEstadoPedido(estado) {
 
+        //define estado, faltan parametros?
+
     }
 
-    toHTMLRow(){
-        let fila ="<tr><td>" + this.dni + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.fechaNacimiento + 
-        "</td><td>" + this.direccion + "</td><td>" + this.telefono + "</td>";
+    toHTMLRow() {
+        let fila = "<tr><td>" + this.dni + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.fechaNacimiento +
+            "</td><td>" + this.direccion + "</td><td>" + this.telefono + "</td>";
 
-        if(this.supervisor==true)
-        {
-            fila+="<td>Supervisor</td></tr>";
+        if (this.supervisor == true) {
+            fila += "<td>Supervisor</td></tr>";
         }
-        else
-        {
-            fila+="<td>Operario</td></tr>";
+        else {
+            fila += "<td>Operario</td></tr>";
         }
 
-	    return fila;
-	}
+        return fila;
+    }
 
 }
 
 class UpoBeer {
 
-constructor(){
+    constructor() {
 
-    this.catalogo=[];
-    this.tPedidos=[];
-    this.tClientes=[];
-    this.tOperarios=[];
+        this.catalogo = [];
+        this.tPedidos = [];
+        this.tClientes = [];
+        this.tOperarios = [];
 
-}
+    }
 
-altaCliente(Cliente){
-
-
-}
-
-bajaCliente(sDNI){
+    altaCliente(Cliente) {
 
 
-}
+    }
 
-altaOperario(sDNI){
-
-
-}
-
-bajaOperario(sDNI){
+    bajaCliente(sDNI) {
 
 
-}
+    }
 
-altaPedido(Pedido)
-{
-
-}
-
-bajaPedido(idPedido){
+    altaOperario(sDNI) {
 
 
-}
+    }
 
-altaCerveza(Cerveza){
-
-
-}
-
-bajaCerveza(idCerveza){
+    bajaOperario(sDNI) {
 
 
-}
+    }
 
-buscarCerveza(idCerveza){
+    altaPedido(Pedido) {
 
+    }
 
-}
-
-buscarCliente(sDNI){
-
-
-}
-
-buscarPedido(idPedido){
+    bajaPedido(idPedido) {
 
 
-}
+    }
 
-buscarOperario(sDNI){
+    altaCerveza(Cerveza) {
 
 
-}
+    }
+
+    bajaCerveza(idCerveza) {
+
+
+    }
+
+    buscarCerveza(idCerveza) {
+
+
+    }
+
+    buscarCliente(sDNI) {
+
+
+    }
+
+    buscarPedido(idPedido) {
+
+
+    }
+
+    buscarOperario(sDNI) {
+
+
+    }
 
 
 

@@ -1,4 +1,6 @@
 var oUpoBeer = new UpoBeer();
+var contadorCervezas=0;
+var contadorPedidos=0;
 
 class Persona {
 
@@ -15,19 +17,44 @@ class Persona {
 
     validarDNI(sDni) {
 
-        if (sDni == this.dni)
-            return true;
-        else
+        var numero;
+        var letr;
+        var letra;
+        var expresion_regular_dni;
+
+        expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
+
+        if (expresion_regular_dni.test(sDni) == true) {
+            numero = dni.substr(0, dni.length - 1);
+            letr = dni.substr(dni.length - 1, 1);
+            numero = numero % 23;
+            letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
+            letra = letra.substring(numero, numero + 1);
+            if (letra != letr.toUpperCase()) {
+                alert('Dni erroneo, la letra del NIF no se corresponde');
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            alert('Dni erroneo, formato no válido');
             return false;
+        }
 
     }
 
     validarTelefono(sTelefono) {
 
-        if (sTelefono == this.telefono)
+        expresion_regular_telefono=/^[\d]{3}[-]*([\d]{2}[-]*){2}[\d]{2}$/;
+
+        if (expresion_regular_telefono.test(sTelefono) == true) {
             return true;
+        }
         else
+        {
+            alert("Teléfono erroneo, formato no válido");
             return false;
+        }
 
     }
 
@@ -37,8 +64,19 @@ class Persona {
     }
 
     modificarTelefono(sTelefono) {
-        this.telefono = sTelefono;
-        return true;
+
+        expresion_regular_telefono=/^[\d]{3}[-]*([\d]{2}[-]*){2}[\d]{2}$/;
+
+        if (expresion_regular_telefono.test(sTelefono) == true) {
+            this.telefono = sTelefono;
+            return true;
+        }
+        else
+        {
+            alert("Teléfono erroneo, formato no válido");
+            return false;
+        }
+        
     }
 
 }
@@ -56,7 +94,8 @@ class Cliente extends Persona {
         for (let i = 0; i < oUpoBeer.tClientes.length; i++) {
             if (oUpoBeer.tClientes[i] == this) {
                 let oLineasPedido = [];
-                UpoBeer.altaPedido(new Pedido(this, oLineasPedido));
+                contadorPedidos++;
+                oUpoBeer.altaPedido(new Pedido(this, oLineasPedido));
                 return true;
             }
         }
@@ -72,7 +111,7 @@ class Cliente extends Persona {
         for (let i = 0; i < oUpoBeer.tPedidos.length; i++) {
             if (oUpoBeer.tPedidos[i].cliente == this) {
                 if (oUpoBeer.tPedidos[i].idPedido == idPedido) {
-                    UpoBeer.bajaPedido(idPedido);
+                    oUpoBeer.bajaPedido(idPedido);
                     return true;
                 }
             }
@@ -142,7 +181,7 @@ class Operario extends Persona {
         for (let i = 0; i < oUpoBeer.tOperarios.length; i++) {
             if (oUpoBeer.tOperarios[i] == this) {
                 if (this.supervisor == true) {
-                    UpoBeer.bajaOperario(sDNI);
+                    oUpoBeer.bajaOperario(sDNI);
                     return true;
                 }
             }
@@ -151,8 +190,18 @@ class Operario extends Persona {
     }
 
     altaCerveza(nombre, alcohol, precio, stock, foto) {
-
-        //esperando constructor de cerveza
+        
+        for (let i = 0; i < oUpoBeer.tOperarios.length; i++) {
+            if (oUpoBeer.tOperarios[i] == this) {
+                if (this.supervisor == true) {
+                    contadorCervezas++;
+                    let cerveza=new Cerveza(contadorCervezas,nombre,alcohol,precio,stock,foto);
+                    oUpoBeer.altaCerveza(cerveza);
+                    return true;
+                }
+            }
+        }
+        return false;
 
     }
 
@@ -162,16 +211,14 @@ class Operario extends Persona {
             if (oUpoBeer.tOperarios[i] == this) {
                 if (this.supervisor == true) {
                     {
-                        for(let y=0;y<oUpoBeer.catalogo.length;y++)
-                        {
-                            if(oUpoBeer.catalogo[y].idCerveza==idCerveza)
-                            {
+                        for (let y = 0; y < oUpoBeer.catalogo.length; y++) {
+                            if (oUpoBeer.catalogo[y].idCerveza == idCerveza) {
                                 oUpoBeer.bajaCerveza(idCerveza);
                                 return true;
                             }
                         }
                     }
-                    
+
                 }
             }
         }
@@ -207,76 +254,3 @@ class Operario extends Persona {
 
 }
 
-class UpoBeer {
-
-    constructor() {
-
-        this.catalogo = [];
-        this.tPedidos = [];
-        this.tClientes = [];
-        this.tOperarios = [];
-
-    }
-
-    altaCliente(Cliente) {
-
-
-    }
-
-    bajaCliente(sDNI) {
-
-
-    }
-
-    altaOperario(sDNI) {
-
-
-    }
-
-    bajaOperario(sDNI) {
-
-
-    }
-
-    altaPedido(Pedido) {
-
-    }
-
-    bajaPedido(idPedido) {
-
-
-    }
-
-    altaCerveza(Cerveza) {
-
-
-    }
-
-    bajaCerveza(idCerveza) {
-
-
-    }
-
-    buscarCerveza(idCerveza) {
-
-
-    }
-
-    buscarCliente(sDNI) {
-
-
-    }
-
-    buscarPedido(idPedido) {
-
-
-    }
-
-    buscarOperario(sDNI) {
-
-
-    }
-
-
-
-}

@@ -1,3 +1,4 @@
+var oUpoBeer = new UpoBeer();
 
 class Persona {
 
@@ -56,10 +57,32 @@ class Cliente extends Persona {
 
     altaPedido(){
 
+        for(let i=0;i<oUpoBeer.tPedidos.length;i++)
+        {
+            if(oUpoBeer.tPedidos[i].cliente==this)
+            {
+                return true;
+            }
+        }
+
+        return false;
+
     }
 
     bajaPedido(idPedido){
 
+        for(let i=0;i<oUpoBeer.tPedidos.length;i++)
+        {
+            if(oUpoBeer.tPedidos[i].cliente==this)
+            {
+                if(oUpoBeer.tPedidos[i].idPedido==idPedido)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     listadoPedidos(){
@@ -133,5 +156,80 @@ class Operario extends Persona {
 
 	    return fila;
 	}
+
+}
+
+class UpoBeer {
+
+constructor(){
+
+    this.catalogo=[];
+    this.tPedidos=[];
+    this.tClientes=[];
+    this.tOperarios=[];
+
+}
+
+altaCliente(Cliente){
+
+
+}
+
+bajaCliente(sDNI){
+
+
+}
+
+altaOperario(sDNI){
+
+
+}
+
+bajaOperario(sDNI){
+
+
+}
+
+altaPedido(Pedido)
+{
+
+}
+
+bajaPedido(idPedido){
+
+
+}
+
+altaCerveza(Cerveza){
+
+
+}
+
+bajaCerveza(idCerveza){
+
+
+}
+
+buscarCerveza(idCerveza){
+
+
+}
+
+buscarCliente(sDNI){
+
+
+}
+
+buscarPedido(idPedido){
+
+
+}
+
+buscarOperario(sDNI){
+
+
+}
+
+
 
 }

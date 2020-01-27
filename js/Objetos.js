@@ -1,6 +1,6 @@
 var oUpoBeer = new UpoBeer();
-var contadorCervezas=0;
-var contadorPedidos=0;
+var contadorCervezas = 0;
+var contadorPedidos = 0;
 
 class Persona {
 
@@ -45,13 +45,12 @@ class Persona {
 
     validarTelefono(sTelefono) {
 
-        expresion_regular_telefono=/^[\d]{3}[-]*([\d]{2}[-]*){2}[\d]{2}$/;
+        expresion_regular_telefono = /^[\d]{3}[-]*([\d]{2}[-]*){2}[\d]{2}$/;
 
         if (expresion_regular_telefono.test(sTelefono) == true) {
             return true;
         }
-        else
-        {
+        else {
             alert("Teléfono erroneo, formato no válido");
             return false;
         }
@@ -65,18 +64,17 @@ class Persona {
 
     modificarTelefono(sTelefono) {
 
-        expresion_regular_telefono=/^[\d]{3}[-]*([\d]{2}[-]*){2}[\d]{2}$/;
+        expresion_regular_telefono = /^[\d]{3}[-]*([\d]{2}[-]*){2}[\d]{2}$/;
 
         if (expresion_regular_telefono.test(sTelefono) == true) {
             this.telefono = sTelefono;
             return true;
         }
-        else
-        {
+        else {
             alert("Teléfono erroneo, formato no válido");
             return false;
         }
-        
+
     }
 
 }
@@ -190,12 +188,12 @@ class Operario extends Persona {
     }
 
     altaCerveza(nombre, alcohol, precio, stock, foto) {
-        
+
         for (let i = 0; i < oUpoBeer.tOperarios.length; i++) {
             if (oUpoBeer.tOperarios[i] == this) {
                 if (this.supervisor == true) {
                     contadorCervezas++;
-                    let cerveza=new Cerveza(contadorCervezas,nombre,alcohol,precio,stock,foto);
+                    let cerveza = new Cerveza(contadorCervezas, nombre, alcohol, precio, stock, foto);
                     oUpoBeer.altaCerveza(cerveza);
                     return true;
                 }
@@ -226,15 +224,41 @@ class Operario extends Persona {
 
     }
 
-    añadirStock(cantidad) {
+    añadirStock(idCerveza, cantidad) {
 
-        //no se si cantidad es una cerveza o un id, si fuese stock necesito explicación.
+        for (let i = 0; i < oUpoBeer.tOperarios.length; i++) {
+            if (oUpoBeer.tOperarios[i] == this) {
+                {
+                    for (let y = 0; y < oUpoBeer.catalogo.length; y++) {
+                        if (oUpoBeer.catalogo[y].idCerveza == idCerveza) {
+                            oUpoBeer.catalogo[y].stock += cantidad;
+                            return true;
+                        }
+                    }
+
+                }
+            }
+        }
+        return false;
 
     }
 
-    cambiarEstadoPedido(estado) {
+    cambiarEstadoPedido(idPedido, estado) {
 
-        //define estado, faltan parametros?
+        for (let i = 0; i < oUpoBeer.tOperarios.length; i++) {
+            if (oUpoBeer.tOperarios[i] == this) {
+                {
+                    for (let y = 0; y < oUpoBeer.tPedidos.length; y++) {
+                        if (oUpoBeer.tPedidos[y].idPedido == idPedido) {
+                            oUpoBeer.tPedidos[y].estado = estado;
+                            return true;
+                        }
+                    }
+
+                }
+            }
+        }
+        return false;
 
     }
 

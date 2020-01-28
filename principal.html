@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>UpoBeer - Principal</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link type="text/css" rel="stylesheet" href="css/style.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="js/controlador.js"></script>
+	<!-- Fuentes -->
+	<link href="https://fonts.googleapis.com/css?family=Galada|Lobster|Pacifico|Playball&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+<!--COPIADO Y PEGADO DE upobeer, REVISAR BIEN TODO-->
+
+<div class="container-fluid" id="upobeer_main">
+			
+			<div class="cabecera">
+					<header>
+						<a href="inicio.html"><img src="Img/logo2.png" class="logo"></a>
+						<div class="titulos">
+						<div class="titulo">UpoBeer</div>
+							<div class="subtitulo">Compra-venta de cerveza</div>
+						</div>
+					</header>
+			</div>
+
+			<div id="upobeer_btnsShow" class="row section">
+				<div class="col-md-6" id="upobeer_btnsShowFrms">					
+				<legend>Formularios</legend>				
+					<div class="btn-group" role="group" aria-label="FomrBtns">
+						<button type="button" class="btn-dark btn-sm" onclick="show_frmAltaVehiculo();">Alta Vehículo</button>
+						<button type="button" class="btn-dark btn-sm" onclick="show_frmAltaCliente();">Alta Cliente</button>
+						<button type="button" class="btn-dark btn-sm" onclick="show_frmCompra();">Compra</button>
+						<button type="button" class="btn-dark btn-sm" onclick="show_frmVenta();">Venta</button>
+						<button type="button" class="btn-dark btn-sm" onclick="show_frmVentasPeriodo();">Ventas en período</button>
+						<button type="button" class="btn-dark btn-sm" onclick="show_frmComprasPeriodo();">Compras en período</button>
+					</div>
+				</div>	
+			<div class="col-md-6" id="upobeer_btnsShowLists"	>
+			<legend>Listados</legend>
+			<button type="button" class="btn-dark btn-sm" onclick="show_lstClientesRegistrados()">Clientes registrados</button>
+			<button type="button" class="btn-dark btn-sm" onclick="show_lstVehiculosRegistrados()">Vehículos registrados</button>
+			<button type="button" class="btn-dark btn-sm" onclick="show_lstVehiculosEnVenta()">Vehículos a la venta</button>
+			</div>
+			</div>
+		
+		
+		<div id="upobeer_frms" class="row section">
+
+		<div id="divListados"><p id="lista"></p></div>
+		<!---->
+		<div id="divFrmAltaVehiculo" class="conditional form-group">
+		<form name="frmAltaVehiculo" id="frmAltaVehiculo">
+			<h2>Alta de vehículo</h2>
+				<div class="row">
+					<div class="col-6">
+							<label for="txtMatricula">Matrícula</label>
+					</div>
+					<div class="col-6">
+							<input class="form-control" type="text" name="txtMatricula" id="txtMatricula">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-6">
+						<label for="txtMarca">Marca</label>
+					</div>
+					<div class="col-6">
+						<input class="form-control" type="text" name="txtMarca" id="txtMarca">
+					</div>
+				</div>		
+				<div class="row">
+					<div class="col-6">
+						<label for="txtModelo">Modelo</label>
+					</div>
+					<div class="col-6">
+						<input class="form-control" type="text" name="txtModelo" id="txtModelo">
+					</div>
+				</div>		
+
+			<label for="selCombustible">Combustible</label><select class="form-control" name="selCombustible" id="selCombustible">
+			<option>G</option>
+			<option>D</option>
+			<option>B</option>
+			</select>
+			<br>
+			<label for="selTipoVehiculo">Tipo de Vehículo</label><select name="selTipoVehiculo" id="selTipoVehiculo" onchange="changed_selTipoVehiculo();">
+			<option selected>Selecciona...</option>
+			<option>Turismo</option>
+			<option>V4x4</option>
+			</select>
+			<div id="condVehiculoTurismo" class="conditional"> 
+			<label for="chkABS">ABS</label><input type="checkbox" name="chkABS" id="chkABS">
+			<label for="chkDescapotable">Descapotable</label><input class="form-control" type="checkbox" name="chkDescapotable" id="chkDescapotable">
+			<label for="txtNumPuertas">Número de puertas</label><input class="form-control" type="number" min="0" step="1" value="4" name="txtNumPuertas" id="txtNumPuertas">
+			</div>
+			<div id="condVehiculoV4x4" class="conditional">
+			<label for="txtPendienteMax">Pendiente Máxima</label><input type="number" min="0" value="40" name="txtPendienteMax" id="txtPendienteMax">
+			</div>
+			<br>
+			<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAltaVehiculo();">
+		</form>
+
+		<!--Ocultar/mostrar opciones del tipo de vehículo-->
+		<script>
+			frmAltaVehiculo.selTipoVehiculo.selectedIndex=0;
+			function changed_selTipoVehiculo(){   
+			switch(frmAltaVehiculo.selTipoVehiculo.value){
+			case "Turismo":
+				document.getElementById("condVehiculoTurismo").style.display="block";
+				document.getElementById("condVehiculoV4x4").style.display="none";
+				break;
+			case "V4x4":
+				document.getElementById("condVehiculoTurismo").style.display="none";
+				document.getElementById("condVehiculoV4x4").style.display="block";
+				break;
+			default:
+				document.getElementById("condVehiculoTurismo").style.display="none";
+				document.getElementById("condVehiculoV4x4").style.display="none";
+			}
+			}
+			
+		</script>
+		</div>
+		
+		<!---->
+		<div id="divFrmAltaCliente" class="conditional form-group">
+		<form class="form-horizontal" name="frmAltaCliente" id="frmAltaCliente">
+			<h2>Alta de Cliente</h2>
+			<div class="row">
+					<div class="col-6">
+							<label for="txtNIF">NIF</label>
+					</div>
+					<div class="col-6">
+							<input class="form-control" type="text" name="txtNIF" id="txtNIF">
+					</div>
+			</div>
+				<div class="row">
+					<div class="col-6">
+							<label for="txtNombre">Nombre</label>
+					</div>
+					<div class="col-6">
+							<input class="form-control" type="text" name="txtNombre" id="txtNombre">
+					</div>
+				</div>		
+				<div class="row">
+					<div class="col-6">
+							<label for="txtApellidos">Apellidos</label>
+					</div>
+					<div class="col-6">
+							<input class="form-control" type="text" name="txtApellidos" id="txtApellidos">
+					</div>
+				</div>	
+				<div class="row">
+					<div class="col-6">
+							<label for="txtTelefono">Telefono</label>
+					</div>
+					<div class="col-6">
+							<input class="form-control" type="tel" name="txtTelefono" id="txtTelefono">
+					</div>
+				</div>									 			 
+			<br>
+			<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAltaCliente()">
+		</form>
+		</div>
+
+		<!---->
+		<div id="divFrmCompra" class="conditional form-group">
+		<form class="form-horizontal" name="frmCompra" id="frmCompra">
+			<h2>Compra</h2>
+			<div class="row">
+				<div class="col-6">
+					<label for="txtNIFCompra">NIF</label>
+				</div>
+				<div class="col-6">
+						<input type="text" name="txtNIFCompra" id="txtNIFCompra">
+				</div>
+			</div>
+			<div class="row">
+					<div class="col-6">
+						<label for="txtMatriculaCompra">Matrícula</label>
+					</div>
+					<div class="col-6">
+						<input type="text" name="txtMatriculaCompra" id="txtMatriculaCompra">
+					</div>
+			</div>
+			<div class="row">
+					<div class="col-6">
+							<label for="txtImporte">Importe</label>
+					</div>
+					<div class="col-6">
+							<input type="number" min="0" step="0.01" name="txtImporte" id="txtImporte">
+					</div>
+			</div>
+			<div class="row">
+					<div class="col-6">
+							<label for="txtFechaCompra">Fecha</label>
+					</div>
+					<div class="col-6">
+							<input type="date" name="txtFechaCompra" id="txtFechaCompra">
+					</div>
+			</div>
+			<br>
+			<input class="bt btn-success" type="button" value="Enviar" onclick="submit_frmCompra();">
+		</form>
+		</div>
+		
+		<!---->
+		<div id="divFrmVenta" class="conditional">
+		<form class="form-horizontal" name="frmVenta" id="frmVenta">
+			<h2>Venta</h2>
+			<div class="row">
+					<div class="col-6">
+							<label for="txtNIFVenta">NIF</label>
+					</div>
+					<div class="col-6">
+							<input type="text" name="txtNIFVenta" id="txtNIFVenta">
+					</div>
+				</div>
+				<div class="row">
+						<div class="col-6">
+								<label for="txtMatriculaVenta">Matrícula</label>
+						</div>
+						<div class="col-6">
+								<input type="text" name="txtMatriculaVenta" id="txtMatriculaVenta">
+						</div>
+				</div>
+				<div class="row">
+						<div class="col-6">
+								<label for="txtImporte">Importe</label>
+						</div>
+						<div class="col-6">
+								<input type="number" min="0" step="0.01" name="txtImporte" id="txtImporte">
+						</div>
+				</div>
+				<div class="row">
+						<div class="col-6">
+								<label for="txtFechaVenta">Fecha</label>
+						</div>
+						<div class="col-6">
+								<input type="date" name="txtFechaVenta" id="txtFechaVenta">
+						</div>
+				</div>
+				<br>
+			<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmVenta();">
+		</form>
+		</div>
+
+		<!---->
+		<div id="divFrmVentasPeriodo" class="conditional form-group">
+		<form class="form-horizontal" name="frmVentasPeriodo" id="frmVentasPeriodo">
+			<h2>Ventas en un periodo</h2>
+			<div class="row">
+					<div class="col-6">
+							<label for="txtFechaInicial">Fecha inicial</label>
+					</div>
+					<div class="col-6">
+							<input type="date" name="txtFechaInicial" id="txtFechaInicial">
+					</div>
+			</div>
+			<br>
+			<div class="row">
+					<div class="col-6">
+							<label for="txtFechaInicial">Fecha final</label>
+					</div>
+					<div class="col-6">
+							<input type="date" name="txtFechaFinal" id="txtFechaFinal">
+					</div>
+			</div>
+			<br>		
+			<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmVentasPeriodo();">
+		</form>
+		</div>
+
+		<!---->
+		<div id="divFrmComprasPeriodo" class="conditional">
+		<form class="form-horizontal" name="frmComprasPeriodo" id="frmComprasPeriodo">
+			<h2>Compras en un periodo</h2>
+			<div class="row">
+					<div class="col-lg-6">
+							<label for="txtFechaInicial">Fecha inicial</label>
+					</div>
+					<div class="col-lg-6">
+							<input type="date" name="txtFechaInicial" id="txtFechaInicial">
+					</div>
+			</div>
+			<br>
+			<div class="row">
+					<div class="col-6">
+							<label for="txtFechaFinal">Fecha final</label>
+					</div>
+					<br>
+					<div class="col-6">
+							<input type="date" name="txtFechaFinal" id="txtFechaFinal">
+					</div>
+			</div>
+			<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmComprasPeriodo();">
+		</form>
+		</div>
+		
+		</div>
+
+		<h4>Mensajes del sistema</h4>
+		<pre id="upobeer_messages" class="row section">
+		<!-- Aquí van mensajes -->
+		</pre>
+		</div>
+
+		<script>
+		/**INICIALIZAR*********************************************/
+      	var controlador = new Controlador();
+		var upobeer_messages = document.getElementById("upobeer_messages");
+		function print_message(message){
+		upobeer_messages.innerHTML+=message;
+		}
+
+		/**MOSTRAR Y OCULTAR FORMULARIOS***************************/
+		function hide_frms(){
+		document.getElementById("divListados").style.display = "none";
+		document.getElementById("divFrmAltaVehiculo").style.display = "none";
+		document.getElementById("divFrmAltaCliente").style.display = "none";
+		document.getElementById("divFrmCompra").style.display = "none";
+		document.getElementById("divFrmVenta").style.display = "none";
+		document.getElementById("divFrmComprasPeriodo").style.display = "none";
+		document.getElementById("divFrmVentasPeriodo").style.display = "none";
+		}
+		function show_frmAltaVehiculo(){
+      	hide_frms();
+      	frmAltaVehiculo.reset();
+	  	document.getElementById("divFrmAltaVehiculo").style.display = "block";
+      }
+      function show_frmAltaCliente(){
+      	hide_frms();
+      	frmAltaCliente.reset();
+	  	document.getElementById("divFrmAltaCliente").style.display = "block";
+      }
+      function show_frmCompra(){
+      	hide_frms();
+      	frmCompra.reset();
+	  	document.getElementById("divFrmCompra").style.display = "block";
+      }
+      function show_frmVenta(){
+      	hide_frms();
+      	frmVenta.reset();
+	  	document.getElementById("divFrmVenta").style.display = "block";
+      }
+      function show_frmComprasPeriodo(){
+      	hide_frms();
+      	frmComprasPeriodo.reset();
+	  	document.getElementById("divFrmComprasPeriodo").style.display = "block";
+      }
+      function show_frmVentasPeriodo(){
+      	hide_frms();
+      	frmVentasPeriodo.reset();
+	  	document.getElementById("divFrmVentasPeriodo").style.display = "block";
+      }
+
+		/**MOSTRAR LISTADOS************************************/
+		
+		function show_lstClientesRegistrados(){
+		hide_frms();
+		let ventana = window.open();
+		ventana.document.title = "upobeer";
+		ventana.document.body.innerHTML = '<div class="cabecera" style="heigth: 7rem; background: #0c0c0c; color: #f4f4f5; padding: 1em;"><img src="https://i.pinimg.com/originals/6d/ac/0a/6dac0a441a17ce31e8dd44caaeb9ad9c.png" style="width: 7rem; float: left"><h1>upobeer</h1></div>' + "<h2>Listados</h2>" + controlador.listadoClientes();
+		}
+		function show_lstVehiculosRegistrados(){
+		hide_frms();
+		let ventana = window.open();
+		ventana.document.title = "upobeer";
+		ventana.document.body.innerHTML = '<div class="cabecera" style="heigth: 7rem; background: #0c0c0c; color: #f4f4f5; padding: 1em;"><img src="https://i.pinimg.com/originals/6d/ac/0a/6dac0a441a17ce31e8dd44caaeb9ad9c.png" style="width: 7rem; float: left"><h1>upobeer</h1></div>' + "<h2>Listados</h2>" + controlador.listadoVehiculos();
+		}
+		function show_lstVehiculosEnVenta(){
+		hide_frms();
+		let ventana = window.open();
+		ventana.document.title = "upobeer";
+		ventana.document.body.innerHTML = '<div class="cabecera" style="heigth: 7rem; background: #0c0c0c; color: #f4f4f5; padding: 1em;"><img src="https://i.pinimg.com/originals/6d/ac/0a/6dac0a441a17ce31e8dd44caaeb9ad9c.png" style="width: 7rem; float: left"><h1>upobeer</h1></div>' + "<h2>Listados</h2>" + controlador.listadoVehiculosVenta();
+		}      
+
+		/**ENVIAR FORMULARIOS*********************************/
+		
+		function submit_frmAltaVehiculo(){
+		let tipo = frmAltaVehiculo.selTipoVehiculo.value;
+      	if(tipo == "Turismo")
+      	{
+      		let ok = controlador.altaVehiculo(frmAltaVehiculo.txtMatricula.value, frmAltaVehiculo.txtMarca.value, frmAltaVehiculo.txtModelo.value, frmAltaVehiculo.selCombustible.value, frmAltaVehiculo.chkABS.checked, frmAltaVehiculo.chkDescapotable.checked, frmAltaVehiculo.txtNumPuertas.value);
+	      	if(ok)
+				print_message("Enviado formulario Alta Vehiculo\n");
+			else
+				print_message("Error, ya existe esa matricula\n");
+      	}
+      	else if(tipo == "V4x4")
+      	{
+	      	let ok = controlador.altaVehiculo(frmAltaVehiculo.txtMatricula.value, frmAltaVehiculo.txtMarca.value, frmAltaVehiculo.txtModelo.value, frmAltaVehiculo.selCombustible.value, frmAltaVehiculo.txtPendienteMax.value);
+	      	if(ok)
+				print_message("Enviado formulario Alta Vehiculo\n");
+			else
+				print_message("Error, ya existe esa matricula\n");
+		}
+		else
+		{
+			print_message("Debe seleccionar un tipo de vehiculo\n");
+		}
+		}
+		function submit_frmAltaCliente(){
+		print_message("Enviado formulario Alta Cliente\n");
+		}
+		function submit_frmCompra(){
+		print_message("Enviado formulario Compra\n");
+		}
+		function submit_frmVenta(){
+		print_message("Enviado formulario Venta\n");
+		}
+		function submit_frmComprasPeriodo(){
+		print_message("Enviado formulario Compras en período\n");
+		}
+		function submit_frmVentasPeriodo(){
+		print_message("Enviado formulario Ventas en período\n");
+		}
+
+		</script>
+	</div>
+
+</body>
+</html>

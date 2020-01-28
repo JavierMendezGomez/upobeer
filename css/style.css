@@ -1,0 +1,102 @@
+
+font-family: 'Lobster', cursive;
+font-family: 'Pacifico', cursive;
+font-family: 'Galada', cursive;
+font-family: 'Playball', cursive;
+
+
+    pre{
+    overflow-x:wrap;
+    overflow-y:scroll;
+    }
+
+    .section{
+    padding: 2rem;
+    }
+    .conditional{
+    display:none;
+    }
+    #upobeer_main{
+    height:90vh;
+    padding-left: 0;
+    padding-right: 0;
+    }
+
+
+    #upobeer_btnsShow{
+    height:calc(20vh );
+    padding: auto;
+    }
+    #upobeer_frms{
+    height:calc(80vh );
+    padding-left: 2rem;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    }
+    legend{
+        font-weight: bold;
+    }   
+    h4{
+        text-align: center;
+    }
+    #upobeer_btnsShow div{
+    display:inline-block;
+    }
+
+    /*Cabecera*/
+header{
+	height: 8rem;
+	background: #0c0c0c;
+	color: #f4f4f5;
+    padding: 0.6em;
+	flex: 0 0 auto;
+    font-family: 'Playball', cursive;
+}
+.logo{
+	max-width: 7rem;
+    margin-left: 2rem;
+    margin-right: 1rem;
+}
+.titulos, .logo{
+	display: inline-block;
+    vertical-align: middle;
+	font-weight: bolder;
+}
+.titulo{
+	font-size: 3rem;
+}
+.subtitulo{
+	line-height: 1rem;
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+/*Cabecera de inicio sesion pagina principal*/
+.cabeceraInicio header{
+    height: 18rem;
+    background: #0c0c0c;
+    color: #f4f4f5;
+    padding: 1em;
+    flex: 0 0 auto;
+    font-family: 'Playball', cursive;
+}
+.cabeceraInicio .logo{
+    max-width: 16rem;
+    margin-right: 3rem;
+}
+.cabeceraInicio .titulos, .logo{
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bolder;
+}
+.cabeceraInicio .titulo{
+    font-size: 6rem;
+}
+.cabeceraInicio .subtitulo{
+    line-height: 2rem;
+    font-size: 3rem;
+    font-weight: normal;
+}
+.inicio {
+    
+}

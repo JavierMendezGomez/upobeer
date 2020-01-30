@@ -18,7 +18,7 @@ class Envio{
 	    throw "Intervalo de fechas no válido";
 	}
     }
-    toString(){
+    toHTMLRow(){
 	let oFila=document.createElement("TR");
 
 	let oCeldaIdEnvio=oFila.insertCell(-1);

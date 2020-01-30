@@ -50,10 +50,37 @@ class Pedido {
     }
 
     toHTMLRow(){
+
+		let oFila = document.createElement("tr");
+        let oCelda = oFila.insertCell(-1);
+        oCelda.textContent = this.idPedido;
+
+        oCelda = oFila.insertCell(-1);
+        oCelda.textContent = this.cliente.nombre;
+
+        oCelda = oFila.insertCell(-1);
+        oCelda.textContent = this.cliente.apellidos;
+
+        oCelda = oFila.insertCell(-1);
+        oCelda.textContent = this.tLineasPedido.length;
+
+        oCelda = oFila.insertCell(-1);
+        oCelda.textContent = this.estado;
+
+        oCelda = oFila.insertCell(-1);
+		oCelda.textContent = this.fechaInicio;
+		
+		oCelda = oFila.insertCell(-1);
+        oCelda.textContent = this.fechaFin;
+
+        return oFila;
+
+		/*
         let fila ="<tr><td>" + this.idPedido + "</td><td>" + this.cliente.nombre + " " + this.cliente.apellidos + "</td><td>" 
             + this.tLineasPedido.length + "</td><td>" + this.estado + "</td><td>" 
             + this.fechaInicio + "</td>" + "</td><td>" + this.fechaFin + "</td>";
 
 	return fila;
+	*/
     }
 }

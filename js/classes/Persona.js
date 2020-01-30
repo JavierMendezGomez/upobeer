@@ -2,14 +2,11 @@ class Persona {
 
     constructor(sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono) {
 
-        if(this.validarDNI(sDni))
-            this.dni = sDni;
+        this.dni = sDni;
         this.nombre = sNombre;
         this.apellidos = sApellidos;
-        if(this.validarFechaNacimiento(dFechaNacimiento))
 	    this.fechaNacimiento = dFechaNacimiento;
         this.direccion = sDireccion;
-        if(this.validarTelefono(sTelefono))
 	    this.telefono = sTelefono;
 
     }

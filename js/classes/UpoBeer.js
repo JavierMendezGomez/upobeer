@@ -96,18 +96,46 @@ class UpoBeer {
     }
 
     listadoPedidos(){
+	let oTabla=document.createElement("TABLE");
+	let oTHead=oTabla.createTHead();
+	let oTBody=oTabla.createTBody();
 
+	this.tPedidos.forEach(function(pedido){
+	    let oFila = oTBody.insertRow(-1);
+	    oFila=pedido.toHTMLTableRow;
+	})
     }
 
     listadoCervezas(){
+	let oTabla=document.createElement("TABLE");
+	let oTHead=oTabla.createTHead();
+	let oTBody=oTabla.createTBody();
 
+	this.tCervezas.forEach(function(cerveza){
+	    let oFila = oTBody.insertRow(-1);
+	    oFila=cerveza.toHTMLTableRow;
+	})	
     }
 
     listadoClientes(){
+	let oTabla=document.createElement("TABLE");
+	let oTHead=oTabla.createTHead();
+	let oTBody=oTabla.createTBody();
 
+	this.tClientes.forEach(function(cliente){
+	    let oFila = oTBody.insertRow(-1);
+	    oFila=cliente.toHTMLTableRow;
+	})
     }
 
     listadoOperarios(){
+	let oTabla=document.createElement("TABLE");
+	let oTHead=oTabla.createTHead();
+	let oTBody=oTabla.createTBody();
 
+	this.tOperarios.forEach(function(operario){
+	    let oFila = oTBody.insertRow(-1);
+	    oFila=operario.toHTMLTableRow;	    
+	})
     }
 }

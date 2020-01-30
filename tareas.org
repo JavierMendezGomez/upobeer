@@ -1,6 +1,76 @@
+#+TODO: PORHACER(t) | HECHO(d)
 * Clases
 ** UpoBeer (modelo)
 *** Atributos
+**** HECHO catalogo
+**** HECHO tPedidos
+**** HECHO tClientes
+**** HECHO tOperarios
 
 *** Métodos
+**** PORHACER altaCliente(Cliente cliente):boolean
+**** PORHACER altaOperario(String sDNI):boolean
+- [ ] Comprobar que recibe String sDNI y no Operario operario
+**** PORHACER altaPedido(Pedido pedido):boolean
+**** PORHACER altaCerveza(Cerveza cerveza):boolean
 
+**** PORHACER bajaCliente(String sDNI):boolean
+**** PORHACER bajaOperario(String sDNI):boolean
+**** PORHACER bajaPedido(int idPedido):boolean
+**** PORHACER bajaCerveza(int idCerveza):boolean
+
+**** PORHACER buscarCerveza(int idCerveza):Cerveza
+**** PORHACER buscarCliente(String sDNI):Cliente
+**** PORHACER buscarPedido(int idPedido):Pedido
+**** PORHACER buscarOperario(String sDNI):Operario
+
+**** PORHACER listadoCervezas():HTMLTable
+**** PORHACER listadoPedidos():HTMLTable
+**** PORHACER listadoPedidos(Cliente cliente):array Pedidos
+**** PORHACER listadoClientes():HTMLTable
+**** PORHACER listadoOperarios():HTMLTable
+
+**** PORHACER comprobarUsuario(String usuario):String tipo
+**** PORHACER comprobarRegistro(...):boolean
+
+** PORHACER Vehículo
+*** Atributos
+**** PORHACER idVehiculo:int
+**** PORHACER matricula:String
+**** PORHACER marca:String
+**** PORHACER modelo:String
+**** PORHACER tipo:String
+**** PORHACER anyoFabricacion:int
+
+*** Métodos
+**** PORHACER toString:HTMLRow
+
+** HECHO Envío
+*** Atributos
+**** HECHO idEnvío:int
+**** HECHO fechaSalida:date
+**** HECHO fechaEntrega:date
+**** PORHACER vehiculo
+
+*** HECHO Métodos
+**** HECHO toString():HTMLRow
+**** HECHO comprobarEntrega(Date fecha):boolean
+**** HECHO validarIntervaloFecha(Date fechaInicio, Date fechaFin):boolean
+
+** HECHO Pedido
+*** HECHO Atributos
+**** HECHO idPedido:int
+**** HECHO cliente:Cliente
+**** HECHO tLineasPedido: array LineaPedido
+**** HECHO estado: String
+**** HECHO fechaInicio: date
+**** HECHO fechaFin: date
+**** HECHO envio:Envio
+
+*** HECHO Métodos
+**** HECHO toString():HTMLRow
+- [X] Precio total
+**** HECHO precioTotal():float
+**** HECHO cambiarEstado(String estado): boolean
+**** HECHO validarIntervaloFecha(Date fechaInicio, Date fechaFin):boolean
+**** HECHO insertarLineaPedido(LineaPedido lineaPedido):boolean

@@ -1,0 +1,78 @@
+class Pedido{
+    constructor(idPedido, cliente, fechaInicio){
+	this.idPedido=idPedido;
+	this.cliente=cliente;
+	//tLineas pedido se mete por métodos
+	this.tLineasPedido=[];
+	//estado se mete por métodos
+	this.estado="pendiente";
+	this.fechaInicio=new Date(fechaInicio);
+	//fechaFin se mete por métodos
+	//envio se mete por métodos, derivada de la relación.
+    }
+    insertarLineaPedido(lineaPedido){
+	this.tLineasPedido.push(lineaPedido);
+	return true;
+    }
+    precioTotal(){
+	let total=parseFloat(0.0);
+	this.tLineasPedido.forEach(function(lineaPedido){
+	    total+=lineaPedido.cantidad*lineaPedido.precio;
+	});
+	return total;
+    }
+    cambiarEstado(estado){
+	let estadoCambiado=false;
+	
+	switch(){
+	case "pendiente":
+	    this.envio=null;
+	    this.estado="pendiente";
+	    estadoCambiado=true;
+	    break;
+	case "enviado":
+	    let idEnvio=null;//no hay tabla de envíos, luego no hay forma de meter id de envíos
+	    let fechaSalida=new Date(); //fecha de salida en el momento de cambiar de estado
+	    this.envio=new Envio(idEnvio,fechaSalida);
+	    this.estado="enviado";
+	    estadoCambiado=true;
+	    break;
+	case "finalizado":
+	    this.fechaFin=new Date(); //ahora
+	    this.envio.comprobarEntrega(this.fechaFin);
+	    this.estado="enviado";
+	    estadoCambiado=true;
+	    break;
+	default:
+	    estadoCambiado=false;
+	}
+	
+	return estadoCambiado;
+    }
+    validarIntervaloFecha(fechaInicial,fechaFinal){
+	fechaFinal = new Date();
+	fechaInicial = new Date(fechaInicial);
+	if(fechaFinal.getTime()>fechaInicial.getTime()){
+	    return true;
+	} else {
+	    throw "Intervalo de fechas no válido";
+	}
+    }
+    toString(){
+	let oFila=document.createElement("TR");
+
+	let oCeldaIdPedido=oFila.insertCell(-1);
+	oCeldaIdPedido.textContent=this.idPedido;
+	let oCeldaDNICliente=oFila.insertCell(-1);
+	oCeldaDNICliente.textContent=this.cliente.dni;
+	let oCeldaPrecioTotal=oFila.insertCell(-1);
+	oCeldaPrecioTotal.textContent=this.precioTotal();
+	let oCeldaEstado=oFila.insertCell(-1);
+	oCeldaEstado.textContent=this.estado;
+	let oCeldaFechaInicio=oFila.insertCell(-1);
+	oCeldaFechaInicio.textContent=this.fechaInicio;
+	let oCeldaFechaFin=oFila.insertCell(-1);
+	oCeldaFechaFin.textContent=this.fechaFin;
+	return oFila;
+    }
+}

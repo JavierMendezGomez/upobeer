@@ -110,6 +110,7 @@ class UpoBeer {
     buscarPedido(idPedido,dni){
 	if(dni == null){
 		console.log("id ok");
+	}
 	if(typeof dni == undefined){
 	    console.log("id ok");
 	    return this.tPedidos.find(function(oPedido_iterado){

@@ -1,0 +1,31 @@
+<upobeer>
+    <cervezas>
+	<cerveza idCerveza="" nombre="" alcohol=""/>
+    </cervezas>
+
+    <pedidos>
+	<pedido idPedido="" idCliente="" estado="" fechaInicio="" fechaFin=""/>
+	    <lineaPedido idCerveza="" cantidad=""/>
+	</pedido>
+    </pedidos>
+    
+    <clientes>
+	<cliente dni="" nombre="" apellidos="" fechaNacimiento="" telefono=""/>
+    </clientes>
+
+    <operarios>
+	<operario dni="" nombre="" apellidos="" fechaNacimiento="" telefono=""/>
+    </operarios>
+    
+    <conductores>
+	<conductor dni="" nombre="" apellidos="" fechaNacimiento="" telefono=""/>
+    </conductores>
+    
+    <vehiculos>
+	<vehiculo matricula="" marca="" modelo=""/>
+    </vehiculos>
+    
+    <envios>
+	<envio idEnvio="" fechaSalida="" fechaEntrega=""/>
+    </envios>
+</upobeer>

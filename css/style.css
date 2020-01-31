@@ -13,8 +13,20 @@ font-family: 'Playball', cursive;
     .section{
     padding-bottom: 1rem;
     }
+    .formularios{
+        padding: 6rem;
+        width: 100vw;
+        min-height: 80vh;
+        height: auto;
+        background: url("../Img/Fondo1.jpg");
+        background-size: cover;
+        background-position: top;
+    }
+    .formularios .row{
+        padding: 1rem;
+    }
     .conditional{
-    display:none;
+    display:inline;
     }
     #upobeer_main{
     height:90vh;
@@ -24,7 +36,6 @@ font-family: 'Playball', cursive;
 
 
     #upobeer_btnsShow{
-    height:calc(20vh );
     padding: auto;
     }
     #upobeer_frms{
@@ -45,15 +56,15 @@ font-family: 'Playball', cursive;
 
     /*Cabecera*/
 header{
-	height: 8rem;
-	background: #0c0c0c;
+	height: 7.2rem;
+	background: url("../Img/Fondo4.jpg");
 	color: #f4f4f5;
     padding: 0.6em;
 	flex: 0 0 auto;
     font-family: 'Playball', cursive;
 }
 .logo{
-	max-width: 7rem;
+	max-width: 6.5rem;
     margin-left: 2rem;
     margin-right: 1rem;
 }
@@ -74,7 +85,7 @@ header{
 /*Cabecera de inicio sesion pagina principal*/
 .cabeceraInicio header{
     height: 18rem;
-    background: #0c0c0c;
+    background: url("../Img/Fondo4.jpg");
     color: #f4f4f5;
     padding: 1em;
     flex: 0 0 auto;
@@ -97,6 +108,8 @@ header{
     font-size: 3rem;
     font-weight: normal;
 }
-.inicio {
-    
+.navbar{
+    padding-bottom: 0.5rem;
+    padding-top: 0;
+    margin-bottom: 0.5rem;
 }

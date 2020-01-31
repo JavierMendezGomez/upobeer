@@ -23,7 +23,7 @@ font-family: 'Playball', cursive;
         background-position: top;
     }
     .formularios .row{
-        padding: 1rem;
+        padding: 1rem 0;
     }
     .conditional{
     display:inline;

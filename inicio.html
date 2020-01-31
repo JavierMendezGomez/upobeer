@@ -152,17 +152,11 @@
 			<div id="divFrmAltaPedido" class="conditional form-group">
 				<form name="frmAltaPedido" id="frmAltaPedido">
 					<h2>Alta de pedido</h2>
-					<div class="row">
-						<div class="col-7">
-							<label for="selCatalogo">Producto deseado: </label>
-							<select class="form-control" name="selCatalogo" id="selCatalogo">
-								<option value="nada">Seleccione producto...</option>
-							</select>
-						</div>
-						<div class="col-5">
-							<label for="txtPorcentaje">Porcentaje alcohol: </label>
-							<input class="form-control" type="text" name="txtPorcentaje" id="txtPorcentaje" disabled>
-						</div>
+					<div class="row selectCatalogo">
+						<label for="selCatalogo">Producto deseado: </label>
+						<select class="form-control" name="selCatalogo" id="selCatalogo">
+							<option value="nada">Seleccione producto...</option>
+						</select>
 					</div>
 					<div class="row">
 						<div class="col-6">
@@ -179,6 +173,36 @@
 			</div>
 		</div>
 	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!----------------------- Entramos a la pagina con un tipo de usuario operario ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -213,30 +237,9 @@
 <!-- Formularios-->
 		<div class="formularios row section">
 			<div id="divFrmAltaCerveza" class="conditional form-group">
-				<form name="frmAltaPedido" id="frmAltaPedido">
+				<form name="frmAltaCerveza" id="frmAltaCerveza">
 					<h2>Alta de cerveza</h2>
-					<div class="row">
-						<div class="col-7">
-							<label for="selCatalogo">Producto deseado: </label>
-							<select class="form-control" name="selCatalogo" id="selCatalogo">
-								<option value="nada">Seleccione producto...</option>
-							</select>
-						</div>
-						<div class="col-5">
-							<label for="txtPorcentaje">Porcentaje alcohol: </label>
-							<input class="form-control" type="text" name="txtPorcentaje" id="txtPorcentaje" disabled>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-6">
-							<label for="txtPrecio">Precio/unidad: </label>
-							<input class="form-control" type="text" name="txtPrecioUnidad" id="txtPrecioUnidad" disabled>
-						</div>
-						<div class="col-6">
-							<label for="txtCantidad">Cantidad deseada:</label>
-							<input class="form-control" type="number" min="1" step="1" name="txtCantidad" id="txtCantidad">
-						</div>
-					</div>
+					
 					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAltaCerveza();">
 				</form>
 			</div>

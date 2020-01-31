@@ -1,6 +1,6 @@
 //INICIALIZAR MODELO
 var modelo = new UpoBeer();
-var tipo = "operario";
+var tipo = "cliente";
 var usuario = "";
 var clave = "";
 document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
@@ -105,28 +105,27 @@ function show_frmAltaPedido(){
 	ocultarForms();
 	frmAltaPedido.reset();
 	crearComboCatalogo();
-	frmAltaPedido.selCatalogo.addEventListener("change",actualizaDatosAlta);
+	document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").addEventListener("change",actualizaDatosAlta);
 	document.querySelector("#divFrmAltaPedido").style.display = "block";
 }
 
 
 function crearComboCatalogo(){
-	let select = document.querySelector("#selCatalogo");
-	modelo.tCervezas.forEach(function(element){
-		let option = document.createElement("option");
-		option.value = element.idCerveza;
-		option.textContent = element.nombre;
-		select.appendChild(option);
-	});
+	document.querySelector("#selCatalogo").remove();
+	let select = modelo.comboCatalogo();
+	document.querySelector(".selectCatalogo").appendChild(select);
+	frmAltaPedido.txtPrecioUnidad.value = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value).precio;
+
 }
 
 function actualizaDatosAlta(){
-	frmAltaPedido.txtPorcentaje.value = modelo.buscarCerveza(frmAltaPedido.selCatalogo.selectedOptions[0].value).porcentaje;
-	frmAltaPedido.txtPrecioUnidad.value = modelo.buscarCerveza(frmAltaPedido.selCatalogo.selectedOptions[0].value).precio;
+	console.log("llega");
+	frmAltaPedido.txtPrecioUnidad.value = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value).precio;
 }
 
+
 function submit_frmAltaPedido(){
-	let producto = modelo.buscarCerveza(frmAltaPedido.selCatalogo.selectedOptions[0].value);
+	let producto = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value);
 	let cliente = modelo.buscarCliente(clave);
 	let pedido = modelo.altaPedido(new Pedido(cliente,[]));
 	pedido.insertarLineaPedido(new LineaPedido(producto, frmAltaPedido.txtCantidad));

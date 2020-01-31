@@ -23,7 +23,6 @@ class Cerveza {
 
     validarPrecioUnidad(fPrecio)
     {
-
     	//Me he inventado un max de 100€ por unidad por si se te cuela un cero al dar de alta
     	if(fPrecio <= 0 || fPrecio > 100)
     	    return false;

@@ -17,7 +17,6 @@ class LineaPedido {
     }
 
     toHTMLRow(){
-
         let oFila = document.createElement("tr");
         let oCelda = oFila.insertCell(-1);
         oCelda.textContent = this.dni;
@@ -32,13 +31,5 @@ class LineaPedido {
         oCelda.textContent = this.precioLinea;
 
         return oFila;
-
-        /*
-
-        let fila ="<tr><td>" + this.producto.nombre + "</td><td>" + this.cantidad + "</td><td>" + this.precio + "</td>";
-
-    return fila;
-    */
     }
-
 }

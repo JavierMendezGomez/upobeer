@@ -3,6 +3,7 @@ class Cliente extends Persona {
         super(sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono);
         this.usuario = sUsuario;
     }
+
     listadoPedidos() {
 	modelo.listadoPedidos(this);
     }
@@ -29,12 +30,6 @@ class Cliente extends Persona {
         oCelda.textContent = this.telefono;
 
         return oFila;
-
-        /*
-          let fila = "<tr><td>" + this.dni + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.fechaNacimiento +
-          "</td><td>" + this.direccion + "</td><td>" + this.telefono + "</td></tr>";
-          return fila;
-        */
     }
 
 }

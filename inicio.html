@@ -171,6 +171,29 @@
 					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAltaPedido();">
 				</form>
 			</div>
+
+			<div id="divFrmBajaPedido" class="conditional form-group">
+				<form name="frmBajaPedido" id="frmBajaPedido">
+					<h2>Baja de pedido</h2>
+					<div class="row selectPedido">
+						<label for="selPedido">Pedido que desea borrar: </label>
+						<select class="form-control" name="selPedido" id="selPedido">
+							<option value="nada">Seleccione pedido...</option>
+						</select>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<label for="txtLineas">Líneas de pedido: </label>
+							<input class="form-control" type="text" name="txtLineas" id="txtLineas" disabled>
+						</div>
+						<div class="col-6">
+							<label for="txtTotal">Total:</label>
+							<input class="form-control" type="number" min="1" step="1" name="txtTotal" id="txtTotal">
+						</div>
+					</div>
+					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmBajaPedido();">
+				</form>
+			</div>
 		</div>
 	</div>
 
@@ -236,13 +259,11 @@
 
 <!-- Formularios-->
 		<div class="formularios row section">
-<<<<<<< HEAD
 			<div id="divFrmAltaCerveza" class="conditional form-group">
 				<form name="frmAltaCerveza" id="frmAltaCerveza">
 					<h2>Alta de cerveza</h2>
 					
 					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAltaCerveza();">
-=======
 			<div id="divAnadirStock" class="conditional form-group">
 				<form name="frmAnadirStock" id="frmAnadirStock">
 					<h2>Añadir stock</h2>
@@ -259,7 +280,6 @@
 						</div>
 					</div>
 					<input class="btn btn-success" type="button" value="Añadir" onclick="submit_frmAltaCerveza();">
->>>>>>> 8dd649cbfda2c983415ea2f0c3315efcb6a63062
 				</form>
 			</div>
 		</div>

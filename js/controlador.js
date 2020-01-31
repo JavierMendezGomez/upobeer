@@ -120,12 +120,41 @@ function crearComboCatalogo(){
 }
 
 function actualizaDatosAlta(){
-	console.log("llega");
 	frmAltaPedido.txtPrecioUnidad.value = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value).precio;
 }
 
 
 function submit_frmAltaPedido(){
+	let producto = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value);
+	let cliente = modelo.buscarCliente(clave);
+	if(pedido == undefined)
+		pedido = modelo.altaPedido(new Pedido(cliente,[]));
+	pedido.insertarLineaPedido(new LineaPedido(producto, frmAltaPedido.txtCantidad));
+}
+
+function show_frmBajaPedido(){
+	ocultarForms();
+	frmBajaPedido.reset();
+	crearComboPedidos();
+	frmBajaPedido.comboPedidos.addEventListener("change",actualizaDatosAlta);
+	document.querySelector("#divFrmBajaPedido").style.display = "block";
+}
+
+var pedido;
+
+function crearComboPedidos(){
+	document.querySelector("#selPedido").remove();
+	let select = modelo.comboPedidos();
+	document.querySelector(".selectPedido").appendChild(select);
+}
+
+function actualizaDatosBaja(){
+	frmBajaPedido.txtLineas.value = modelo.buscarPedido(frmBajaPedido.selectPedido.selectedOptions[0].value).tLineasPedido.length;
+	frmBajaPedido.txtTotal.value = modelo.buscarPedido(frmBajaPedido.selectPedido.selectedOptions[0].value).precioTotal();
+}
+
+
+function submit_frmBajaPedido(){
 	let producto = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value);
 	let cliente = modelo.buscarCliente(clave);
 	if(pedido == undefined)

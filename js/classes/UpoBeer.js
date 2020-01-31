@@ -195,12 +195,22 @@ class UpoBeer {
     }
     comboPedidos(oCliente){
 	let select = document.createElement("SELECT");
-	this.buscarPedidos(oCliente).forEach(function(element){
-	    let option = document.createElement("OPTION");
-	    option.value = element.idPedido;
-	    option.textContent = element.fecha;
+	select.name="comboPedidos";
+	select.className="form-control";
+	if(this.buscarPedido(oCliente) != undefined)
+		this.buscarPedido(oCliente).forEach(function(element){
+		    let option = document.createElement("OPTION");
+		    option.value = element.idPedido;
+		    option.textContent = element.fecha;
+		    select.appendChild(option);
+		});
+	else
+	{
+		 let option = document.createElement("OPTION");
+	    option.value = "-1";
+	    option.textContent = "No tiene pedidos pendientes";
 	    select.appendChild(option);
-	});
+	}
 	return select;
     }
     

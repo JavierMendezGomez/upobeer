@@ -108,13 +108,10 @@ class UpoBeer {
 	});
     }
     buscarPedido(idPedido,dni){
-<<<<<<< HEAD
 	if(dni == null){
 		console.log("id ok");
-=======
 	if(typeof dni == undefined){
 	    console.log("id ok");
->>>>>>> ae13436184a8f10dcbdb49428e859d7d3aece344
 	    return this.tPedidos.find(function(oPedido_iterado){
 		return (oPedido_iterado.idPedido == idPedido);
 	    });

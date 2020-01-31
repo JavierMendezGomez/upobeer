@@ -106,14 +106,13 @@ class UpoBeer {
 	    return (oOperario_iterado.dni == dni && oOperario_iterado.supervisor == true);
 	});
     }
-    buscarPedido(multiParam){
-	if(typeof multiParam == "Cliente"){
+    buscarPedido(idPedido,dni){
+	if(typeof idPedido == null){
 	    let oCliente=multiParam;
 	    return this.tPedidos.find(function(oPedido_iterado){
-		return (oPedido_iterado.cliente.dni == oCliente.dni);
+		return (oPedido_iterado.cliente.dni == dni);
 	    });
 	} else {
-	    let idPedido=multiParam;
 	    return this.tPedidos.find(function(oPedido_iterado){
 		return (oPedido_iterado.idPedido == idPedido);
 	    });

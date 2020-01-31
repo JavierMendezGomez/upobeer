@@ -54,7 +54,7 @@
 					</td></tr>
 			    </form>
 				</table><br>
-			    <a id="enlaceRegistro" href="#">¿No tienes cuenta? Regístrate</a>
+			    <a id="enlaceRegistro" href="">¿No tienes cuenta? Regístrate</a>
 			</div>
 		</div>
 
@@ -133,24 +133,53 @@
 		</div>
 		<center>
 		<br>
-		<h6 id="datosSesion"><b>Bienvenido, has iniciado sesión como: </b></h6>
-		<div id="upobeer_btnsShow" class="row section">
-			<div class="col-md-7" id="upobeer_btnsShowFrms">					
-				<legend>Formularios</legend>			
-				<div class="btn-group" role="group" aria-label="FomrBtns">
-					<button type="button" class="btn-dark btn-sm" onclick="show_frmAltaPedido();">Alta Pedido</button>
-					<button type="button" class="btn-dark btn-sm" onclick="show_frmBajaPedido();">Baja Pedido</button>
-					<button type="button" class="btn-dark btn-sm" onclick="show_frmModificarPerfil();">Modificar mi perfil</button>
-				</div>
+		<div id="upobeer_btnsShow" class="row navbar">
+			<div class="col-12 col-md-5">
+				<h6 id="datosSesion"><b>¡Bienvenido! Has iniciado sesión como: </b></h6>
 			</div>
-			<div class="col-md-5" id="upobeer_btnsShowLists"	>
-				<legend>Listados</legend>
+			<div class="col-12 col-md-7" id="upobeer_btnsShowFrms">	
+				<button type="button" class="btn-dark btn-sm" onclick="show_frmAltaPedido();">Alta Pedido</button>
+				<button type="button" class="btn-dark btn-sm" onclick="show_frmBajaPedido();">Baja Pedido</button>
+				<button type="button" class="btn-dark btn-sm" onclick="show_frmModificarPerfil();">Modificar mi perfil</button>
 				<button type="button" class="btn-dark btn-sm" onclick="show_lstCatalogo()">Catálogo</button>
 				<button type="button" class="btn-dark btn-sm" onclick="show_lstPedidosRegistrados()">Pedidos registrados</button>
 			</div>
 		</div>
 		</center>
+
+<!-- Formularios-->
+		<div class="formularios row section">
+			<div id="divFrmAltaPedido" class="conditional form-group">
+				<form name="frmAltaPedido" id="frmAltaPedido">
+					<h2>Alta de pedido</h2>
+					<div class="row">
+						<label for="selCatalogo">Producto deseado: </label>
+						<select class="form-control" name="selCatalogo" id="selCatalogo">
+							<option>Seleccione producto...</option>
+						</select>
+					</div>
+					<div class="row">
+						<div class="col-3">
+							<label for="txtMatricula">Precio/unidad: </label>
+						</div>
+						<div class="col-3">
+							<input class="form-control" type="text" name="txtPrecioUnidad" id="txtPrecioUnidad">
+						</div>
+						<div class="col-3">
+							<label for="txtCantidad">Cantidad deseada:</label>
+						</div>
+						<div class="col-3">
+							<input class="form-control" type="number" min="1" step="1" name="txtCantidad" id="txtCantidad">
+						</div>
+					</div>
+					<div class="row"><input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAltaVehiculo();"></div>
+				</form>
+			</div>
+		</div>
 	</div>
+</div>
+
+
 		
 	<!-- Importación de scripts, por orden -->
 	<!-- Funciones que pueden usarse en todas las clases -->

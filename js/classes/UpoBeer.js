@@ -40,7 +40,9 @@ class UpoBeer {
 
     altaPedido(oPedido){
 	if(this.buscarPedido(oPedido.idPedido) == undefined){
-    	    return this.tPedidos.push(oPedido);
+    	this.tPedidos.push(oPedido);
+    	this.contadorPedidos++;
+    	return oPedido;
 	}
     	return false;
     }

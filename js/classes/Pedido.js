@@ -7,7 +7,7 @@ class Pedido {
 	this.cliente=oCliente;
 	this.tLineasPedido=tLineasPedido;
 	this.estado="espera";
-	this.fechaInicio = new Date(); //Fecha actual, cuando se hace el pedido
+	this.fechaInicio = new Date();
     }
 
     precioTotal()
@@ -31,21 +31,56 @@ class Pedido {
 	    cantidadTotal += this.tLineasPedido[i].cantidad;
 	}
 	diasPrep = Math.trunc(cantidadTotal / 100);
+	
 	//Suma los dias de prep y de envio a la fecha de inicio
+	this.fechaFin=new Date();
 	this.fechaFin.setDate(this.fechaInicio.getDate() + (diasPrep + diasEnvio));
+
+	let fechaSalida=new Date();
+	fechaSalida.setDate(this.fechaInicio.getDate() + (diasPrep));
+	fechaEntrega.setDate(this.fechaInicio.getDate() + (diasPrep + diasEnvio));
+	this.envio = new Envio(fechaSalida, fechaEntrega);
     }
 
     insertarLineaPedido(oLineaPedido)
     {
 	for(let i = 0; i < this.tLineasPedido.length; i++)
 	{
-	    if(tLineasPedido[i].producto.idCerveza == oLineaPedido.producto.idCerveza)
+	    if(this.tLineasPedido[i].producto.idCerveza == oLineaPedido.producto.idCerveza)
 		return false; //Producto repetido en dos lineas pedido diferentes
 	}
-	if(new Date().getTime() > this.fechaInicio.getTime())
-	    return false; //Se esta modificando el pedido tarde, ya esta en preparacion
 	return this.tLineasPedido.push(oLineaPedido);
     }
+
+    cambiarEstado(estado){
+	let estadoCambiado=false;
+	    
+	    switch(estado){
+	    case "pendiente":
+		this.envio=null;
+		this.estado="pendiente";
+		estadoCambiado=true;
+		break;
+	    case "preparacion":
+		//poner todas las fechas en orden
+		this.validarIntervaloFecha();
+		this.estado="preparacion";
+		estadoCambiado=true;
+		break;
+	    case "enviado":
+		this.estado="enviado";
+		estadoCambiado=true;
+		break;
+	    case "finalizado":
+		this.estado="finalizado";
+		estadoCambiado=true;
+		break;
+	    default:
+		estadoCambiado=false;
+	    }
+	    
+	    return estadoCambiado;
+	}
 
     toHTMLRow(){
 
@@ -72,13 +107,5 @@ class Pedido {
         oCelda.textContent = this.fechaFin;
 
         return oFila;
-
-		/*
-        let fila ="<tr><td>" + this.idPedido + "</td><td>" + this.cliente.nombre + " " + this.cliente.apellidos + "</td><td>" 
-            + this.tLineasPedido.length + "</td><td>" + this.estado + "</td><td>" 
-            + this.fechaInicio + "</td>" + "</td><td>" + this.fechaFin + "</td>";
-
-	return fila;
-	*/
     }
 }

@@ -36,6 +36,7 @@ function revisarSwitch()
 
 function ocultarTodo()
 {
+	ocultarForms();
 	document.querySelectorAll(".elemento").forEach(function(element){element.style.display="none"});	
 }
 
@@ -65,7 +66,6 @@ function comprobarUsuario(){
 	clave = formularioInicio.clave.value;
 	console.log(usuario + ", " + clave);
 	tipo = this.modelo.comprobarUsuario(usuario,clave);
-	alert("Usuario tipo: " + tipo);
 	if(tipo != "ninguno")
 		revisarSwitch();
 	else

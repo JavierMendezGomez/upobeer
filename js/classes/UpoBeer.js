@@ -192,7 +192,17 @@ class UpoBeer {
 	})
 	return oTabla;
     }
-
+    comboPedidos(oCliente){
+	let select = document.createElement("SELECT");
+	this.buscarPedidos(oCliente).forEach(function(element){
+	    let option = document.createElement("OPTION");
+	    option.value = element.idPedido;
+	    option.textContent = element.fecha;
+	    select.appendChild(option);
+	});
+	return select;
+    }
+    
     listadoCervezas(){
 	let oTabla=document.createElement("TABLE");
 	let oTHead=oTabla.createTHead();
@@ -204,6 +214,16 @@ class UpoBeer {
 	})
 
 	return oTabla;
+    }
+    comboCatalogo(){
+	let select = document.createElement("SELECT");
+	this.tCervezas.forEach(function(element){
+	    let option = document.createElement("OPTION");
+	    option.value = element.idCerveza;
+	    option.textContent = element.nombre+" - "+element.porcentaje+"% alcohol";
+	    select.appendChild(option);
+	});
+	return select;
     }
 
     listadoClientes(){

@@ -8,22 +8,49 @@ class UpoBeer {
     }
 
     /* MÉTODOS */
-    /** Alta de cosas */
+    /** Alta y baja de cosas */
     altaCliente(oCliente){
     	if(this.buscarCliente(oCliente.dni) == undefined)
 	    return this.tClientes.push(oCliente); //Devuelve length del array que si es positivo es como true
     	return false;
+    }
+    bajaCliente(oCliente){
+	this.tClientes=this.tClientes.filter(function(cliente){
+	    cliente.dni!=oCliente.dni;
+	});
     }
     altaOperario(oOperario){
     	if(this.buscarOperario(oOperario.dni) == undefined)
 	    return this.tOperarios.push(oOperario);
     	return false;
     }
+    bajaOperario(oOperario){
+	this.tOperarios=this.tOperarios.filter(function(operario){
+	    operario.dni!=oOperario.dni;
+	});
+    }
+    altaPedido(oPedido){
+	if(this.buscarPedido(oPedido.idPedido) == undefined)
+    	    return this.catalogo.push(oVehiculo);
+    	return false;
+    }
+    bajaPedido(oPedido){
+	this.tPedidos=this.tPedidos.filter(function(pedido){
+	    pedido.idPedido!=oPedido.idPedido;
+	});
+    }
     altaCerveza(oCerveza){
     	if(this.buscarCerveza(oCerveza.idCerveza) == undefined)
     	    return this.catalogo.push(oVehiculo);
     	return false;
     }
+    bajaCerveza(oCerveza){
+	this.tCervezas=this.tCervezas.filter(function(cerveza){
+	    cerveza.idCerveza!=oCerveza.idCerveza;
+	});
+    }
+
+    
     /** Buscar cosas */
     buscarCerveza(idCerveza){
     	return this.catalogo.find(function(oCerveza_iterada){
@@ -57,8 +84,7 @@ class UpoBeer {
     }
     /** Comprobar usuarios*/
     comprobarUsuario(usuario,clave)
-    {
-    	
+    {    	
     	//La clave es el dni, el usuario es unico
     	if(this.buscarCliente(clave) != undefined)
     	{
@@ -135,7 +161,7 @@ class UpoBeer {
 
 	this.tOperarios.forEach(function(operario){
 	    let oFila = oTBody.insertRow(-1);
-	    oFila=operario.toHTMLTableRow;	    
+	    oFila=operario.toHTMLTableRow();	    
 	})
     }
 }

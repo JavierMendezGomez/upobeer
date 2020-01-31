@@ -1,13 +1,14 @@
 class Pedido{
-    constructor(idPedido, cliente, fechaInicio){
-	this.idPedido=idPedido;
+    constructor(cliente, fechaInicio){
+	//idPedido mira el siguiente ID de la tabla pedidos
+	this.idPedido=upobeer.tPedidos.length+1;
 	this.cliente=cliente;
 	//tLineas pedido se mete por métodos
 	this.tLineasPedido=[];
 	//estado se mete por métodos
 	this.estado="pendiente";
 	this.fechaInicio=new Date(fechaInicio);
-	//fechaFin se mete por métodos
+	//fechaFin se configura por cálculo
 	//envio se mete por métodos, derivada de la relación.
     }
     insertarLineaPedido(lineaPedido){
@@ -30,16 +31,19 @@ class Pedido{
 	    this.estado="pendiente";
 	    estadoCambiado=true;
 	    break;
+	case "preparacion":
+	    let fechaSalidaPrevista=new Date(); //fecha de salida en el momento de cambiar de estado
+	    let fechaEntregaPrevista=new Date();
+	    this.envio=new Envio(fechaSalidaPrevista,fechaEntregaPrevista);
+	    this.estado="preparacion";
+	    estadoCambiado=true;
+	    break;
 	case "enviado":
-	    let idEnvio=null;//no hay tabla de envíos, luego no hay forma de meter id de envíos
-	    let fechaSalida=new Date(); //fecha de salida en el momento de cambiar de estado
-	    this.envio=new Envio(idEnvio,fechaSalida);
 	    this.estado="enviado";
 	    estadoCambiado=true;
 	    break;
 	case "finalizado":
 	    this.fechaFin=new Date(); //ahora
-	    this.envio.comprobarEntrega(this.fechaFin);
 	    this.estado="enviado";
 	    estadoCambiado=true;
 	    break;
@@ -49,14 +53,16 @@ class Pedido{
 	
 	return estadoCambiado;
     }
-    validarIntervaloFecha(fechaInicial,fechaFinal){
-	fechaFinal = new Date();
-	fechaInicial = new Date(fechaInicial);
-	if(fechaFinal.getTime()>fechaInicial.getTime()){
-	    return true;
-	} else {
-	    throw "Intervalo de fechas no válido";
+    comprobarRetraso(){
+	let retrasado=false;
+	if(this.estado=="enviado" || this.estado=="preparacion"){
+	    if(this.envio.fechaSalidaPrevista.getTime()< new Date().getTime())
+		retrasado=true;
+	}else if(this.estado=="entregado"){
+	    if(this.envio.fechaEntregaPrevista.getTime()< new Date().getTime())
+		retrasado=true;
 	}
+	return retrasado;
     }
     toString(){
 	let oFila=document.createElement("TR");

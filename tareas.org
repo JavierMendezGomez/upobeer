@@ -8,27 +8,27 @@
 **** HECHO tOperarios
 
 *** Métodos
-**** PORHACER altaCliente(Cliente cliente):boolean
-**** PORHACER altaOperario(String sDNI):boolean
+**** HECHO altaCliente(Cliente cliente):boolean
+**** HECHO altaOperario(String sDNI):boolean
 - [ ] Comprobar que recibe String sDNI y no Operario operario
-**** PORHACER altaPedido(Pedido pedido):boolean
-**** PORHACER altaCerveza(Cerveza cerveza):boolean
+**** HECHO altaPedido(Pedido pedido):boolean
+**** HECHO altaCerveza(Cerveza cerveza):boolean
 
-**** PORHACER bajaCliente(String sDNI):boolean
-**** PORHACER bajaOperario(String sDNI):boolean
-**** PORHACER bajaPedido(int idPedido):boolean
-**** PORHACER bajaCerveza(int idCerveza):boolean
+**** HECHO bajaCliente(String sDNI):boolean
+**** HECHO bajaOperario(String sDNI):boolean
+**** HECHO bajaPedido(int idPedido):boolean
+**** HECHO bajaCerveza(int idCerveza):boolean
 
-**** PORHACER buscarCerveza(int idCerveza):Cerveza
-**** PORHACER buscarCliente(String sDNI):Cliente
-**** PORHACER buscarPedido(int idPedido):Pedido
-**** PORHACER buscarOperario(String sDNI):Operario
+**** HECHO buscarCerveza(int idCerveza):Cerveza
+**** HECHO buscarCliente(String sDNI):Cliente
+**** HECHO buscarPedido(int idPedido):Pedido
+**** HECHO buscarOperario(String sDNI):Operario
 
-**** PORHACER listadoCervezas():HTMLTable
-**** PORHACER listadoPedidos():HTMLTable
-**** PORHACER listadoPedidos(Cliente cliente):array Pedidos
-**** PORHACER listadoClientes():HTMLTable
-**** PORHACER listadoOperarios():HTMLTable
+**** HECHO listadoCervezas():HTMLTable
+**** HECHO listadoPedidos():HTMLTable
+**** HECHO listadoPedidos(Cliente cliente):array Pedidos
+**** HECHO listadoClientes():HTMLTable
+**** HECHO listadoOperarios():HTMLTable
 
 **** PORHACER comprobarUsuario(String usuario):String tipo
 **** PORHACER comprobarRegistro(...):boolean

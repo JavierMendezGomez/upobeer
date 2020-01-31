@@ -1,7 +1,7 @@
 class UpoBeer {   
     /* CONSTRUCTOR */
-    constructor(catalogo, tPedidos, tClientes, tOperarios){
-	this.catalogo=[];
+    constructor(){
+	this.tCervezas=[];
 	this.tPedidos=[];
 	this.tClientes=[];
 	this.tOperarios=[];
@@ -14,71 +14,78 @@ class UpoBeer {
     /* MÉTODOS */
     /** Alta y baja de cosas */
     altaCliente(oCliente){
-    	if(this.buscarCliente(oCliente.dni) == undefined)
+    	if(this.buscarCliente(oCliente.dni) == undefined){
 	    return this.tClientes.push(oCliente); //Devuelve length del array que si es positivo es como true
+	}
     	return false;
     }
-    bajaCliente(oCliente){
+    bajaCliente(dni){
 	this.tClientes=this.tClientes.filter(function(cliente){
-	    cliente.dni!=oCliente.dni;
+	    cliente.dni!=dni;
 	});
     }
     altaOperario(oOperario){
-    	if(this.buscarOperario(oOperario.dni) == undefined)
+    	if(this.buscarOperario(oOperario.dni) == undefined){
 	    return this.tOperarios.push(oOperario);
+	}
     	return false;
     }
-    bajaOperario(oOperario){
+    bajaOperario(dni){
 	this.tOperarios=this.tOperarios.filter(function(operario){
-	    operario.dni!=oOperario.dni;
+	    operario.dni!=dni;
 	});
     }
+
     altaPedido(oPedido){
-	if(this.buscarPedido(oPedido.idPedido) == undefined)
-    	    return this.catalogo.push(oVehiculo);
+	if(this.buscarPedido(oPedido.idPedido) == undefined){
+    	    return this.tPedidos.push(oPedido);
+	}
     	return false;
     }
-    bajaPedido(oPedido){
+    bajaPedido(idPedido){
 	this.tPedidos=this.tPedidos.filter(function(pedido){
-	    pedido.idPedido!=oPedido.idPedido;
+	    pedido.idPedido!=idPedido;
 	});
     }
     altaCerveza(oCerveza){
-    	if(this.buscarCerveza(oCerveza.idCerveza) == undefined)
-    	    return this.catalogo.push(oVehiculo);
+    	if(this.buscarCerveza(oCerveza.idCerveza) == undefined){
+    	    return this.tCervezas.push(oCerveza);
+	}
     	return false;
     }
-    bajaCerveza(oCerveza){
+    bajaCerveza(idCerveza){
 	this.tCervezas=this.tCervezas.filter(function(cerveza){
-	    cerveza.idCerveza!=oCerveza.idCerveza;
+	    cerveza.idCerveza!=idCerveza;
 	});
     }
 
     //Cosas necesarias para envío
     altaConductor(oConductor){
-    	if(this.buscarConductor(oConductor.dni) == undefined)
+    	if(this.buscarConductor(oConductor.dni) == undefined){
 	    return this.tConductores.push(oConductor);
+	}
     	return false;
     }
-    bajaConductor(oConductor){
-	this.tConductors=this.tConductores.filter(function(operario){
-	    operario.dni!=oConductor.dni;
+    bajaConductor(dni){
+	this.tConductores=this.tConductores.filter(function(conductor){
+	    conductor.dni!=dni;
 	});
     }
-    altaVehiculo(oVehiculo){
-    	if(this.buscarVehiculo(oVehiculo.matricula) == undefined)
+    altaVehiculo(Vehiculo){
+    	if(this.buscarVehiculo(oVehiculo.matricula) == undefined){
 	    return this.tVehiculos.push(oVehiculo);
+	}
     	return false;
     }
-    bajaVehiculo(oVehiculo){
+    bajaVehiculo(matricula){
 	this.tVehiculos=this.tVehiculos.filter(function(vehiculo){
-	    vehiculo.matricula!=oVehiculo.matricula;
+	    vehiculo.matricula!=matricula;
 	});
     }
     
     /** Buscar cosas */
     buscarCerveza(idCerveza){
-    	return this.catalogo.find(function(oCerveza_iterada){
+    	return this.tCervezas.find(function(oCerveza_iterada){
     	    return oCerveza_iterada.idCerveza == idCerveza;
     	});
     }
@@ -107,9 +114,9 @@ class UpoBeer {
 	    return (oPedido_iterado.cliente == oCliente);
 	});
     }
-    buscarCliente(oCliente){
-	return this.tPedidos.find(function(oPedido_iterado){
-	    return (oPedido_iterado.cliente == oCliente);
+    buscarCliente(dni){
+	return this.tClientes.find(function(oCliente_iterado){
+	    return (oCliente_iterado.dni == dni);
 	});
     }
 
@@ -150,18 +157,18 @@ class UpoBeer {
 
         return tipo;
     }
-    comprobarRegistro(usuarioNuevo,dni,nombre,apellidos,fecha,direccion,telefono)
+    
+    comprobarRegistro(usuario,dni,nombre,apellidos,fecha,direccion,telefono)
     {
-	console.log("DNI: "+dni);
     	if(this.buscarCliente(dni) != undefined)
     	{
-    	    console.log("Cliente encontrado");
-    	    return false;
+	    throw "No se puede crear el cliente. Ya existía un cliente con el mismo DNI.";
+	    return false;
     	}
     	else
     	{
     	    console.log(usuarioNuevo + ", " + dni);
-    	    console.log(this.altaCliente(new Cliente(usuarioNuevo,dni,nombre,apellidos,fecha,direccion,telefono)));
+	    this.altaCliente(new Cliente(usuario,dni,nombre,apellidos,fecha,direccion,telefono)));
     	    return true;
     	}
     }

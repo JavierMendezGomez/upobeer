@@ -2,13 +2,19 @@ class UpoBeer {
     /* CONSTRUCTOR */
     constructor(){
 	this.tCervezas=[];
+	this.serialCervezas=0;
 	this.tPedidos=[];
+	this.serialPedidos=0;
 	this.tClientes=[];
+	this.serialClientes=0;
 	this.tOperarios=[];
+	this.serialOperarios=0;
 
 	//Cosas necesarias para envío
 	this.tConductores=[];
+	this.serialConductores=0;
 	this.tVehiculos=[]
+	this.serialVehiculos=0;
     }
 
     /* MÉTODOS */
@@ -162,13 +168,13 @@ class UpoBeer {
     {
     	if(this.buscarCliente(dni) != undefined)
     	{
-	    throw "No se puede crear el cliente. Ya existía un cliente con el mismo DNI.";
+	    console.log("No se puede crear el cliente. Ya existía un cliente con el mismo DNI.");
 	    return false;
     	}
     	else
     	{
     	    console.log(usuarioNuevo + ", " + dni);
-	    this.altaCliente(new Cliente(usuario,dni,nombre,apellidos,fecha,direccion,telefono)));
+	    this.altaCliente(new Cliente(usuario,dni,nombre,apellidos,fecha,direccion,telefono));
     	    return true;
     	}
     }

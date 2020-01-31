@@ -5,6 +5,10 @@ class UpoBeer {
 	this.tPedidos=[];
 	this.tClientes=[];
 	this.tOperarios=[];
+
+	//Cosas necesarias para envío
+	this.tConductores=[];
+	this.tVehiculos=[]
     }
 
     /* MÉTODOS */
@@ -50,6 +54,27 @@ class UpoBeer {
 	});
     }
 
+    //Cosas necesarias para envío
+    altaConductor(oConductor){
+    	if(this.buscarConductor(oConductor.dni) == undefined)
+	    return this.tConductores.push(oConductor);
+    	return false;
+    }
+    bajaConductor(oConductor){
+	this.tConductors=this.tConductores.filter(function(operario){
+	    operario.dni!=oConductor.dni;
+	});
+    }
+    altaVehiculo(oVehiculo){
+    	if(this.buscarVehiculo(oVehiculo.matricula) == undefined)
+	    return this.tVehiculos.push(oVehiculo);
+    	return false;
+    }
+    bajaVehiculo(oVehiculo){
+	this.tVehiculos=this.tVehiculos.filter(function(vehiculo){
+	    vehiculo.matricula!=oVehiculo.matricula;
+	});
+    }
     
     /** Buscar cosas */
     buscarCerveza(idCerveza){
@@ -82,6 +107,25 @@ class UpoBeer {
 	    return (oPedido_iterado.cliente == oCliente);
 	});
     }
+    buscarCliente(oCliente){
+	return this.tPedidos.filter(function(oPedido_iterado){
+	    return (oPedido_iterado.cliente == oCliente);
+	});
+    }
+
+    //cosas necesarias para envío
+    buscarConductor(dni){
+	return this.tConductores.filter(function(oConductor_iterado){
+	    return (oConductor_iterado.dni == dni);
+	});
+    }
+    buscarVehiculo(dni){
+	return this.tVehiculos.filter(function(oVehiculo_iterado){
+	    return (oVehiculo_iterado.dni == dni);
+	});
+    }    
+
+    
     /** Comprobar usuarios*/
     comprobarUsuario(usuario,clave)
     {    	

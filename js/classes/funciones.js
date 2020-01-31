@@ -1,3 +1,9 @@
+Date.prototype.addDays = function(days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+}
+
 // Sirve para establecer o modificar el valor de una cookie
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();

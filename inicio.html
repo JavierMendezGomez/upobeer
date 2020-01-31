@@ -159,6 +159,8 @@
 		//INICIALIZAR MODELO
 		var modelo = new UpoBeer();
 		var tipo = "ninguno";
+		var usuario = "";
+		var clave = "";
 		document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
 		document.getElementById("logoInicio").addEventListener("click", showInicio);
 		revisarSwitch();
@@ -175,6 +177,9 @@
 			    break;
 			  case 'cliente':
 			  	ocultarTodo();
+			  	let datos = document.createElement("text");
+			  	datos.textContent = usuario + ", " + clave;
+			  	document.querySelector("#datosSesion").appendChild(datos);
 			    document.getElementById("cliente").style.display = "inline";
 			    console.log("se muestra cliente");
 			    break;
@@ -213,8 +218,8 @@
 
 		function comprobarUsuario(){
 
-			var usuario = formularioInicio.usuario.value;
-			var clave = formularioInicio.clave.value;
+			usuario = formularioInicio.usuario.value;
+			clave = formularioInicio.clave.value;
 			console.log(usuario + ", " + clave);
 			tipo = this.modelo.comprobarUsuario(usuario,clave);
 			alert("Usuario tipo: " + tipo);

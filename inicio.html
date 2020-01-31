@@ -248,7 +248,7 @@
 					<div class="row">
 						<div class="col-6">
 							<label for="txtCantidad">Cantidad deseada:</label>
-							<input class="form-control" type="number" min="1" step="1" name="txtCantidad" id="txtCantidad">
+							<input class="form-control" type="number" value="1" min="1" step="1" name="txtCantidad" id="txtCantidad">
 						</div>
 					</div>
 					
@@ -256,6 +256,29 @@
 				</form>
 			</div>
 		</div>
+	</div>
+
+	<div class="formularios row section">
+		<div id="divCambiarEstado" class="conditional form-group">
+			<form name="frmCambiarEstado" id="frmCambiarEstado">
+				<h2>Cambiar estado de pedidos</h2>
+				<div class="row selectProducto">
+					<label for="selPedido">Pedidos: </label>
+					<select class="form-control" name="selPedido" id="selPedido">
+						<option value="nada">Seleccione pedido...</option>
+					</select>
+				</div>
+				<div class="row">
+					<div class="col-6">
+						<label for="txtCantidad">Cantidad deseada:</label>
+						<input class="form-control" type="number" value="1" min="1" step="1" name="txtCantidad" id="txtCantidad">
+					</div>
+				</div>
+				
+				<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAnadirStock();">
+			</form>
+		</div>
+	</div>
 	</div>
 
 

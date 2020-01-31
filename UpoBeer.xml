@@ -1,32 +1,17 @@
 <upobeer>
     <cervezas>
-	<cerveza idCerveza="" nombre="" alcohol=""/>
+        <cerveza idcerveza="1" nombre="Cruzcampo" porcentaje="11" precio="3.5" stock="200" foto="Img/beer/1.jpg"></cerveza>
+        <cerveza idcerveza="2" nombre="Radler" porcentaje="9" precio="4.5" stock="200" foto="Img/beer/2.jpg"></cerveza>
+        <cerveza idcerveza="3" nombre="Hamstel" porcentaje="12" precio="3" stock="200" foto="Img/beer/3.jpg"></cerveza>
+        <cerveza idcerveza="4" nombre="Alhambra" porcentaje="14" precio="4.2" stock="200" foto="Img/beer/4.jpg"></cerveza>
     </cervezas>
-
-    <pedidos>
-	<pedido idPedido="" idCliente="" estado="" fechaInicio="" fechaFin=""/>
-	    <lineaPedido idCerveza="" cantidad=""/>
-	</pedido>
-    </pedidos>
-    
     <clientes>
-	<cliente dni="" nombre="" apellidos="" fechaNacimiento="" telefono=""/>
+        <cliente dni="11111111A" nombre="Cliente1" apellidos="Ap" fechanacimiento="1997-08-12" direccion="C/Mesina" telefono="111111111" usuario="user1"></cliente>
+        <cliente dni="11111111B" nombre="Cliente2" apellidos="Ap" fechanacimiento="1993-04-16" direccion="C/Mesina" telefono="111111111" usuario="user2"></cliente>
+        <cliente dni="11111111C" nombre="Cliente2" apellidos="Ap" fechanacimiento="1994-09-22" direccion="C/Mesina" telefono="111111111" usuario="user3"></cliente>
     </clientes>
-
     <operarios>
-	<operario dni="" nombre="" apellidos="" fechaNacimiento="" telefono=""/>
+        <operario dni="11111111D" nombre="Operario1" apellidos="Ap" fechanacimiento="1997-08-12" direccion="C/Mesina" telefono="111111111" usuario="user4"></operario>
+        <operario dni="11111111E" nombre="Operario2" apellidos="Ap" fechanacimiento="1997-08-12" direccion="C/Mesina" telefono="111111111" usuario="user5"></operario>
     </operarios>
-    
-    <conductores>
-	<conductor dni="" nombre="" apellidos="" fechaNacimiento="" telefono=""/>
-    </conductores>
-    
-    <vehiculos>
-	<vehiculo matricula="" marca="" modelo=""/>
-    </vehiculos>
-    
-    <envios>
-	<envio idEnvio="" fechaSalida="" fechaEntrega=""/>
-    </envios>
 </upobeer>
-

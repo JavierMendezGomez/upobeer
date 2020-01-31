@@ -30,11 +30,14 @@ class Cerveza {
 	    return true;
     }
 
-    toHTMLRow(){
-        let fila ="<tr><td>" + this.idCerveza + "</td><td>" + this.nombre + "</td><td>" + this.porcentaje + "</td><td>" + this.precio + 
-            "</td><td>" + this.stock + "</td><td>" + this.foto + "</td>";
-
-	return fila;
+    toHTMLTableRow(){
+	let oFila=document.createElement("TR");
+	oFila.insertCell(-1).textContent=idCerveza;
+	oFila.insertCell(-1).textContent=nombre;
+	oFila.insertCell(-1).textContent=porcentaje;
+	oFila.insertCell(-1).textContent=precio;
+	oFila.insertCell(-1).textContent=stock;
+	oFila.insertCell(-1).textContent=foto;
     }
 
 }

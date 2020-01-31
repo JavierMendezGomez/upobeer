@@ -174,11 +174,77 @@
 							<input class="form-control" type="number" min="1" step="1" name="txtCantidad" id="txtCantidad">
 						</div>
 					</div>
-					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAltaVehiculo();">
+					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAltaPedido();">
 				</form>
 			</div>
 		</div>
 	</div>
+
+
+<!----------------------- Entramos a la pagina con un tipo de usuario operario ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+	</center>
+	<div id="operario" class="elemento">
+<!--Cabecera principal mas pequeña modo navbar-->
+		<div class="cabecera" id="cabecera">
+			<header>
+				<a href=""><img src="Img/logo2.png" class="logo"></a>
+				<div class="titulos">
+				<div class="titulo">UpoBeer</div>
+					<div class="subtitulo">Fábrica de cerveza premium</div>
+				</div>
+			</header>
+		</div>
+		<center>
+		<br>
+		<div id="upobeer_btnsShow" class="row navbar">
+			<div class="col-12 col-md-5">
+				<h6 id="datosSesion"><b>¡Bienvenido! Has entrado en modo operario como: </b></h6>
+			</div>
+			<div class="col-12 col-md-7" id="upobeer_btnsShowFrms">	
+				<button type="button" class="btn-dark btn-sm" onclick="show_frmAltaCerveza();">Alta Cerveza</button>
+				<button type="button" class="btn-dark btn-sm" onclick="show_frmBajaCerveza();">Baja Cerveza</button>
+				<button type="button" class="btn-dark btn-sm" onclick="show_frmModificarPerfil();">Modificar mi perfil</button>
+				<button type="button" class="btn-dark btn-sm" onclick="show_lstCatalogo()">Catálogo</button>
+				<button type="button" class="btn-dark btn-sm" onclick="show_lstPedidosRegistrados()">Pedidos registrados</button>
+			</div>
+		</div>
+		</center>
+
+<!-- Formularios-->
+		<div class="formularios row section">
+			<div id="divFrmAltaCerveza" class="conditional form-group">
+				<form name="frmAltaPedido" id="frmAltaPedido">
+					<h2>Alta de cerveza</h2>
+					<div class="row">
+						<div class="col-7">
+							<label for="selCatalogo">Producto deseado: </label>
+							<select class="form-control" name="selCatalogo" id="selCatalogo">
+								<option value="nada">Seleccione producto...</option>
+							</select>
+						</div>
+						<div class="col-5">
+							<label for="txtPorcentaje">Porcentaje alcohol: </label>
+							<input class="form-control" type="text" name="txtPorcentaje" id="txtPorcentaje" disabled>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<label for="txtPrecio">Precio/unidad: </label>
+							<input class="form-control" type="text" name="txtPrecioUnidad" id="txtPrecioUnidad" disabled>
+						</div>
+						<div class="col-6">
+							<label for="txtCantidad">Cantidad deseada:</label>
+							<input class="form-control" type="number" min="1" step="1" name="txtCantidad" id="txtCantidad">
+						</div>
+					</div>
+					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAltaCerveza();">
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
 </div>
 
 

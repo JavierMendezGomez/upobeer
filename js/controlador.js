@@ -1,6 +1,6 @@
 //INICIALIZAR MODELO
 var modelo = new UpoBeer();
-var tipo = "cliente";
+var tipo = "operario";
 var usuario = "";
 var clave = "";
 document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
@@ -26,7 +26,12 @@ function revisarSwitch()
 	    console.log("se muestra cliente");
 	    break;
 	  case 'operario':
-	    console.log('El kilogramo de Bananas cuesta $0.48.');
+	  	ocultarTodo();
+	  	let datosOperario = document.createElement("text");
+	  	datosOperario.textContent = usuario + ", " + clave;
+	  	document.querySelector("#datosSesion").appendChild(datosOperario);
+	    document.getElementById("operario").style.display = "inline";
+	    console.log("se muestra operario");
 	    break;
 	  case 'supervisor':
 	    console.log('El kilogramo de Cerezas cuesta $3.00.');
@@ -100,10 +105,10 @@ function show_frmAltaPedido(){
 	ocultarForms();
 	frmAltaPedido.reset();
 	crearComboCatalogo();
+	frmAltaPedido.selCatalogo.addEventListener("change",actualizaDatosAlta);
 	document.querySelector("#divFrmAltaPedido").style.display = "block";
 }
 
-frmAltaPedido.selCatalogo.addEventListener("change",actualizaDatosAlta);
 
 function crearComboCatalogo(){
 	let select = document.querySelector("#selCatalogo");
@@ -120,9 +125,16 @@ function actualizaDatosAlta(){
 	frmAltaPedido.txtPrecioUnidad.value = modelo.buscarCerveza(frmAltaPedido.selCatalogo.selectedOptions[0].value).precio;
 }
 
-function submit_frmAltaVehiculo(){
+function submit_frmAltaPedido(){
 	let producto = modelo.buscarCerveza(frmAltaPedido.selCatalogo.selectedOptions[0].value);
 	let cliente = modelo.buscarCliente(clave);
 	let pedido = modelo.altaPedido(new Pedido(cliente,[]));
 	pedido.insertarLineaPedido(new LineaPedido(producto, frmAltaPedido.txtCantidad));
+}
+
+
+function show_frmAltaCerveza(){
+	ocultarForms();
+	frmAltaCerveza.reset();
+	document.querySelector("#divFrmAltaCerveza").style.display = "block";
 }

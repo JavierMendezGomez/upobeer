@@ -138,3 +138,11 @@ function show_frmAltaCerveza(){
 	frmAltaCerveza.reset();
 	document.querySelector("#divFrmAltaCerveza").style.display = "block";
 }
+
+function show_frmAnadirStock(){
+
+	ocultarForms();
+	frmAnadirStock.reset();
+	document.querySelector("#divAnadirStock").style.display = "block";
+
+}

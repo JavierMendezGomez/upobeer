@@ -8,7 +8,6 @@ class Pedido {
 	this.tLineasPedido=tLineasPedido;
 	this.estado="espera";
 	this.fechaInicio = new Date(); //Fecha actual, cuando se hace el pedido
-	this.validarIntervaloFecha();
     }
 
     precioTotal()

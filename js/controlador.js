@@ -1,6 +1,6 @@
 //INICIALIZAR MODELO
 var modelo = new UpoBeer();
-var tipo = "ninguno";
+var tipo = "cliente";
 var usuario = "";
 var clave = "";
 document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
@@ -112,7 +112,7 @@ function show_frmAltaPedido(){
 var pedido;
 
 function crearComboCatalogo(){
-	document.querySelector("#selCatalogo").remove();
+	document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").remove();
 	let select = modelo.comboCatalogo();
 	document.querySelector(".selectCatalogo").appendChild(select);
 	frmAltaPedido.txtPrecioUnidad.value = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value).precio;
@@ -143,7 +143,7 @@ function show_frmBajaPedido(){
 var pedido;
 
 function crearComboPedidos(){
-	document.querySelector("#selPedido").remove();
+	document.querySelector("#frmBajaPedido > div.row.selectPedido > select").remove();
 	let select = modelo.comboPedidos();
 	document.querySelector(".selectPedido").appendChild(select);
 }

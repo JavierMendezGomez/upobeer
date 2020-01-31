@@ -2,13 +2,12 @@ class Pedido {
 
     constructor(oCliente,tLineasPedido)
     {
-	this.idPedido=contadorPedidos;
-	contadorPedidos++;
+	this.idPedido=modelo.contadorPedidos+1;
+	modelo.contadorPedidos++;
 	this.cliente=oCliente;
 	this.tLineasPedido=tLineasPedido;
 	this.estado="espera";
-	this.fechaInicio=new Date(); //Fecha actual, cuando se hace el pedido
-	this.fechaFin = new Date();
+	this.fechaInicio = new Date(); //Fecha actual, cuando se hace el pedido
 	this.validarIntervaloFecha(dFechaInicio,dFechaFin);
     }
 
@@ -44,14 +43,14 @@ class Pedido {
 	    if(tLineasPedido[i].producto.idCerveza == oLineaPedido.producto.idCerveza)
 		return false; //Producto repetido en dos lineas pedido diferentes
 	}
-	if(new Date() > this.fechaInicio)
+	if(new Date().getTime() > this.fechaInicio.getTime())
 	    return false; //Se esta modificando el pedido tarde, ya esta en preparacion
 	return this.tLineasPedido.push(oLineaPedido);
     }
 
     toHTMLRow(){
 
-		let oFila = document.createElement("tr");
+	let oFila = document.createElement("TR");
         let oCelda = oFila.insertCell(-1);
         oCelda.textContent = this.idPedido;
 

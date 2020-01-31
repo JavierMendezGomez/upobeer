@@ -2,20 +2,15 @@ class UpoBeer {
     /* CONSTRUCTOR */
     constructor(){
 	this.tCervezas=[];
-	this.serialCervezas=0;
+	this.contadorCervezas=0;
 	this.tPedidos=[];
-	this.serialPedidos=0;
+	this.contadorPedidos=0;
 	this.tClientes=[];
-	this.serialClientes=0;
 	this.tOperarios=[];
-	this.serialOperarios=0;
-
 	//Cosas necesarias para envío
 	this.tConductores=[];
-	this.serialConductores=0;
-	this.tVehiculos=[]
-	this.serialVehiculos=0;
-
+	this.tVehiculos=[];
+	this.contadorVehiculos=0;
     }
 
     /* MÉTODOS */
@@ -178,14 +173,6 @@ class UpoBeer {
 	    this.altaCliente(new Cliente(usuario,dni,nombre,apellidos,fecha,direccion,telefono));
     	    return true;
     	}
-    }
-    
-    cronEstado(){
-	let upoBeerJSON=getCookie("upobeer");
-	let upoBeerObj=JSON.parse(upoBeerJSON);
-	Object.assign(this,upoBeerObj);
-	upoBeerJSON= JSON.stringify(this);
-	setCookie("upobeer",upoBeerJSON);
     }
     
     listadoPedidos(){

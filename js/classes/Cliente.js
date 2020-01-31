@@ -1,14 +1,10 @@
 class Cliente extends Persona {
-
     constructor(sUsuario, sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono) {
-
         super(sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono);
         this.usuario = sUsuario;
-
     }
 
     altaPedido() {
-
     	/*	
 		for (let i = 0; i < upobeer.tClientes.length; i++) {
 		if (upobeer.tClientes[i] == this) {
@@ -81,9 +77,9 @@ class Cliente extends Persona {
         return oFila;
 
         /*
-        let fila = "<tr><td>" + this.dni + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.fechaNacimiento +
-            "</td><td>" + this.direccion + "</td><td>" + this.telefono + "</td></tr>";
-        return fila;
+          let fila = "<tr><td>" + this.dni + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.fechaNacimiento +
+          "</td><td>" + this.direccion + "</td><td>" + this.telefono + "</td></tr>";
+          return fila;
         */
     }
 

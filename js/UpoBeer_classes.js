@@ -110,9 +110,7 @@ class Persona {
             alert("Teléfono erroneo, formato no válido");
             return false;
         }
-
     }
-
 }
 
 class Cliente extends Persona {

@@ -11,7 +11,7 @@ class Vehiculo{
     }
 
     toHTMLTableRow(){
-	let oFila=document.createElement("TABLE");
+	let oFila=document.createElement("TR");
 	oFila.insertCell(-1).textContent=idVehiculo;
 	oFila.insertCell(-1).textContent=matricula;
 	oFila.insertCell(-1).textContent=marca;

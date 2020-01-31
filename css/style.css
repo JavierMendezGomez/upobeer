@@ -11,7 +11,7 @@ font-family: 'Playball', cursive;
     }
 
     .section{
-    padding: 2rem;
+    padding-bottom: 1rem;
     }
     .conditional{
     display:none;

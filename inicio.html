@@ -20,18 +20,22 @@
 <div class="container-fluid" id="upobeer_main">
 			
 	<center>
-		<div class="cabeceraInicio">
+
+<!--Cabecera inicio con logo grande-->
+		<div class="cabeceraInicio" id="cabeceraInicio">
 				<header>
-					<a id="logoInicio" href="#"><img src="Img/logo2.png" class="logo"></a>
+					<a id="logoInicio" href=""><img src="Img/logo2.png" class="logo"></a>
 					<div class="titulos">
 					<div class="titulo d-none d-lg-block">UpoBeer</div>
-						<div class="subtitulo d-none d-sm-block">Compra-venta de cerveza</div>
+						<div class="subtitulo d-none d-sm-block">Fábrica de cerveza premium</div>
 					</div>
 				</header>
 		</div>
 
+
+<!--Formulario inicio sesion-->
 		<div id="inicio" class="row section">
-			<div class="col-12">
+			<div class="col-12" style="background: url(Img/Fondo3.jpg); background-size: contain; background-repeat: no-repeat; background-position: right; margin-right: 0.2rem;">
 				<b>Introduzca sus datos para iniciar sesión en nuestro sistema</b><br><br>
 				<table cellpadding="10">
 				<form name="formularioInicio">
@@ -54,8 +58,10 @@
 			</div>
 		</div>
 
-		<div id="registro" class="row section">
-			<div class="col-12">
+
+<!--Formulario registro nuevo cliente-->
+		<div id="registro" class="row section" style="width: 90vw">
+			<div class="col-12" style="background: url(Img/Fondo3.jpg); background-size: contain; background-repeat: no-repeat; background-position: right; margin-right: 0.2rem;">
 				<b>Introduzca sus datos para registrarse en nuestro sistema como cliente</b><br><br>
 				<table cellpadding="12">
 					<tbody>
@@ -112,70 +118,136 @@
 			</div>
 		</div>
 
+<!----------------------- Entramos a la pagina con un tipo de usuario cliente ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 	</center>
-		
-			<script src="js/controlador.js"></script>
-		<!--Ocultar/mostrar opciones del tipo de vehículo-->
-		<script>
-
-
-			//INICIALIZAR MODELO
-			var controlador = new Controlador();
-			document.getElementById("registro").style.display = "none";
-			document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
-			document.getElementById("logoInicio").addEventListener("click", showInicio);
-
-			function showRegistro(){ 
-				setTimeout(function(){document.getElementById("registro").style.display = "inline";}, 1000);
-				setTimeout(function(){document.getElementById("inicio").style.display = "none";}, 1000);
-			}
-
-			function showInicio(){ 
-				setTimeout(function(){document.getElementById("registro").style.display = "none";}, 1000);
-				setTimeout(function(){document.getElementById("inicio").style.display = "inline";}, 1000);
-			}
-
-			//Datos de ejemplo
-			controlador.altaCliente("user1","11111111A","Cliente1","Ap","1997-08-12","C/Mesina","111111111");
-			controlador.altaCliente("user2","11111111B","Cliente2","Ap","1993-04-16","C/Mesina","111111111");
-			controlador.altaCliente("user3","11111111C","Cliente2","Ap","1994-09-22","C/Mesina","111111111");
-			controlador.altaOperario("user4","11111111D","Operario1","Ap","1997-08-12","C/Mesina","111111111",true);
-			controlador.altaOperario("user5","11111111E","Operario2","Ap","1997-08-12","C/Mesina","111111111",false);
-
-
-			function comprobarUsuario(){
-
-				var usuario = formularioInicio.usuario.value;
-				var clave = formularioInicio.clave.value;
-				console.log(usuario + ", " + clave);
-				this.controlador.comprobarUsuario(usuario,clave);
-				alert("Usuario tipo: " + tipo);
-				if(tipo != "ninguno")
-					setTimeout(function(){alert("Estas dentro");},2000);
-			}
-
-			function comprobarRegistro(){
-
-				var usuarioNuevo = formularioRegistro.usuario.value;
-				var dni = formularioRegistro.dni.value;
-				var nombre = formularioRegistro.nombre.value;
-				var apellidos = formularioRegistro.apellidos.value;
-				var fecha = formularioRegistro.fecha.value;
-				var direccion = formularioRegistro.direccion.value;
-				var telefono = formularioRegistro.telefono.value;
-				if(usuarioNuevo==""||dni==""||nombre==""||apellidos==""||fecha==""||direccion==""||telefono=="")
-					alert("Debe rellenar todos los campos");
-				else if(this.controlador.comprobarRegistro(usuarioNuevo,dni,nombre,apellidos,fecha,direccion,telefono))
-				{
-					alert("Registrado ok");
-					setTimeout(function(){alert("Estas dentro como cliente");}, 2000);
-				}
-				else
-					alert("Error, ya existe ese dni");
-			}
-
-		</script>
+	<div id="cliente">
+<!--Cabecera principal mas pequeña modo navbar-->
+		<div class="cabecera" id="cabecera">
+			<header>
+				<a href=""><img src="Img/logo2.png" class="logo"></a>
+				<div class="titulos">
+				<div class="titulo">UpoBeer</div>
+					<div class="subtitulo">Fábrica de cerveza premium</div>
+				</div>
+			</header>
+		</div>
+		<center>
+		<br>
+		<h6 id="datosSesion"><b>Bienvenido, has iniciado sesión como: </b></h6>
+		<div id="upobeer_btnsShow" class="row section">
+			<div class="col-md-7" id="upobeer_btnsShowFrms">					
+				<legend>Formularios</legend>			
+				<div class="btn-group" role="group" aria-label="FomrBtns">
+					<button type="button" class="btn-dark btn-sm" onclick="show_frmAltaPedido();">Alta Pedido</button>
+					<button type="button" class="btn-dark btn-sm" onclick="show_frmBajaPedido();">Baja Pedido</button>
+					<button type="button" class="btn-dark btn-sm" onclick="show_frmModificarPerfil();">Modificar mi perfil</button>
+				</div>
+			</div>
+			<div class="col-md-5" id="upobeer_btnsShowLists"	>
+				<legend>Listados</legend>
+				<button type="button" class="btn-dark btn-sm" onclick="show_lstCatalogo()">Catálogo</button>
+				<button type="button" class="btn-dark btn-sm" onclick="show_lstPedidosRegistrados()">Pedidos registrados</button>
+			</div>
+		</div>
+		</center>
 	</div>
+		
+	<script src="js/controlador.js"></script>
+	<script>
+
+
+		//INICIALIZAR MODELO
+		//var controlador = new Controlador();
+		var tipo = "ninguno";
+		revisarSwitch();
+
+		function revisarSwitch()
+		{
+			switch (tipo) {
+			  case 'ninguno':
+			  	ocultarTodo();
+			  	document.getElementById("cabeceraInicio").style.display = "inline";
+				document.getElementById("inicio").style.display = "inline";
+				document.getElementById("registro").style.display = "none";
+				document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
+				document.getElementById("logoInicio").addEventListener("click", showInicio);
+				console.log("ninguno se muestra");
+			    break;
+			  case 'cliente':
+			    document.getElementById("cliente").style.display = "inline";
+			    break;
+			  case 'operario':
+			    console.log('El kilogramo de Bananas cuesta $0.48.');
+			    break;
+			  case 'supervisor':
+			    console.log('El kilogramo de Cerezas cuesta $3.00.');
+			    break;
+			}
+		}
+
+		function ocultarTodo()
+		{
+			document.getElementById("cabeceraInicio").style.display = "none";
+			document.getElementById("inicio").style.display = "none";
+			document.getElementById("registro").style.display = "none";
+		    document.getElementById("cliente").style.display = "none";
+		    //document.getElementById("operario").style.display = "none";
+		}
+		
+
+		function showRegistro(){ 
+			setTimeout(function(){document.getElementById("registro").style.display = "inline";}, 1000);
+			setTimeout(function(){document.getElementById("inicio").style.display = "none";}, 1000);
+		}
+
+		function showInicio(){ 
+			setTimeout(function(){document.getElementById("registro").style.display = "none";}, 1000);
+			setTimeout(function(){document.getElementById("inicio").style.display = "inline";}, 1000);
+		}
+
+		//Datos de ejemplo
+		controlador.altaCliente("user1","11111111A","Cliente1","Ap","1997-08-12","C/Mesina","111111111");
+		controlador.altaCliente("user2","11111111B","Cliente2","Ap","1993-04-16","C/Mesina","111111111");
+		controlador.altaCliente("user3","11111111C","Cliente2","Ap","1994-09-22","C/Mesina","111111111");
+		controlador.altaOperario("user4","11111111D","Operario1","Ap","1997-08-12","C/Mesina","111111111",true);
+		controlador.altaOperario("user5","11111111E","Operario2","Ap","1997-08-12","C/Mesina","111111111",false);
+
+
+		function comprobarUsuario(){
+
+			var usuario = formularioInicio.usuario.value;
+			var clave = formularioInicio.clave.value;
+			console.log(usuario + ", " + clave);
+			tipo = this.controlador.comprobarUsuario(usuario,clave);
+			alert("Usuario tipo: " + tipo);
+			if(tipo != "ninguno")
+				setTimeout(function(){alert("Estas dentro");},2000);
+			setTimeout(location.reload(), 2000);
+		}
+
+		function comprobarRegistro(){
+
+			var usuarioNuevo = formularioRegistro.usuario.value;
+			var dni = formularioRegistro.dni.value;
+			var nombre = formularioRegistro.nombre.value;
+			var apellidos = formularioRegistro.apellidos.value;
+			var fecha = formularioRegistro.fecha.value;
+			var direccion = formularioRegistro.direccion.value;
+			var telefono = formularioRegistro.telefono.value;
+			if(usuarioNuevo==""||dni==""||nombre==""||apellidos==""||fecha==""||direccion==""||telefono=="")
+				alert("Debe rellenar todos los campos");
+			else if(this.controlador.comprobarRegistro(usuarioNuevo,dni,nombre,apellidos,fecha,direccion,telefono))
+			{
+				alert("Registrado ok");
+				setTimeout(function(){alert("Estas dentro como cliente");}, 2000);
+				setTimeout(location.reload(), 2000);
+			}
+			else
+				alert("Error, ya existe ese dni");
+
+		}
+
+	</script>
 
 </body>
 </html>

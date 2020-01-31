@@ -173,7 +173,7 @@ class UpoBeer {
     	}
     	else
     	{
-    	    console.log(usuarioNuevo + ", " + dni);
+    	    console.log("Nuevo usuario: "+usuario + ", " + dni);
 	    this.altaCliente(new Cliente(usuario,dni,nombre,apellidos,fecha,direccion,telefono));
     	    return true;
     	}

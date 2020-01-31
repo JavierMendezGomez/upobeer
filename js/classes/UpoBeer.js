@@ -106,15 +106,18 @@ class UpoBeer {
 	    return (oOperario_iterado.dni == dni && oOperario_iterado.supervisor == true);
 	});
     }
-    buscarPedido(idPedido){
-	return this.tPedidos.find(function(oPedido_iterado){
-	    return (oPedido_iterado.idPedido == idPedido);
-	});
-    }
-    buscarPedido(oCliente){
-	return this.tPedidos.find(function(oPedido_iterado){
-	    return (oPedido_iterado.cliente == oCliente);
-	});
+    buscarPedido(multiParam){
+	if(typeof multiParam == "Cliente"){
+	    let oCliente=multiParam;
+	    return this.tPedidos.find(function(oPedido_iterado){
+		return (oPedido_iterado.cliente.dni == oCliente.dni);
+	    });
+	} else {
+	    let idPedido=multiParam;
+	    return this.tPedidos.find(function(oPedido_iterado){
+		return (oPedido_iterado.idPedido == idPedido);
+	    });
+	}
     }
     buscarCliente(dni){
 	return this.tClientes.find(function(oCliente_iterado){
@@ -174,16 +177,20 @@ class UpoBeer {
     	    return true;
     	}
     }
-    
-    listadoPedidos(){
+
+    //oCliente es un parámetro opcional
+    listadoPedidos(oCliente){
 	let oTabla=document.createElement("TABLE");
 	let oTHead=oTabla.createTHead();
 	let oTBody=oTabla.createTBody();
 
 	this.tPedidos.forEach(function(pedido){
-	    let oFila = oTBody.insertRow(-1);
-	    oFila=pedido.toHTMLTableRow;
+	    if(oCliente!=undefined && pedido.cliente.dni==oCliente.dni){
+		let oFila = oTBody.insertRow(-1);
+		oFila=pedido.toHTMLTableRow;
+	    }
 	})
+	return oTabla;
     }
 
     listadoCervezas(){
@@ -194,7 +201,9 @@ class UpoBeer {
 	this.tCervezas.forEach(function(cerveza){
 	    let oFila = oTBody.insertRow(-1);
 	    oFila=cerveza.toHTMLTableRow;
-	})	
+	})
+
+	return oTabla;
     }
 
     listadoClientes(){
@@ -206,6 +215,8 @@ class UpoBeer {
 	    let oFila = oTBody.insertRow(-1);
 	    oFila=cliente.toHTMLTableRow;
 	})
+
+	return oTabla;
     }
 
     listadoOperarios(){
@@ -217,5 +228,7 @@ class UpoBeer {
 	    let oFila = oTBody.insertRow(-1);
 	    oFila=operario.toHTMLTableRow();	    
 	})
+
+	return oTabla;
     }
 }

@@ -11,7 +11,7 @@ font-family: 'Playball', cursive;
     }
 
     .section{
-    padding: 2rem;
+    padding-bottom: 1rem;
     }
     .conditional{
     display:none;
@@ -74,7 +74,6 @@ header{
 /*Cabecera de inicio sesion pagina principal*/
 .cabeceraInicio header{
     height: 18rem;
-    width: 98.7vw;
     background: #0c0c0c;
     color: #f4f4f5;
     padding: 1em;

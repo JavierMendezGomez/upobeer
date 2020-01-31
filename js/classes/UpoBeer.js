@@ -15,6 +15,7 @@ class UpoBeer {
 	this.serialConductores=0;
 	this.tVehiculos=[]
 	this.serialVehiculos=0;
+
     }
 
     /* MÉTODOS */
@@ -163,7 +164,7 @@ class UpoBeer {
 
         return tipo;
     }
-    
+ 
     comprobarRegistro(usuario,dni,nombre,apellidos,fecha,direccion,telefono)
     {
     	if(this.buscarCliente(dni) != undefined)
@@ -173,12 +174,20 @@ class UpoBeer {
     	}
     	else
     	{
-    	    console.log("Nuevo usuario: "+usuario + ", " + dni);
+    	    console.log("Nuevo usuario: " + usuario + ", " + dni);
 	    this.altaCliente(new Cliente(usuario,dni,nombre,apellidos,fecha,direccion,telefono));
     	    return true;
     	}
     }
-
+    
+    cronEstado(){
+	let upoBeerJSON=getCookie("upobeer");
+	let upoBeerObj=JSON.parse(upoBeerJSON);
+	Object.assign(this,upoBeerObj);
+	upoBeerJSON= JSON.stringify(this);
+	setCookie("upobeer",upoBeerJSON);
+    }
+    
     listadoPedidos(){
 	let oTabla=document.createElement("TABLE");
 	let oTHead=oTabla.createTHead();

@@ -103,25 +103,25 @@ class UpoBeer {
 	});
     }
     buscarPedido(oCliente){
-	return this.tPedidos.filter(function(oPedido_iterado){
+	return this.tPedidos.find(function(oPedido_iterado){
 	    return (oPedido_iterado.cliente == oCliente);
 	});
     }
     buscarCliente(oCliente){
-	return this.tPedidos.filter(function(oPedido_iterado){
+	return this.tPedidos.find(function(oPedido_iterado){
 	    return (oPedido_iterado.cliente == oCliente);
 	});
     }
 
     //cosas necesarias para envío
     buscarConductor(dni){
-	return this.tConductores.filter(function(oConductor_iterado){
+	return this.tConductores.find(function(oConductor_iterado){
 	    return (oConductor_iterado.dni == dni);
 	});
     }
-    buscarVehiculo(dni){
-	return this.tVehiculos.filter(function(oVehiculo_iterado){
-	    return (oVehiculo_iterado.dni == dni);
+    buscarVehiculo(matricula){
+	return this.tVehiculos.find(function(oVehiculo_iterado){
+	    return (oVehiculo_iterado.matricula == matricula);
 	});
     }    
 
@@ -152,6 +152,7 @@ class UpoBeer {
     }
     comprobarRegistro(usuarioNuevo,dni,nombre,apellidos,fecha,direccion,telefono)
     {
+	console.log("DNI: "+dni);
     	if(this.buscarCliente(dni) != undefined)
     	{
     	    console.log("Cliente encontrado");

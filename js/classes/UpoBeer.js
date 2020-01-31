@@ -41,7 +41,6 @@ class UpoBeer {
     altaPedido(oPedido){
 	if(this.buscarPedido(oPedido.idPedido) == undefined){
     	this.tPedidos.push(oPedido);
-    	this.contadorPedidos++;
     	return oPedido;
 	}
     	return false;
@@ -109,7 +108,7 @@ class UpoBeer {
 	});
     }
     buscarPedido(idPedido,dni){
-	if(typeof dni == null){
+	if(dni == null){
 		console.log("id ok");
 	    return this.tPedidos.find(function(oPedido_iterado){
 		return (oPedido_iterado.idPedido == idPedido);

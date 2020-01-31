@@ -162,6 +162,15 @@ function submit_frmBajaPedido(){
 	pedido.insertarLineaPedido(new LineaPedido(producto, frmAltaPedido.txtCantidad));
 }
 
+function show_lstPedidosRegistrados(){
+	ocultarForms();
+	document.querySelector(".formularios").appendChild(modelo.listadoPedidos(modelo.buscarCliente(clave)));	
+}
+
+
+
+//Parte de Operario
+
 
 function show_frmAltaCerveza(){
 	ocultarForms();

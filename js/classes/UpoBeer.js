@@ -216,6 +216,7 @@ class UpoBeer {
     }
     comboCatalogo(){
 	let select = document.createElement("SELECT");
+	select.name="comboCatalogo";
 	select.className="form-control";
 	this.tCervezas.forEach(function(element){
 	    let option = document.createElement("OPTION");

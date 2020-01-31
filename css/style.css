@@ -85,7 +85,7 @@ header{
 /*Cabecera de inicio sesion pagina principal*/
 .cabeceraInicio header{
     height: 18rem;
-    background: #0c0c0c;
+    background: url("../Img/Fondo4.jpg");
     color: #f4f4f5;
     padding: 1em;
     flex: 0 0 auto;

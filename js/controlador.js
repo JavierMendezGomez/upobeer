@@ -1,11 +1,10 @@
-
 //INICIALIZAR MODELO
 var modelo = new UpoBeer();
-var tipo = "cliente";
+var tipo = "ninguno";
 var usuario = "";
 var clave = "";
 document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
-document.getElementById("logoInicio").addEventListener("click", showInicio);
+document.getElementById("logoInicio").addEventListener("click", revisarSwitch);
 revisarSwitch();
 
 function revisarSwitch()
@@ -37,7 +36,6 @@ function revisarSwitch()
 
 function ocultarTodo()
 {
-	ocultarForms();
 	document.querySelectorAll(".elemento").forEach(function(element){element.style.display="none"});	
 }
 
@@ -48,14 +46,10 @@ function ocultarForms()
 
 
 function showRegistro(){ 
-	setTimeout(function(){document.getElementById("registro").style.display = "inline";}, 1000);
-	setTimeout(function(){document.getElementById("inicio").style.display = "none";}, 1000);
+	document.querySelector("#inicio").style.display = "none";
+	document.querySelector("#registro").style.display = "inline";
 }
 
-function showInicio(){ 
-	setTimeout(function(){document.getElementById("registro").style.display = "none";}, 1000);
-	setTimeout(function(){document.getElementById("inicio").style.display = "inline";}, 1000);
-}
 
 //Datos de ejemplo
 modelo.altaCliente(new Cliente("user1","11111111A","Cliente1","Ap","1997-08-12","C/Mesina","111111111"));
@@ -103,4 +97,8 @@ function show_frmAltaPedido(){
 	ocultarForms();
 	frmAltaPedido.reset();
 	document.querySelector("#divFrmAltaPedido").style.display = "block";
+}
+
+function submit_frmAltaVehiculo(){
+
 }

@@ -5,7 +5,7 @@ class Cliente extends Persona {
     }
 
     listadoPedidos() {
-	modelo.listadoPedidos(this);
+	modelo.listadoPedidos(this.dni);
     }
 
     toHTMLRow() {

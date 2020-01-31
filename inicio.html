@@ -143,7 +143,7 @@
 					<button type="button" class="btn-dark btn-sm" onclick="show_frmModificarPerfil();">Modificar mi perfil</button>
 				</div>
 			</div>
-			<div class="col-md-5" id="upobeer_btnsShowLists">
+			<div class="col-md-5" id="upobeer_btnsShowLists"	>
 				<legend>Listados</legend>
 				<button type="button" class="btn-dark btn-sm" onclick="show_lstCatalogo()">Catálogo</button>
 				<button type="button" class="btn-dark btn-sm" onclick="show_lstPedidosRegistrados()">Pedidos registrados</button>
@@ -152,8 +152,20 @@
 		</center>
 	</div>
 		
-
-	<script type="text/javascript" src="js/controlador.js"></script>
-
+	<!-- Importación de scripts, por orden -->
+	<!-- Funciones que pueden usarse en todas las clases -->
+	<script src="js/classes/funciones.js"></script>
+	<!-- Clases ordenadas por sus dependencias -->
+	<script src="js/classes/Cerveza.js"></script>
+	<script src="js/classes/Vehiculo.js"></script>
+	<script src="js/classes/Envio.js"></script>
+	<script src="js/classes/LineaPedido.js"></script>
+	<script src="js/classes/Pedido.js"></script>
+	<script src="js/classes/Persona.js"></script>
+	<script src="js/classes/Cliente.js"></script>
+	<script src="js/classes/Operario.js"></script>
+	<script src="js/classes/Conductor.js"></script>
+	<script src="js/classes/UpoBeer.js"></script>
+	<script src="js/controlador.js"></script>
 </body>
 </html>

@@ -1,17 +1,3 @@
-//Importación de scripts, por orden -->
-	//Funciones que pueden usarse en todas las clases -->
-	document.write("<script src='js/classes/funciones.js'></script>");
-	//Clases ordenadas por sus dependencias -->
-	document.write("<script src='js/classes/Cerveza.js'></script>");
-	document.write("<script src='js/classes/Vehiculo.js'></script>");
-	document.write("<script src='js/classes/Envio.js'></script>");
-	document.write("<script src='js/classes/LineaPedido.js'></script>");
-	document.write("<script src='js/classes/Pedido.js'></script>");
-	document.write("<script src='js/classes/Persona.js'></script>");
-	document.write("<script src='js/classes/Cliente.js'></script>");
-	document.write("<script src='js/classes/Operario.js'></script>");
-	document.write("<script src='js/classes/Conductor.js'></script>");
-	document.write("<script src='js/classes/UpoBeer.js'></script>");
 
 		//INICIALIZAR MODELO
 		var modelo = new UpoBeer();

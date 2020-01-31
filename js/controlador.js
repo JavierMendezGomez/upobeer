@@ -137,3 +137,26 @@ function show_frmAltaCerveza(){
 	frmAltaCerveza.reset();
 	document.querySelector("#divFrmAltaCerveza").style.display = "block";
 }
+
+function show_frmAnadirStock(){
+
+	ocultarForms();
+	frmAnadirStock.reset();
+	document.querySelector("#divAnadirStock").style.display = "block";
+
+	let combocervezas=document.querySelector("#selProducto");
+	let option=document.createElement("option");
+
+	while(combocervezas.hasChildNodes())
+	{
+		combocervezas.removeChild(combocervezas.firstChild);
+	}
+
+	for(let i=0;i<modelo.tCervezas.length;i++)
+	{
+		option.value=modelo.tCervezas[i].nombre;
+		option.textContent=modelo.tCervezas[i].nombre;
+		combocervezas.appendChild(option);
+	}
+
+}

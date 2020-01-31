@@ -225,8 +225,8 @@
 				<h6 id="datosSesion"><b>¡Bienvenido! Has entrado en modo operario como: </b></h6>
 			</div>
 			<div class="col-12 col-md-7" id="upobeer_btnsShowFrms">	
-				<button type="button" class="btn-dark btn-sm" onclick="show_frmAltaCerveza();">Alta Cerveza</button>
-				<button type="button" class="btn-dark btn-sm" onclick="show_frmBajaCerveza();">Baja Cerveza</button>
+				<button type="button" class="btn-dark btn-sm" onclick="show_frmAnadirStock();">Añadir stock</button>
+				<button type="button" class="btn-dark btn-sm" onclick="show_frmCambiarEstadoPedido();">Cambiar estado de pedido</button>
 				<button type="button" class="btn-dark btn-sm" onclick="show_frmModificarPerfil();">Modificar mi perfil</button>
 				<button type="button" class="btn-dark btn-sm" onclick="show_lstCatalogo()">Catálogo</button>
 				<button type="button" class="btn-dark btn-sm" onclick="show_lstPedidosRegistrados()">Pedidos registrados</button>
@@ -236,11 +236,30 @@
 
 <!-- Formularios-->
 		<div class="formularios row section">
+<<<<<<< HEAD
 			<div id="divFrmAltaCerveza" class="conditional form-group">
 				<form name="frmAltaCerveza" id="frmAltaCerveza">
 					<h2>Alta de cerveza</h2>
 					
 					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAltaCerveza();">
+=======
+			<div id="divAnadirStock" class="conditional form-group">
+				<form name="frmAnadirStock" id="frmAnadirStock">
+					<h2>Añadir stock</h2>
+					<div class="row">
+						<div class="col-7">
+							<label for="selCatalogo">Producto: </label>
+							<select class="form-control" name="selProducto" id="selProducto">
+								<option value="nada">Seleccione producto...</option>
+							</select>
+						</div>
+						<div class="col-6">
+							<label for="txtCantidad">Cantidad deseada:</label>
+							<input class="form-control" type="number" min="1" step="1" name="txtCantidad" id="txtCantidad">
+						</div>
+					</div>
+					<input class="btn btn-success" type="button" value="Añadir" onclick="submit_frmAltaCerveza();">
+>>>>>>> 8dd649cbfda2c983415ea2f0c3315efcb6a63062
 				</form>
 			</div>
 		</div>

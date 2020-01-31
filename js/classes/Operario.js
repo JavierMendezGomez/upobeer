@@ -1,15 +1,13 @@
 class Operario extends Persona {
 
     constructor(sUsuario, sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono, bSupervisor) {
-
         super(sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono);
         this.usuario = sUsuario;
         this.supervisor = bSupervisor;
 
     }
-
-    altaOperario(sDNI) {
-
+    altaOperario(oOperario) {
+	/*
         for (let i = 0; i < upobeer.tOperarios.length; i++) {
             if (upobeer.tOperarios[i] == this) {
                 if (this.supervisor == true) {
@@ -19,10 +17,17 @@ class Operario extends Persona {
             }
         }
         return false;
+	*/
+	
+	if(modelo.buscarSupervisor(this))
+	{
+	    return modelo.altaOperario(oOperario);
+	} else {
+	    return false;
+	}
     }
-
     bajaOperario(sDNI) {
-
+	/*
         for (let i = 0; i < upobeer.tOperarios.length; i++) {
             if (upobeer.tOperarios[i] == this) {
                 if (this.supervisor == true) {
@@ -32,11 +37,18 @@ class Operario extends Persona {
             }
         }
         return false;
+	*/
+
+	if(modelo.buscarSupervisor(this))
+	{
+	    return modelo.bajaOperario(sDNI);
+	} else {
+	    return false;
+	}
     }
-
-    altaCerveza(nombre, alcohol, precio, stock, foto) {
-
-        for (let i = 0; i < upobeer.tOperarios.length; i++) {
+    altaCerveza(oCerveza) {
+	/*
+	for (let i = 0; i < upobeer.tOperarios.length; i++) {
             if (upobeer.tOperarios[i] == this) {
                 if (this.supervisor == true) {
                     let cerveza = new Cerveza(contadorCervezas, nombre, alcohol, precio, stock, foto);
@@ -46,11 +58,17 @@ class Operario extends Persona {
             }
         }
         return false;
-
+	*/
+	
+	if(modelo.buscarSupervisor(this))
+	{
+	    return modelo.altaCerveza(oCerveza);
+	} else {
+	    return false;
+	}
     }
-
     bajaCerveza(idCerveza) {
-
+	/*
         for (let i = 0; i < upobeer.tOperarios.length; i++) {
             if (upobeer.tOperarios[i] == this) {
                 if (this.supervisor == true) {
@@ -67,11 +85,16 @@ class Operario extends Persona {
             }
         }
         return false;
-
+	*/
+	if(modelo.buscarSupervisor(this))
+	{
+	    return modelo.bajaCerveza(idCerveza);
+	} else {
+	    return false;
+	}
     }
-
     añadirStock(idCerveza, cantidad) {
-
+	/*
         for (let i = 0; i < upobeer.tOperarios.length; i++) {
             if (upobeer.tOperarios[i] == this) {
                 {
@@ -86,10 +109,22 @@ class Operario extends Persona {
             }
         }
         return false;
-
+	*/
+	if(modelo.buscarOperario(this))
+	{
+	    let oCerveza=modelo.buscarCerveza(idCerveza);
+	    if(oCerveza != undefined){
+		return oCerveza.añadirStock(cantidad);
+	    } else {
+		return false;
+	    }
+	} else {
+	    return false;
+	}
     }
 
     cambiarEstadoPedido(idPedido, estado) {
+	/*
 	//Revisar si es supervisor
     	for (let i = 0; i < upobeer.tOperarios.length; i++) {
             if (upobeer.tOperarios[i] == this) {
@@ -102,10 +137,9 @@ class Operario extends Persona {
 		    }
 		}
 	    }
-
 	    return false;
 	}
-
+	*/
     	/*
           for (let i = 0; i < upobeer.tOperarios.length; i++) {
           if (upobeer.tOperarios[i] == this) {
@@ -122,6 +156,17 @@ class Operario extends Persona {
           }
           return false;
 	*/
+
+	if(modelo.buscarOperario(this)){
+	    let oPedido=modelo.buscarPedido(idPedido);
+	    if(oPedido!=undefined){
+		return oPedido.cambiarEstado(estado);
+	    } else {
+		return false;
+	    }
+	} else {
+	    return false;
+	}
     }
 
     toHTMLRow() {

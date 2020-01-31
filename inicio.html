@@ -212,32 +212,22 @@
 
 <!-- Formularios-->
 		<div class="formularios row section">
-			<div id="divFrmAltaCerveza" class="conditional form-group">
-				<form name="frmAltaPedido" id="frmAltaPedido">
-					<h2>Alta de cerveza</h2>
+			<div id="divAnadirStock" class="conditional form-group">
+				<form name="frmAnadirStock" id="frmAnadirStock">
+					<h2>Añadir stock</h2>
 					<div class="row">
 						<div class="col-7">
-							<label for="selCatalogo">Producto deseado: </label>
-							<select class="form-control" name="selCatalogo" id="selCatalogo">
+							<label for="selCatalogo">Producto: </label>
+							<select class="form-control" name="selProducto" id="selProducto">
 								<option value="nada">Seleccione producto...</option>
 							</select>
-						</div>
-						<div class="col-5">
-							<label for="txtPorcentaje">Porcentaje alcohol: </label>
-							<input class="form-control" type="text" name="txtPorcentaje" id="txtPorcentaje" disabled>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-6">
-							<label for="txtPrecio">Precio/unidad: </label>
-							<input class="form-control" type="text" name="txtPrecioUnidad" id="txtPrecioUnidad" disabled>
 						</div>
 						<div class="col-6">
 							<label for="txtCantidad">Cantidad deseada:</label>
 							<input class="form-control" type="number" min="1" step="1" name="txtCantidad" id="txtCantidad">
 						</div>
 					</div>
-					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAltaCerveza();">
+					<input class="btn btn-success" type="button" value="Añadir" onclick="submit_frmAltaCerveza();">
 				</form>
 			</div>
 		</div>

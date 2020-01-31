@@ -1,6 +1,6 @@
 //INICIALIZAR MODELO
 var modelo = new UpoBeer();
-var tipo = "cliente";
+var tipo = "operario";
 var usuario = "";
 var clave = "";
 document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
@@ -147,7 +147,7 @@ function show_frmAnadirStock(){
 	document.querySelector("#divAnadirStock").style.display = "block";
 
 	let combocervezas=document.querySelector("#selProducto");
-	let option=document.createElement("option");
+	let option=null;
 
 	while(combocervezas.hasChildNodes())
 	{
@@ -156,9 +156,26 @@ function show_frmAnadirStock(){
 
 	for(let i=0;i<modelo.tCervezas.length;i++)
 	{
+		option=document.createElement("option");
 		option.value=modelo.tCervezas[i].nombre;
 		option.textContent=modelo.tCervezas[i].nombre;
 		combocervezas.appendChild(option);
+	}
+
+}
+
+function submit_frmAnadirStock(){
+
+	let nombreProducto = frmAnadirStock.selProducto.value;
+	let cantidad = frmAnadirStock.txtCantidad.value;
+
+	for(let i=0;i<modelo.tCervezas.length;i++)
+	{
+		if(modelo.tCervezas[i].nombre==nombreProducto)
+		{
+			modelo.tCervezas[i].anadirStock(cantidad);
+			alert("Stock actualizado");
+		}
 	}
 
 }

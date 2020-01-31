@@ -11,7 +11,7 @@ class Cerveza {
         this.foto="Img/beer/" + this.idCerveza + ".jpg";
     }
 
-    añadirStock(cantidad)
+    anadirStock(cantidad)
     {
     	if(cantidad > 0)
     	{

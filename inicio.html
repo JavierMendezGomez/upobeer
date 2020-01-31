@@ -259,27 +259,35 @@
 
 <!-- Formularios-->
 		<div class="formularios row section">
+<<<<<<< HEAD
 			<div id="divFrmAltaCerveza" class="conditional form-group">
 				<form name="frmAltaCerveza" id="frmAltaCerveza">
 					<h2>Alta de cerveza</h2>
 					
 					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAltaCerveza();">
+=======
+>>>>>>> 1a8a01b1a7ae53c9f1a55556997ed63747114860
 			<div id="divAnadirStock" class="conditional form-group">
 				<form name="frmAnadirStock" id="frmAnadirStock">
 					<h2>Añadir stock</h2>
+					<div class="row selectProducto">
+						<label for="selProducto">Producto: </label>
+						<select class="form-control" name="selProducto" id="selProducto">
+							<option value="nada">Seleccione producto...</option>
+						</select>
+					</div>
 					<div class="row">
-						<div class="col-7">
-							<label for="selCatalogo">Producto: </label>
-							<select class="form-control" name="selProducto" id="selProducto">
-								<option value="nada">Seleccione producto...</option>
-							</select>
-						</div>
 						<div class="col-6">
 							<label for="txtCantidad">Cantidad deseada:</label>
 							<input class="form-control" type="number" min="1" step="1" name="txtCantidad" id="txtCantidad">
 						</div>
 					</div>
+<<<<<<< HEAD
 					<input class="btn btn-success" type="button" value="Añadir" onclick="submit_frmAltaCerveza();">
+=======
+					
+					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAnadirStock();">
+>>>>>>> 1a8a01b1a7ae53c9f1a55556997ed63747114860
 				</form>
 			</div>
 		</div>

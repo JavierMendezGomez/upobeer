@@ -109,12 +109,14 @@ class UpoBeer {
 	});
     }
     buscarPedido(idPedido,dni){
-	if(typeof idPedido == null){
+	if(typeof idPedido != null){
+		console.log("id ok");
 	    let oCliente=multiParam;
 	    return this.tPedidos.find(function(oPedido_iterado){
 		return (oPedido_iterado.cliente.dni == dni);
 	    });
 	} else {
+		console.log("id null");
 	    return this.tPedidos.find(function(oPedido_iterado){
 		return (oPedido_iterado.idPedido == idPedido);
 	    });

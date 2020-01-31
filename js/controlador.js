@@ -1,6 +1,6 @@
 //INICIALIZAR MODELO
 var modelo = new UpoBeer();
-var tipo = "ninguno";
+var tipo = "cliente";
 var usuario = "";
 var clave = "";
 document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
@@ -58,7 +58,10 @@ modelo.altaCliente(new Cliente("user2","11111111B","Cliente2","Ap","1993-04-16",
 modelo.altaCliente(new Cliente("user3","11111111C","Cliente2","Ap","1994-09-22","C/Mesina","111111111"));
 modelo.altaOperario(new Cliente("user4","11111111D","Operario1","Ap","1997-08-12","C/Mesina","111111111",true));
 modelo.altaOperario(new Cliente("user5","11111111E","Operario2","Ap","1997-08-12","C/Mesina","111111111",false));
-
+modelo.altaCerveza(new Cerveza("Cruzcampo",11,3.50,200));
+modelo.altaCerveza(new Cerveza("Radler",9,4.50,200));
+modelo.altaCerveza(new Cerveza("Hamstel",12,3,200));
+modelo.altaCerveza(new Cerveza("Alhambra",14,4.20,200));
 
 function comprobarUsuario(){
 
@@ -96,9 +99,30 @@ function comprobarRegistro(){
 function show_frmAltaPedido(){
 	ocultarForms();
 	frmAltaPedido.reset();
+	crearComboCatalogo();
 	document.querySelector("#divFrmAltaPedido").style.display = "block";
 }
 
-function submit_frmAltaVehiculo(){
+frmAltaPedido.selCatalogo.addEventListener("change",actualizaDatosAlta);
 
+function crearComboCatalogo(){
+	let select = document.querySelector("#selCatalogo");
+	modelo.tCervezas.forEach(function(element){
+		let option = document.createElement("option");
+		option.value = element.idCerveza;
+		option.textContent = element.nombre;
+		select.appendChild(option);
+	});
+}
+
+function actualizaDatosAlta(){
+	frmAltaPedido.txtPorcentaje.value = modelo.buscarCerveza(frmAltaPedido.selCatalogo.selectedOptions[0].value).porcentaje;
+	frmAltaPedido.txtPrecioUnidad.value = modelo.buscarCerveza(frmAltaPedido.selCatalogo.selectedOptions[0].value).precio;
+}
+
+function submit_frmAltaVehiculo(){
+	let producto = modelo.buscarCerveza(frmAltaPedido.selCatalogo.selectedOptions[0].value);
+	let cliente = modelo.buscarCliente(clave);
+	let pedido = modelo.altaPedido(new Pedido(cliente,[]));
+	pedido.insertarLineaPedido(new LineaPedido(producto, frmAltaPedido.txtCantidad));
 }

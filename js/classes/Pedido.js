@@ -8,7 +8,6 @@ class Pedido {
 	this.tLineasPedido=tLineasPedido;
 	this.estado="espera";
 	this.fechaInicio = new Date(); //Fecha actual, cuando se hace el pedido
-	this.validarIntervaloFecha(dFechaInicio,dFechaFin);
     }
 
     precioTotal()
@@ -21,7 +20,7 @@ class Pedido {
 	return total;
     }
 
-    validarIntervaloFecha(dFechaInicio,dFechaFin)
+    validarIntervaloFecha()
     {
 	//Minimo 1 dia para preparacion, 3 dias para envio fijos
 	let diasPrep = 1;

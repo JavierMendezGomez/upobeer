@@ -1,16 +1,16 @@
 class Persona {
 
     constructor(sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono) {
-	if validarDNI(sDni){
+	if (this.validarDNI(sDni)){
 	    this.dni = sDni;
 	}
         this.nombre = sNombre;
         this.apellidos = sApellidos;
-	if(validarFechaNacimiento(dFechaNacimiento)){
+	if(this.validarFechaNacimiento(dFechaNacimiento)){
 	    this.fechaNacimiento = dFechaNacimiento;
 	}
         this.direccion = sDireccion;
-	if(validarTelefono(sTelefono)){
+	if(this.validarTelefono(sTelefono)){
 	    this.telefono = sTelefono;
 	}
     }
@@ -24,16 +24,16 @@ class Persona {
         let expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
 
         if (expresion_regular_dni.test(sDni) == true) {
-            numero = sDni.substr(0, dni.length - 1);
-            letr = sDni.substr(dni.length - 1, 1);
+            /*numero = sDni.substr(0, sDni.length - 1);
+            letr = sDni.substr(sDni.length - 1, 1);
             numero = numero % 23;
             letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
             letra = letra.substring(numero, numero + 1);
             if (letra != letr.toUpperCase()) {
 		throw 'Cliente.dni : la letra del NIF no se corresponde.';
-            } else {
+            } else {*/
 		 return true;
-            }
+            /*}*/
         } else {
             throw 'Cliente.dni : formato no válido para DNI.';
         }

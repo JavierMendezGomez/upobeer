@@ -46,18 +46,16 @@ class Pedido {
     {
 	for(let i = 0; i < this.tLineasPedido.length; i++)
 	{
-	    if(tLineasPedido[i].producto.idCerveza == oLineaPedido.producto.idCerveza)
+	    if(this.tLineasPedido[i].producto.idCerveza == oLineaPedido.producto.idCerveza)
 		return false; //Producto repetido en dos lineas pedido diferentes
 	}
-	if(new Date().getTime() > this.fechaInicio.getTime())
-	    return false; //Se esta modificando el pedido tarde, ya esta en preparacion
 	return this.tLineasPedido.push(oLineaPedido);
     }
 
     cambiarEstado(estado){
 	let estadoCambiado=false;
 	    
-	    switch(){
+	    switch(estado){
 	    case "pendiente":
 		this.envio=null;
 		this.estado="pendiente";

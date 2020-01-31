@@ -109,6 +109,7 @@ function show_frmAltaPedido(){
 	document.querySelector("#divFrmAltaPedido").style.display = "block";
 }
 
+var pedido;
 
 function crearComboCatalogo(){
 	document.querySelector("#selCatalogo").remove();
@@ -127,7 +128,8 @@ function actualizaDatosAlta(){
 function submit_frmAltaPedido(){
 	let producto = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value);
 	let cliente = modelo.buscarCliente(clave);
-	let pedido = modelo.altaPedido(new Pedido(cliente,[]));
+	if(pedido == undefined)
+		pedido = modelo.altaPedido(new Pedido(cliente,[]));
 	pedido.insertarLineaPedido(new LineaPedido(producto, frmAltaPedido.txtCantidad));
 }
 

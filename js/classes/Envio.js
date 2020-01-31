@@ -1,13 +1,9 @@
 class Envio{
-    constructor(idEnvio, fechaSalida){
-	this.idEnvio=idEnvio,
+    constructor(fechaSalida, fechaEntrega){
+	this.idEnvio=modelo.contadorEnvios+1;
+	modelo.contadorEnvios++;
 	this.fechaSalida=new Date(fechaSalida);
-    }
-    comprobarEntrega(fechaEntrega){
-	fechaEntrega=new Date(fechaEntrega);
-	if(this.validarIntervaloFecha(this.fechaSalida,fechaEntrega)){
-	    return true;
-	}
+	this.fechaEntrega=new Date(fechaEntrega);
     }
     validarIntervaloFecha(fechaInicial,fechaFinal){
 	fechaFinal = new Date(fechaFinal);

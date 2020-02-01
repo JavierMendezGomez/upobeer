@@ -21,7 +21,7 @@ class Cliente extends Persona {
 	modelo.listadoPedidos(this);
     }
 
-    toHTMLRow() {
+    toHTMLTableRow() {
 
         let oFila = document.createElement("tr");
         let oCelda = oFila.insertCell(-1);

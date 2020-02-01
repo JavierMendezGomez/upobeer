@@ -168,8 +168,9 @@ function submit_frmBajaPedido(){
 }
 
 function show_lstPedidosRegistrados(){
-	ocultarForms();
-	document.querySelector(".formularios").appendChild(modelo.listadoPedidos(modelo.buscarCliente(clave)));	
+    ocultarForms();
+    console.log(modelo.listadoPedidos(modelo.buscarCliente(clave)));
+    document.querySelector(".formularios").appendChild(modelo.listadoPedidos(modelo.buscarCliente(clave)));	
 }
 
 

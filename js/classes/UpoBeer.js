@@ -184,22 +184,28 @@ class UpoBeer {
     //oCliente es un parámetro opcional
     listadoPedidos(oCliente){
 	let oTabla=document.createElement("TABLE");
+	oTabla.className="table table-stripped";
 	let oTHead=oTabla.createTHead();
 	let oTBody=oTabla.createTBody();
 
-	this.tPedidos.forEach(function(pedido){
-	    if(oCliente && pedido.cliente.dni==oCliente.dni){
-		let oFila = oTBody.insertRow(-1);
-		oFila=pedido.toHTMLTableRow();
-	    }
-	})
+	if(oCliente){
+	    this.tPedidos.forEach(function(pedido){
+		if(pedido.cliente.dni==oCliente.dni){
+		    oTBody.appendChild(pedido.toHTMLTableRow());
+		}
+	    })
+	} else {
+	    this.tPedidos.forEach(function(pedido){
+		oTBody.appendChild(pedido.toHTMLTableRow());
+	    })  
+	}
 	return oTabla;
     }
     comboPedidos(oCliente){
 	let select = document.createElement("SELECT");
 	select.name="comboPedidos";
 	select.className="form-control";
-	if(this.buscarPedido(oCliente) != undefined)
+	if(oCliente && this.buscarPedido(oCliente) != undefined)
 	    this.buscarPedido(oCliente).forEach(function(element){
 		let option = document.createElement("OPTION");
 		option.value = element.idPedido;
@@ -218,12 +224,12 @@ class UpoBeer {
     
     listadoCervezas(){
 	let oTabla=document.createElement("TABLE");
+	oTabla.className="table table-stripped";
 	let oTHead=oTabla.createTHead();
 	let oTBody=oTabla.createTBody();
 
 	this.tCervezas.forEach(function(cerveza){
-	    let oFila = oTBody.insertRow(-1);
-	    oFila=cerveza.toHTMLTableRow();
+	    oTBody.appendChild(cerveza.toHTMLTableRow());
 	})
 
 	return oTabla;
@@ -243,12 +249,12 @@ class UpoBeer {
 
     listadoClientes(){
 	let oTabla=document.createElement("TABLE");
+	oTabla.className="table table-stripped";
 	let oTHead=oTabla.createTHead();
 	let oTBody=oTabla.createTBody();
 
 	this.tClientes.forEach(function(cliente){
-	    let oFila = oTBody.insertRow(-1);
-	    oFila=cliente.toHTMLTableRow();
+	    oTBody.appendChild(cliente.toHTMLTableRow());
 	})
 
 	return oTabla;
@@ -256,12 +262,12 @@ class UpoBeer {
 
     listadoOperarios(){
 	let oTabla=document.createElement("TABLE");
+	oTabla.className="table table-stripped";
 	let oTHead=oTabla.createTHead();
 	let oTBody=oTabla.createTBody();
 
 	this.tOperarios.forEach(function(operario){
-	    let oFila = oTBody.insertRow(-1);
-	    oFila=operario.toHTMLTableRow();	    
+	    oTBody.appendChild(operario.toHTMLTableRow());
 	})
 
 	return oTabla;

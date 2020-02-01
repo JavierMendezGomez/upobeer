@@ -30,7 +30,7 @@ function revisarSwitch()
 	  	ocultarTodo();
 	  	let datosOperario = document.createElement("text");
 	  	datosOperario.textContent = usuario + ", " + clave;
-	  	document.querySelector("#datosSesion").appendChild(datosOperario);
+	  	document.querySelector("#datosSesionOperario").appendChild(datosOperario);
 	    document.getElementById("operario").style.display = "inline";
 	    console.log("se muestra operario");
 	    break;

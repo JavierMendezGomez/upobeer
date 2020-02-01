@@ -184,6 +184,7 @@ class UpoBeer {
     //oCliente es un parámetro opcional
     listadoPedidos(oCliente){
 	let oTabla=document.createElement("TABLE");
+	oTabla.className="table table-stripped";
 	let oTHead=oTabla.createTHead();
 	let oTBody=oTabla.createTBody();
 
@@ -223,6 +224,7 @@ class UpoBeer {
     
     listadoCervezas(){
 	let oTabla=document.createElement("TABLE");
+	oTabla.className="table table-stripped";
 	let oTHead=oTabla.createTHead();
 	let oTBody=oTabla.createTBody();
 
@@ -247,6 +249,7 @@ class UpoBeer {
 
     listadoClientes(){
 	let oTabla=document.createElement("TABLE");
+	oTabla.className="table table-stripped";
 	let oTHead=oTabla.createTHead();
 	let oTBody=oTabla.createTBody();
 
@@ -259,6 +262,7 @@ class UpoBeer {
 
     listadoOperarios(){
 	let oTabla=document.createElement("TABLE");
+	oTabla.className="table table-stripped";
 	let oTHead=oTabla.createTHead();
 	let oTBody=oTabla.createTBody();
 

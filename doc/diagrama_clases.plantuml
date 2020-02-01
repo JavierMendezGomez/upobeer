@@ -46,7 +46,7 @@ class Operario {
 	
 	toHTMLTableRow() : HTMLTableRow
 }
-Operario -- UpoBeer
+
 
 class Cliente {
 	'Campos'
@@ -60,7 +60,7 @@ class Cliente {
 	
 	toHTMLTableRow() : HTMLTableRow
 }
-Cliente -- UpoBeer
+
 
 '''CERVEZAS'''
 class Cerveza{
@@ -102,7 +102,6 @@ class Pedido {
 
 	toHTMLTableRow() : HTMLTableRow
 }
-Pedido -- UpoBeer
 Pedido "1" -- "1"Envio
 
 class LineaPedido{
@@ -181,10 +180,15 @@ class Envio{
 	idEnvio:integer
 	fechaSalida: Date
 	fechaEntrega: Date
-
+  vehiculo : Vehiculo
+  
 	toHTMLTableRow(): HTMLTableRow
 	validarIntervaloFechas(Date fechaSalida, Date fechaEntrega): boolean
 }
+'Un vehículo sólo puede tener un conductor'
+Vehiculo "1" -- "1" Conductor
+'Un envío sólo puede tener un vehículo'
+Envio "1" -- "1" Vehiculo
 
 class Vehiculo{
 	idVehiculo : integer
@@ -192,7 +196,8 @@ class Vehiculo{
 	marca : string
 	modelo : string
 	tipo : string
-	anyoFabricacion : integer	
+	anyoFabricacion : integer
+  conductor : Conductor
 	
 	toHTMLTableRow(): HTMLTableRow
 	validarMatricula(string): boolean
@@ -215,8 +220,6 @@ Cliente "1" -- "1..*" Pedido
 ''LineaPedido''
 'Una línea de pedido referencia a un solo tipo de cerveza'
 LineaPedido "1" -- "1" Cerveza
-'Varios pedidos pueden haber sido realizados por un cliente'
-Pedido "1..*" -- "1" Cliente
 'Un pedido es una lista de líneas'
 Pedido "1" -- "1..*" LineaPedido
 

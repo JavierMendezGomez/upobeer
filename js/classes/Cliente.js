@@ -14,11 +14,11 @@ class Cliente extends Persona {
     }
     
     arrayPedidos(){
-	return modelo.buscarPedido(this.dni);
+	return modelo.buscarPedido(this);
     }
     
     listadoPedidos() {
-	modelo.listadoPedidos(this.dni);
+	modelo.listadoPedidos(this);
     }
 
     toHTMLRow() {

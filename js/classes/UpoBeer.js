@@ -108,26 +108,17 @@ class UpoBeer {
 	    return (oOperario_iterado.dni == dni && oOperario_iterado.supervisor == true);
 	});
     }
-    buscarPedido(idPedido,dni){
-	if(!dni){
-	    console.log("dni undefined")
-	    return this.tPedidos.find(function(oPedido_iterado){
-		return (oPedido_iterado.idPedido == idPedido);
-	    });
-	} else {
-	    if(!idPedido){
-		console.log("idPedido undefined")
+    buscarPedido(multiParam){
+	if(typeof multiParam== "Cliente"){
+	    let oCliente=multiParam;
 		return this.tPedidos.filter(function(oPedido_iterado){
 		    return (oPedido_iterado.cliente.dni == dni);
 		});
-	    }
-	    else{
-		console.log("ni dni ni idPedido undefined");
-		return this.tPedidos.filter(function(oPedido_iterado){
-		    return (oPedido_iterado.cliente.dni == dni
-			    && oPedido_iterado.idPedido == idPedido);
-		});
-	    }
+	} else {
+	    let idPedido=multiParam;
+	    return this.tPedidos.find(function(oPedido_iterado){
+		return (oPedido_iterado.idPedido == idPedido);
+	    });
 	}
     }
     
@@ -197,7 +188,7 @@ class UpoBeer {
 	let oTBody=oTabla.createTBody();
 
 	this.tPedidos.forEach(function(pedido){
-	    if(oCliente!=undefined && pedido.cliente.dni==oCliente.dni){
+	    if(oCliente && pedido.cliente.dni==oCliente.dni){
 		let oFila = oTBody.insertRow(-1);
 		oFila=pedido.toHTMLTableRow();
 	    }

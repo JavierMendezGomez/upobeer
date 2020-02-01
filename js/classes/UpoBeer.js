@@ -40,7 +40,7 @@ class UpoBeer {
     }
 
     altaPedido(oPedido){
-	if(this.buscarPedido(oPedido.idPedido) == undefined){
+	if(this.buscarPedido(oPedido.idPedido)==undefined){
     	    this.tPedidos.push(oPedido);
     	    return oPedido;
 	}
@@ -109,24 +109,25 @@ class UpoBeer {
 	});
     }
     buscarPedido(idPedido,dni){
-	if(dni == null){
-	    console.log("id ok");
-	}
-	if(typeof dni == undefined){
-	    console.log("id ok");
+	if(!dni){
+	    console.log("dni undefined")
 	    return this.tPedidos.find(function(oPedido_iterado){
 		return (oPedido_iterado.idPedido == idPedido);
 	    });
 	} else {
-	    if(idPedido==undefined)
+	    if(!idPedido){
+		console.log("idPedido undefined")
 		return this.tPedidos.filter(function(oPedido_iterado){
 		    return (oPedido_iterado.cliente.dni == dni);
 		});
-	    else
+	    }
+	    else{
+		console.log("ni dni ni idPedido undefined");
 		return this.tPedidos.filter(function(oPedido_iterado){
 		    return (oPedido_iterado.cliente.dni == dni
 			    && oPedido_iterado.idPedido == idPedido);
 		});
+	    }
 	}
     }
     

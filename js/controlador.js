@@ -1,6 +1,6 @@
 //INICIALIZAR MODELO
 var modelo = new UpoBeer();
-var tipo = "operario";
+var tipo = "ninguno";
 var usuario = "";
 var clave = "";
 document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
@@ -128,11 +128,13 @@ function actualizaDatosAlta(){
 
 
 function submit_frmAltaPedido(){
-	let producto = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value);
-	let cliente = modelo.buscarCliente(clave);
-	if(pedido == undefined)
-		pedido = modelo.altaPedido(new Pedido(cliente,[]));
+    let producto = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value);
+    let cliente = modelo.buscarCliente(clave);
+    pedido = modelo.altaPedido(new Pedido(cliente,[]));
+    if(pedido == undefined){
+	console.log(pedido);
 	pedido.insertarLineaPedido(new LineaPedido(producto, frmAltaPedido.txtCantidad));
+    }
 }
 
 function show_frmBajaPedido(){

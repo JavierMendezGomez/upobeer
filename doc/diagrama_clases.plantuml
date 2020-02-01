@@ -1,0 +1,225 @@
+@startuml
+skinparam linetype polyline
+skinparam linetype ortho
+
+'''PERSONAS'''
+class Persona{
+	'Campos'
+	dni : string
+	nombre : string
+	apellidos : string
+	fechaNacimiento : Date
+	direccion : string
+	telefono : long
+	
+	'Métodos'
+	toHTMLTableRow() : HTMLTableRow
+
+	validarDNI(string dni) : boolean
+	validarFechaNacimiento(Date fechaNacimiento) : boolean
+	validarTelefono(string telefono) : boolean
+	modificarTelefono(string telefono) : boolean
+	
+}
+class Conductor {
+	tipoCarnet : string
+
+	toHTMLTableRow() : HTMLTableRow
+}
+class Operario {
+	'Campos'
+	usuario : string
+	supervisor : boolean
+
+	'Métodos'
+	
+	altaOperario(Operario) : boolean
+	bajaOperario(string dni) : boolean
+
+	altaCerveza(Cerveza) : boolean
+	bajaCerveza(idCerveza) : boolean
+
+	anadirStock(idCerveza,cantidad) : integer
+	quitarStock(idCerveza,cantidad) : integer
+	
+	cambiarEstadoPedido(string) : boolean
+	
+	toHTMLTableRow() : HTMLTableRow
+}
+Operario -- UpoBeer
+
+class Cliente {
+	'Campos'
+	usuario : string
+	'Métodos'
+	altaPedido(Pedido pedido) : boolean
+	bajaPedido(integer idPedido) : boolean
+
+	arrayPedidos() : Pedido[]
+	listadoPedidos() : HTMLTable
+	
+	toHTMLTableRow() : HTMLTableRow
+}
+Cliente -- UpoBeer
+
+'''CERVEZAS'''
+class Cerveza{
+	'Campos'
+	idCerveza : integer
+	nombre : string
+	porcentaje : float
+	precio : float
+	foto : blob
+	stock : integer
+	
+	'Métodos'
+	anadirStock(integer cantidad) : boolean
+	quitarStock(integer cantidad) : boolean
+	
+	validarPrecioUnidad(float) : boolean
+	
+	toHTMLTableRow() : HTMLTableRow
+}
+
+'''PEDIDOS'''
+class Pedido {
+	'Campos'
+	idPedido : integer
+	cliente : Cliente
+	tLineasPedido : Array LineaPedido
+	estado : string
+	fechaInicio : Date
+	fechaFin : Date
+	envio : Envio
+	
+	'Métodos'
+	insertarLineaPedido(LineaPedido) : boolean
+	precioTotal() : float
+	
+	cambiarEstado(string) : boolean
+	
+	validarIntervaloFecha(Date, Date) : boolean
+
+	toHTMLTableRow() : HTMLTableRow
+}
+Pedido -- UpoBeer
+Pedido "1" -- "1"Envio
+
+class LineaPedido{
+	'Campos'
+	producto : Cerveza
+	cantidad : int
+	
+	'Métodos'
+	validarCantidad(int) : boolean
+	
+	precioLinea() : float
+
+	toHTMLTableRow() : HTMLTableRow
+}
+
+'''MODELO'''
+class UpoBeer {
+	'Campos'
+	tCervezas : Array Cerveza
+	tPedidos : Array Pedido
+	tClientes : Array Cliente
+	tOperarios : Array Operario
+	tEmpresasReparto : Array EmpresasReparto
+
+	'Métodos'
+	altaCliente(Cliente cliente) : boolean
+	bajaCliente(string dni) : boolean
+	
+	altaOperario(Operario) : boolean
+	bajaOperario(string dni) : boolean
+	
+	altaEmpresaReparto(EmpresaReparto empresaReparto):boolean
+	bajaEmpresaReparto(NIF):boolean
+	
+	altaPedido(Pedido) : boolean
+	bajaPedido(idPedido) : boolean
+	
+	altaCerveza(Cerveza) : boolean
+	bajaCerveza(idCerveza) : boolean
+
+	altaConductor(Conductor) : boolean
+	bajaConductor(string dni) : boolean
+
+	altaVehiculo(Vehiculo) : boolean
+	bajaVehiculo(string dni) : boolean
+	
+	buscarCliente(string dni) : Cliente
+	buscarOperario(string dni) : Operario
+	buscarSupervisor(string dni) : Operario
+	buscarPedido(integer idPedido) : Pedido
+	buscarCerveza(integer idCerveza) : Cerveza
+	buscarConductor(integer idConductor) : Conductor
+	buscarVehiculo(integer idVehiculo) : Vehiculo
+	
+	listadoCervezas() : HTMLTable
+	listadoPedidos() : HTMLTable
+	listadoClientes() : HTMLTable
+	listadoOperarios() : HTMLTable
+	listadoConductores() : HTMLTable
+	listadoVehiculos() : HTMLTable	
+}
+'''MODELO'''
+''UpoBeer''
+'El modelo puede tener de 1 a n conductores registrados'
+UpoBeer "1" -- "1..*" Conductor
+'El modelo puede tener de 1 a n vehiculos registrados'
+UpoBeer "1" -- "1..*" Vehiculo
+'El modelo puede tener de 1 a n operarios registrados'
+UpoBeer "1" -- "1..*" Operario
+'El modelo puede tener de 0 a n clientes registrados'
+UpoBeer "1" -- "1..*" Cliente
+'El modelo puede tener de 0 a n tipos de cervezas en el catálogo'
+UpoBeer "1" -- "1..*" Cerveza
+'El modelo puede tener de 0 a n pedidos registrados'
+UpoBeer "1" -- "1..*" Pedido
+
+class Envio{
+	idEnvio:integer
+	fechaSalida: Date
+	fechaEntrega: Date
+
+	toHTMLTableRow(): HTMLTableRow
+	validarIntervaloFechas(Date fechaSalida, Date fechaEntrega): boolean
+}
+
+class Vehiculo{
+	idVehiculo : integer
+	matricula : string
+	marca : string
+	modelo : string
+	tipo : string
+	anyoFabricacion : integer	
+	
+	toHTMLTableRow(): HTMLTableRow
+	validarMatricula(string): boolean
+}
+
+
+'''PERSONAS'''
+''Operario''
+'Operario hereda de Persona'
+Operario -|> Persona
+Conductor -|> Persona
+''Cliente''
+'Cliente hereda de Persona'
+Cliente -|> Persona
+'Un cliente puede haber realizado de 0 a n pedidos'
+Cliente "1" -- "1..*" Pedido
+
+'''PEDIDOS'''
+''Pedido''
+''LineaPedido''
+'Una línea de pedido referencia a un solo tipo de cerveza'
+LineaPedido "1" -- "1" Cerveza
+'Varios pedidos pueden haber sido realizados por un cliente'
+Pedido "1..*" -- "1" Cliente
+'Un pedido es una lista de líneas'
+Pedido "1" -- "1..*" LineaPedido
+
+@enduml

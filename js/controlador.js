@@ -287,3 +287,17 @@ function cambioComboEstados(){
 		}
 	}
 }
+
+function submit_frmCambiarEstadoPedido(){
+
+	for(let i=0;i<modelo.tPedidos.length;i++)
+	{
+		if(modelo.tPedidos[i].idPedido==document.querySelector("#selPedido").value)
+		{
+			modelo.tPedidos[i].estado=document.querySelector("#selEstadoACambiar").value;
+			cambioComboEstados();
+			alert("Estado actualizado");
+		}
+	}
+
+}

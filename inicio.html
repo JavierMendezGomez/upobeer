@@ -229,113 +229,111 @@
 
 
 <!----------------------- Entramos a la pagina con un tipo de usuario operario ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-	</center>
-	<div id="operario" class="elemento">
-<!--Cabecera principal mas pequeña modo navbar-->
-		<div class="cabecera" id="cabecera">
-			<header>
-				<a href=""><img src="Img/logo2.png" class="logo"></a>
-				<div class="titulos">
-				<div class="titulo">UpoBeer</div>
-					<div class="subtitulo">Fábrica de cerveza premium</div>
-				</div>
-			</header>
-		</div>
-		<center>
-		<br>
-		<div id="upobeer_btnsShow" class="row navbar">
-			<div class="col-12 col-md-5">
-				<h6 id="datosSesion"><b>¡Bienvenido! Has entrado en modo operario como: </b></h6>
-			</div>
-			<div class="col-12 col-md-7" id="upobeer_btnsShowFrms">	
-				<button type="button" class="btn-dark btn-sm" onclick="show_frmAnadirStock();">Añadir stock</button>
-				<button type="button" class="btn-dark btn-sm" onclick="show_frmCambiarEstadoPedido();">Cambiar estado de pedido</button>
-				<button type="button" class="btn-dark btn-sm" onclick="show_frmModificarPerfil();">Modificar mi perfil</button>
-				<button type="button" class="btn-dark btn-sm" onclick="show_lstCatalogo()">Catálogo</button>
-				<button type="button" class="btn-dark btn-sm" onclick="show_lstPedidosRegistrados()">Pedidos registrados</button>
-			</div>
-		</div>
-		</center>
+</center>
+		<div id="operario" class="elemento">
+			<!--Cabecera principal mas pequeña modo navbar-->
+			<div class="cabecera" id="cabecera">
+				<header>
+					<a href=""><img src="Img/logo2.png" class="logo"></a>
+					<div class="titulos">
+						<div class="titulo">UpoBeer</div>
+						<div class="subtitulo">Fábrica de cerveza premium</div>
+					</div>
+				</header>
 
 <!-- Formularios-->
-		<div class="formularios row section">
-<<<<<<< HEAD
-			<div id="divFrmAltaCerveza" class="conditional form-group">
-				<form name="frmAltaCerveza" id="frmAltaCerveza">
-					<h2>Alta de cerveza</h2>
-					
-					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAltaCerveza();">
-=======
->>>>>>> 1a8a01b1a7ae53c9f1a55556997ed63747114860
-			<div id="divAnadirStock" class="conditional form-group">
-				<form name="frmAnadirStock" id="frmAnadirStock">
-					<h2>Añadir stock</h2>
-					<div class="row selectProducto">
-						<label for="selProducto">Producto: </label>
-						<select class="form-control" name="selProducto" id="selProducto">
-							<option value="nada">Seleccione producto...</option>
-						</select>
+			<center>
+				<br>
+				<div id="upobeer_btnsShow" class="row navbar">
+					<div class="col-12 col-md-5">
+						<h6 id="datosSesion"><b>¡Bienvenido! Has entrado en modo operario como: </b></h6>
 					</div>
-					<div class="row">
-						<div class="col-6">
-							<label for="txtCantidad">Cantidad deseada:</label>
-							<input class="form-control" type="number" value="1" min="1" step="1" name="txtCantidad" id="txtCantidad">
+					<div class="col-12 col-md-7" id="upobeer_btnsShowFrms">
+						<button type="button" class="btn-dark btn-sm" onclick="show_frmAnadirStock();">Añadir
+							stock</button>
+						<button type="button" class="btn-dark btn-sm" onclick="show_frmCambiarEstadoPedido();">Cambiar
+							estado de pedido</button>
+						<button type="button" class="btn-dark btn-sm" onclick="show_frmModificarPerfil();">Modificar mi
+							perfil</button>
+						<button type="button" class="btn-dark btn-sm" onclick="show_lstCatalogo()">Catálogo</button>
+						<button type="button" class="btn-dark btn-sm" onclick="show_lstPedidosRegistrados()">Pedidos
+							registrados</button>
+					</div>
+				</div>
+			</center>
+
+			<!-- Formularios-->
+			<div class="formularios row section">
+				<div id="divAnadirStock" class="conditional form-group">
+					<form name="frmAnadirStock" id="frmAnadirStock">
+						<h2>Añadir stock</h2>
+						<div class="row selectProducto">
+							<label for="selProducto">Producto: </label>
+							<select class="form-control" name="selProducto" id="selProducto">
+								<option value="nada">Seleccione producto...</option>
+							</select>
 						</div>
-					</div>
-<<<<<<< HEAD
-					<input class="btn btn-success" type="button" value="Añadir" onclick="submit_frmAltaCerveza();">
-=======
-					
-					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAnadirStock();">
->>>>>>> 1a8a01b1a7ae53c9f1a55556997ed63747114860
-				</form>
+						<div class="row">
+							<div class="col-6">
+								<label for="txtCantidad">Cantidad deseada:</label>
+								<input class="form-control" type="number" value="1" min="1" step="1" name="txtCantidad"
+									id="txtCantidad">
+							</div>
+						</div>
+
+						<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAnadirStock();">
+					</form>
+				</div>
+				<div id="divCambiarEstado" class="conditional form-group">
+					<form name="frmCambiarEstado" id="frmAnadirStock">
+						<h2>Cambiar estado de pedido</h2>
+						<div class="row selectPedido">
+							<label for="selPedidoLabel">Pedido: </label>
+							<select class="form-control" name="selPedido" id="selPedido">
+								<option value="nada">Seleccione pedido...</option>
+							</select>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<label for="txtEstadoActualLabel">Estado actual:</label>
+								<select class="form-control" name="selEstadoActual" id="selEstadoActual" disabled="disabled">
+									
+								</select>
+							</div>
+							<div class="col-6">
+								<label for="estados">Estado a cambiar:</label>
+								<select class="form-control" name="selEstadoACambiar" id="selEstadoACambiar">
+									<option value="espera">Espera</option>
+									<option value="enviado">Enviado</option>
+									<option value="finalizado">Finalizado</option>
+								</select>
+							</div>
+						</div>
+
+						<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAnadirStock();">
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-
-	<div class="formularios row section">
-		<div id="divCambiarEstado" class="conditional form-group">
-			<form name="frmCambiarEstado" id="frmCambiarEstado">
-				<h2>Cambiar estado de pedidos</h2>
-				<div class="row selectProducto">
-					<label for="selPedido">Pedidos: </label>
-					<select class="form-control" name="selPedido" id="selPedido">
-						<option value="nada">Seleccione pedido...</option>
-					</select>
-				</div>
-				<div class="row">
-					<div class="col-6">
-						<label for="txtCantidad">Cantidad deseada:</label>
-						<input class="form-control" type="number" value="1" min="1" step="1" name="txtCantidad" id="txtCantidad">
-					</div>
-				</div>
-				
-				<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAnadirStock();">
-			</form>
-		</div>
-	</div>
-	</div>
 
 
 
-</div>
 
-
-		
-	<!-- Importación de scripts, por orden -->
-	<!-- Funciones que pueden usarse en todas las clases -->
-	<script src="js/classes/funciones.js"></script>
-	<!-- Clases ordenadas por sus dependencias -->
-	<script src="js/classes/Cerveza.js"></script>
-	<script src="js/classes/Vehiculo.js"></script>
-	<script src="js/classes/Envio.js"></script>
-	<script src="js/classes/LineaPedido.js"></script>
-	<script src="js/classes/Pedido.js"></script>
-	<script src="js/classes/Persona.js"></script>
-	<script src="js/classes/Cliente.js"></script>
-	<script src="js/classes/Operario.js"></script>
-	<script src="js/classes/Conductor.js"></script>
-	<script src="js/classes/UpoBeer.js"></script>
-	<script src="js/controlador.js"></script>
+		<!-- Importación de scripts, por orden -->
+		<!-- Funciones que pueden usarse en todas las clases -->
+		<script src="js/classes/funciones.js"></script>
+		<!-- Clases ordenadas por sus dependencias -->
+		<script src="js/classes/Cerveza.js"></script>
+		<script src="js/classes/Vehiculo.js"></script>
+		<script src="js/classes/Envio.js"></script>
+		<script src="js/classes/LineaPedido.js"></script>
+		<script src="js/classes/Pedido.js"></script>
+		<script src="js/classes/Persona.js"></script>
+		<script src="js/classes/Cliente.js"></script>
+		<script src="js/classes/Operario.js"></script>
+		<script src="js/classes/Conductor.js"></script>
+		<script src="js/classes/UpoBeer.js"></script>
+		<script src="js/controlador.js"></script>
 </body>
+
 </html>

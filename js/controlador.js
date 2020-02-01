@@ -1,10 +1,11 @@
 //INICIALIZAR MODELO
 var modelo = new UpoBeer();
-var tipo = "ninguno";
+var tipo = "operario";
 var usuario = "";
 var clave = "";
 document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
 document.getElementById("logoInicio").addEventListener("click", revisarSwitch);
+document.getElementById("selPedido").addEventListener("change", cambioComboEstados);
 revisarSwitch();
 
 function revisarSwitch()
@@ -67,6 +68,8 @@ modelo.altaCerveza(new Cerveza("Cruzcampo",11,3.50,200));
 modelo.altaCerveza(new Cerveza("Radler",9,4.50,200));
 modelo.altaCerveza(new Cerveza("Hamstel",12,3,200));
 modelo.altaCerveza(new Cerveza("Alhambra",14,4.20,200));
+modelo.altaPedido(new Pedido(new Cliente("user16","11114111A","Clientfde1","A32p","1991-08-12","C/Mesdina","111111111"),null));
+modelo.altaPedido(new Pedido(new Cliente("user143","11114131A","Clientfdfsdfe1","A323p","1971-08-12","C/Mefsdsdina","111111111"),null));
 
 function comprobarUsuario(){
 
@@ -216,4 +219,68 @@ function submit_frmAnadirStock(){
 		}
 	}
 
+}
+
+function show_frmCambiarEstadoPedido(){
+
+	ocultarForms();
+	frmCambiarEstado.reset();
+	document.querySelector("#divCambiarEstado").style.display = "block";
+
+	let combopedidos=document.querySelector("#selPedido");
+	let comboestadospedido=document.querySelector("#selEstadoActual");
+	let option=null;
+
+	while(combopedidos.hasChildNodes())
+	{
+		combopedidos.removeChild(combopedidos.firstChild);
+	}
+
+	while(comboestadospedido.hasChildNodes())
+	{
+		comboestadospedido.removeChild(comboestadospedido.firstChild);
+	}
+
+	for(let i=0;i<modelo.tPedidos.length;i++)
+	{
+		option=document.createElement("option");
+		option.value=modelo.tPedidos[i].idPedido;
+		option.textContent=modelo.tPedidos[i].idPedido+" - "+modelo.tPedidos[i].cliente.nombre;
+		combopedidos.appendChild(option);
+	}
+
+	for(let i=0;i<modelo.tPedidos.length;i++)
+	{
+		if(modelo.tPedidos[i].idPedido==frmCambiarEstado.selPedido.value)
+		{
+			let option2=document.createElement("option");
+			option2.value=modelo.tPedidos[i].estado;
+			option2.textContent=modelo.tPedidos[i].estado;
+			comboestadospedido.appendChild(option2);
+		}
+	}
+
+}
+
+function cambioComboEstados(){
+
+	let combopedidos=document.querySelector("#selPedido");
+	let comboestadospedido=document.querySelector("#selEstadoActual");
+	let option=null;
+
+	while(comboestadospedido.hasChildNodes())
+	{
+		comboestadospedido.removeChild(comboestadospedido.firstChild);
+	}
+
+	for(let i=0;i<modelo.tPedidos.length;i++)
+	{
+		if(modelo.tPedidos[i].idPedido==frmCambiarEstado.selPedido.value)
+		{
+			let option2=document.createElement("option");
+			option2.value=modelo.tPedidos[i].estado;
+			option2.textContent=modelo.tPedidos[i].estado;
+			comboestadospedido.appendChild(option2);
+		}
+	}
 }

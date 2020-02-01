@@ -1,3 +1,4 @@
+// [x]
 class UpoBeer {   
     /* CONSTRUCTOR */
     constructor(){
@@ -40,8 +41,8 @@ class UpoBeer {
 
     altaPedido(oPedido){
 	if(this.buscarPedido(oPedido.idPedido) == undefined){
-    	this.tPedidos.push(oPedido);
-    	return oPedido;
+    	    this.tPedidos.push(oPedido);
+    	    return oPedido;
 	}
     	return false;
     }
@@ -109,7 +110,7 @@ class UpoBeer {
     }
     buscarPedido(idPedido,dni){
 	if(dni == null){
-		console.log("id ok");
+	    console.log("id ok");
 	}
 	if(typeof dni == undefined){
 	    console.log("id ok");
@@ -117,12 +118,18 @@ class UpoBeer {
 		return (oPedido_iterado.idPedido == idPedido);
 	    });
 	} else {
-		console.log("id null");
-	    return this.tPedidos.filter(function(oPedido_iterado){
-		return (oPedido_iterado.cliente.dni == dni);
-	    });
+	    if(idPedido==undefined)
+		return this.tPedidos.filter(function(oPedido_iterado){
+		    return (oPedido_iterado.cliente.dni == dni);
+		});
+	    else
+		return this.tPedidos.filter(function(oPedido_iterado){
+		    return (oPedido_iterado.cliente.dni == dni
+			    && oPedido_iterado.idPedido == idPedido);
+		});
 	}
     }
+    
     buscarCliente(dni){
 	return this.tClientes.find(function(oCliente_iterado){
 	    return (oCliente_iterado.dni == dni);
@@ -166,7 +173,7 @@ class UpoBeer {
 
         return tipo;
     }
- 
+    
     comprobarRegistro(usuario,dni,nombre,apellidos,fecha,direccion,telefono)
     {
     	if(this.buscarCliente(dni) != undefined)
@@ -191,7 +198,7 @@ class UpoBeer {
 	this.tPedidos.forEach(function(pedido){
 	    if(oCliente!=undefined && pedido.cliente.dni==oCliente.dni){
 		let oFila = oTBody.insertRow(-1);
-		oFila=pedido.toHTMLTableRow;
+		oFila=pedido.toHTMLTableRow();
 	    }
 	})
 	return oTabla;
@@ -201,15 +208,15 @@ class UpoBeer {
 	select.name="comboPedidos";
 	select.className="form-control";
 	if(this.buscarPedido(oCliente) != undefined)
-		this.buscarPedido(oCliente).forEach(function(element){
-		    let option = document.createElement("OPTION");
-		    option.value = element.idPedido;
-		    option.textContent = element.fecha;
-		    select.appendChild(option);
-		});
+	    this.buscarPedido(oCliente).forEach(function(element){
+		let option = document.createElement("OPTION");
+		option.value = element.idPedido;
+		option.textContent = element.fecha;
+		select.appendChild(option);
+	    });
 	else
 	{
-		 let option = document.createElement("OPTION");
+	    let option = document.createElement("OPTION");
 	    option.value = "-1";
 	    option.textContent = "No tiene pedidos pendientes";
 	    select.appendChild(option);
@@ -224,7 +231,7 @@ class UpoBeer {
 
 	this.tCervezas.forEach(function(cerveza){
 	    let oFila = oTBody.insertRow(-1);
-	    oFila=cerveza.toHTMLTableRow;
+	    oFila=cerveza.toHTMLTableRow();
 	})
 
 	return oTabla;
@@ -249,7 +256,7 @@ class UpoBeer {
 
 	this.tClientes.forEach(function(cliente){
 	    let oFila = oTBody.insertRow(-1);
-	    oFila=cliente.toHTMLTableRow;
+	    oFila=cliente.toHTMLTableRow();
 	})
 
 	return oTabla;

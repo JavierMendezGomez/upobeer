@@ -1,15 +1,31 @@
+// [x]
 class Vehiculo{
 
-    constructor(matricula,marca,modelo,tipo,añoFabricacion){
+    constructor(matricula,marca,modelo,tipo,anoFabricacion){
 	this.idVehiculo=modelo.contadorVehiculos+1;
 	modelo.contadorVehiculos++;
-	this.matricula;
+	if(validarMatricula(matricula))
+	    this.matricula;
 	this.marca;
 	this.modelo;
 	this.tipo;
-	this.anyoFabricacion;
+	this.anoFabricacion;
     }
 
+    validarMatricula(matricula){
+	let valido=false;
+	
+	let numero;
+        let letras;
+        let expresion_regular_matricula = /^\d{4}[ABCDFGHJKLMNPQRSTVWXYZ]$/;
+
+        if (expresion_regular_matricula.test(matricula) == true) {
+	    return true;
+        } else {
+            throw 'Vehiculo.matricula : formato no válido para  matrícula';
+        }
+    }
+    
     toHTMLTableRow(){
 	let oFila=document.createElement("TR");
 	oFila.insertCell(-1).textContent=idVehiculo;

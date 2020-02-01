@@ -1,3 +1,4 @@
+// [x]
 class Cerveza {
 
     constructor(sNombre,fPorcentaje,fPrecio,iStock)
@@ -21,6 +22,16 @@ class Cerveza {
     	return false;
     }
 
+    quitarStock(cantidad)
+    {
+    	if(cantidad > 0 && (this.stock-cantidad>=0))
+    	{
+	    this.stock -= cantidad;
+	    return true;
+    	}
+    	return false;
+    }
+
     validarPrecioUnidad(fPrecio)
     {
     	//Me he inventado un max de 100€ por unidad por si se te cuela un cero al dar de alta
@@ -39,5 +50,4 @@ class Cerveza {
 	oFila.insertCell(-1).textContent=stock;
 	oFila.insertCell(-1).textContent=foto;
     }
-
 }

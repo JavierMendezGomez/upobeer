@@ -1,9 +1,22 @@
+// [x]
 class Cliente extends Persona {
     constructor(sUsuario, sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono) {
         super(sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono);
         this.usuario = sUsuario;
     }
 
+    altaPedido(oPedido){
+	return modelo.altaPedido(oPedido);
+    }
+
+    bajaPedido(idPedido){
+	return modelo.bajaPedido(idPedido);
+    }
+    
+    arrayPedidos(){
+	return modelo.buscarPedido(this.dni);
+    }
+    
     listadoPedidos() {
 	modelo.listadoPedidos(this.dni);
     }

@@ -161,8 +161,6 @@ class UpoBeer {
 	listadoPedidos() : HTMLTable
 	listadoClientes() : HTMLTable
 	listadoOperarios() : HTMLTable
-	listadoConductores() : HTMLTable
-	listadoVehiculos() : HTMLTable	
 }
 '''MODELO'''
 ''UpoBeer''

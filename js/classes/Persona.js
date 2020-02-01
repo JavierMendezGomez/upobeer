@@ -25,14 +25,14 @@ class Persona {
 
         if (expresion_regular_dni.test(sDni) == true) {
             /*numero = sDni.substr(0, sDni.length - 1);
-            letr = sDni.substr(sDni.length - 1, 1);
-            numero = numero % 23;
-            letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
-            letra = letra.substring(numero, numero + 1);
-            if (letra != letr.toUpperCase()) {
-		throw 'Cliente.dni : la letra del NIF no se corresponde.';
-            } else {*/
-		 return true;
+              letr = sDni.substr(sDni.length - 1, 1);
+              numero = numero % 23;
+              letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
+              letra = letra.substring(numero, numero + 1);
+              if (letra != letr.toUpperCase()) {
+	      throw 'Cliente.dni : la letra del NIF no se corresponde.';
+              } else {*/
+	    return true;
             /*}*/
         } else {
             throw 'Cliente.dni : formato no válido para DNI.';
@@ -64,12 +64,6 @@ class Persona {
 	    return true;
 	}
     }
-/*
-    modificarDireccion(sDireccion) {
-        this.direccion = sDireccion;
-        return true;
-    }
-*/
     modificarTelefono(sTelefono) {
 	try{
 	    if(validarTelefono(sTelefono)){

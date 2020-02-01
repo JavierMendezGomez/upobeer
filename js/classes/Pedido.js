@@ -54,35 +54,35 @@ class Pedido {
 
     cambiarEstado(estado){
 	let estadoCambiado=false;
-	    
-	    switch(estado){
-	    case "pendiente":
-		this.envio=null;
-		this.estado="pendiente";
-		estadoCambiado=true;
-		break;
-	    case "preparacion":
-		//poner todas las fechas en orden
-		this.validarIntervaloFecha();
-		this.estado="preparacion";
-		estadoCambiado=true;
-		break;
-	    case "enviado":
-		this.estado="enviado";
-		estadoCambiado=true;
-		break;
-	    case "finalizado":
-		this.estado="finalizado";
-		estadoCambiado=true;
-		break;
-	    default:
-		estadoCambiado=false;
-	    }
-	    
-	    return estadoCambiado;
+	
+	switch(estado){
+	case "pendiente":
+	    this.envio=null;
+	    this.estado="pendiente";
+	    estadoCambiado=true;
+	    break;
+	case "preparacion":
+	    //poner todas las fechas en orden
+	    this.validarIntervaloFecha();
+	    this.estado="preparacion";
+	    estadoCambiado=true;
+	    break;
+	case "enviado":
+	    this.estado="enviado";
+	    estadoCambiado=true;
+	    break;
+	case "finalizado":
+	    this.estado="finalizado";
+	    estadoCambiado=true;
+	    break;
+	default:
+	    estadoCambiado=false;
 	}
+	
+	return estadoCambiado;
+    }
 
-    toHTMLRow(){
+    toHTMLTableRow(){
 
 	let oFila = document.createElement("TR");
         let oCelda = oFila.insertCell(-1);
@@ -101,9 +101,9 @@ class Pedido {
         oCelda.textContent = this.estado;
 
         oCelda = oFila.insertCell(-1);
-		oCelda.textContent = this.fechaInicio;
-		
-		oCelda = oFila.insertCell(-1);
+	oCelda.textContent = this.fechaInicio;
+	
+	oCelda = oFila.insertCell(-1);
         oCelda.textContent = this.fechaFin;
 
         return oFila;

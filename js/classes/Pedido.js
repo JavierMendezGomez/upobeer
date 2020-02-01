@@ -5,7 +5,10 @@ class Pedido {
 	this.idPedido=modelo.contadorPedidos+1;
 	modelo.contadorPedidos++;
 	this.cliente=oCliente;
-	this.tLineasPedido=tLineasPedido;
+	if(tLineasPedido)
+	    this.tLineasPedido=tLineasPedido;
+	else
+	    this.tLineasPedido=[];
 	this.estado="espera";
 	this.fechaInicio = new Date();
     }

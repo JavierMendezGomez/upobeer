@@ -212,22 +212,26 @@ class UpoBeer {
 	return oTabla;
     }
     comboPedidos(oCliente){
-	let select = document.createElement("SELECT");
+	let select=document.createElement("SELECT");
 	select.name="comboPedidos";
 	select.className="form-control";
-	if(oCliente && this.buscarPedido(oCliente) != undefined)
-	    this.buscarPedido(oCliente).forEach(function(element){
+	
+	if(oCliente){
+	    this.tPedidos.forEach(function(pedido){
+		if(pedido.cliente.dni==oCliente.dni){
+		    let option = document.createElement("OPTION");
+		    option.value = pedido.idPedido;
+		    option.textContent = pedido.fecha;
+		    select.appendChild(option);
+		}
+	    })
+	} else {
+	    this.tPedidos.forEach(function(pedido){
 		let option = document.createElement("OPTION");
-		option.value = element.idPedido;
-		option.textContent = element.fecha;
+		option.value = pedido.idPedido;
+		option.textContent = pedido.fecha;
 		select.appendChild(option);
-	    });
-	else
-	{
-	    let option = document.createElement("OPTION");
-	    option.value = "-1";
-	    option.textContent = "No tiene pedidos pendientes";
-	    select.appendChild(option);
+	    })  
 	}
 	return select;
     }

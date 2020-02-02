@@ -340,3 +340,34 @@ function submit_frmCambiarEstadoPedido(){
 	}
 
 }
+
+function cargarDatosOperario(){
+	frmModificarOperario.txtNombre.value = modelo.buscarOperario(clave).nombre;
+	frmModificarOperario.txtApellidos.value = modelo.buscarOperario(clave).apellidos;
+	frmModificarOperario.txtDireccion.value = modelo.buscarOperario(clave).direccion;
+	frmModificarOperario.txtTelefono.value = modelo.buscarOperario(clave).telefono;
+}
+
+function show_frmModificarPerfilOperario(){
+
+	ocultarForms();
+	frmModificarOperario.reset();
+	cargarDatosOperario();
+	document.querySelector("#divFrmModificarOperario").style.display = "block";
+
+}
+
+function submit_frmModificarOperario(){
+
+	let operario = modelo.buscarOperario(clave);
+	let telefonoNuevo = frmModificarOperario.txtTelefono.value;
+	let direccionNueva = frmModificarOperario.txtDireccion.value;
+	if(telefonoNuevo != "" && direccionNueva != "")
+	{
+		operario.modificarTelefono(telefonoNuevo);
+		operario.modificarDireccion(direccionNueva);
+	}
+	alert("Perfil actualizado");
+	cargarDatosCliente();
+
+}

@@ -26,12 +26,12 @@ font-family: 'Playball', cursive;
         padding: 1rem 0;
     }
     #fotoCatalogo {
-        height: 26vh;
+        height: 23vh;
     }
     #filaCatalogo{
         font-weight: bold;
         font-size: 20px;
-        line-height: 26vh;
+        line-height: 23vh;
     }
     .tablaCatalogo {
         width: 80vw;

@@ -1,264 +1,154 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>UpoBeer - Inicio</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link type="text/css" rel="stylesheet" href="css/style.css">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 	<!-- Fuentes -->
 	<link href="https://fonts.googleapis.com/css?family=Galada|Lobster|Pacifico|Playball&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
 
-<!--COPIADO Y PEGADO DE upobeer, REVISAR BIEN TODO-->
+	<!--COPIADO Y PEGADO DE upobeer, REVISAR BIEN TODO-->
 
-<div class="container-fluid" id="upobeer_main">
-			
-	<center>
+	<div class="container-fluid" id="upobeer_main">
 
-<!--Cabecera inicio con logo grande-->
-		<div class="cabeceraInicio elemento" id="cabeceraInicio">
+		<center>
+
+			<!--Cabecera inicio con logo grande-->
+			<div class="cabeceraInicio elemento" id="cabeceraInicio">
 				<header>
 					<a id="logoInicio" href="#"><img src="Img/logo2.png" class="logo"></a>
 					<div class="titulos">
-					<div class="titulo d-none d-lg-block">UpoBeer</div>
+						<div class="titulo d-none d-lg-block">UpoBeer</div>
 						<div class="subtitulo d-none d-sm-block">Fábrica de cerveza premium</div>
 					</div>
 				</header>
-		</div>
-
-
-<!--Formulario inicio sesion-->
-		<div id="inicio" class="row section elemento">
-			<div class="col-12" style="background: url(Img/Fondo3.jpg); background-size: contain; background-repeat: no-repeat; background-position: right; margin-right: 0.2rem;">
-				<b>Introduzca sus datos para iniciar sesión en nuestro sistema</b><br><br>
-				<table cellpadding="10">
-				<form name="formularioInicio">
-					<tr><td>
-				        <label>Introduzca su usuario:	</label>
-				    </td><td>
-				        <input name="usuario" type="text" value="">
-				    </td></tr>
-				    <tr><td>
-				        <label>Introduzca su contraseña: </label>
-				    </td><td>
-				        <input name="clave" type="password" value="">
-				    </td></tr>
-				    <tr><td colspan="2" style="text-align: center">
-				        <input name="botonComprobar" type="button" value="Entrar" onclick="comprobarUsuario();"><br>
-					</td></tr>
-			    </form>
-				</table><br>
-			    <a id="enlaceRegistro" href="#">¿No tienes cuenta? Regístrate</a>
 			</div>
-		</div>
 
 
-<!--Formulario registro nuevo cliente-->
-		<div id="registro" class="row section elemento" style="width: 90vw">
-			<div class="col-12" style="background: url(Img/Fondo3.jpg); background-size: contain; background-repeat: no-repeat; background-position: right; margin-right: 0.2rem;">
-				<b>Introduzca sus datos para registrarse en nuestro sistema como cliente</b><br><br>
-				<table cellpadding="12">
-					<tbody>
-						<form name="formularioRegistro">
-						<tr>
-							<td>
-								<label>Usuario:	</label>
-							</td><td>
-								<input name="usuario" type="text" value="">
-							</td>
-							<td>
-								<label>DNI:	<em>(clave)</em></label>
-							</td><td>
-								<input name="dni" type="text" value="">
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<label>Nombre:	</label>
-							</td><td>
-								<input name="nombre" type="text" value="">
-							</td>
-							<td>
-								<label>Apellidos:	</label>
-							</td><td>
-								<input name="apellidos" type="text" value="">
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<label>Fecha de nacimiento:	</label>
-							</td><td>
-								<input name="fecha" type="date" value="">
-							</td>
-							<td>
-								<label>Dirección:	</label>
-							</td><td>
-								<input name="direccion" type="text" value="">
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<label>Teléfono:	</label>
-							</td><td>
-								<input name="telefono" type="text" value="">
-							</td>
-							<td colspan="2" style="text-align: center">
-								<input name="botonRegistrar" type="button" value="Registrarse" onclick="comprobarRegistro();">
-							</td>
-						</tr>
+			<!--Formulario inicio sesion-->
+			<div id="inicio" class="row section elemento">
+				<div class="col-12"
+					style="background: url(Img/Fondo3.jpg); background-size: contain; background-repeat: no-repeat; background-position: right; margin-right: 0.2rem;">
+					<b>Introduzca sus datos para iniciar sesión en nuestro sistema</b><br><br>
+					<table cellpadding="10">
+						<form name="formularioInicio">
+							<tr>
+								<td>
+									<label>Introduzca su usuario: </label>
+								</td>
+								<td>
+									<input name="usuario" type="text" value="">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label>Introduzca su contraseña: </label>
+								</td>
+								<td>
+									<input name="clave" type="password" value="">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="text-align: center">
+									<input name="botonComprobar" type="button" value="Entrar"
+										onclick="comprobarUsuario();"><br>
+								</td>
+							</tr>
 						</form>
-					</tbody>
-				</table>
-			</div>
-		</div>
-
-<!----------------------- Entramos a la pagina con un tipo de usuario cliente ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-	</center>
-	<div id="cliente" class="elemento">
-<!--Cabecera principal mas pequeña modo navbar-->
-		<div class="cabecera" id="cabecera">
-			<header>
-				<a href=""><img src="Img/logo2.png" class="logo"></a>
-				<div class="titulos">
-				<div class="titulo">UpoBeer</div>
-					<div class="subtitulo">Fábrica de cerveza premium</div>
+					</table><br>
+					<a id="enlaceRegistro" href="#">¿No tienes cuenta? Regístrate</a>
 				</div>
-			</header>
-		</div>
-		<center>
-		<br>
-		<div id="upobeer_btnsShow" class="row navbar">
-			<div class="col-12 col-md-5">
-				<h6 id="datosSesion"><b>¡Bienvenido! Has iniciado sesión como: </b></h6>
 			</div>
-			<div class="col-12 col-md-7" id="upobeer_btnsShowFrms">	
-				<button type="button" class="btn-dark btn-sm" onclick="show_frmAltaPedido();">Alta Pedido</button>
-				<button type="button" class="btn-dark btn-sm" onclick="show_frmBajaPedido();">Baja Pedido</button>
-				<button type="button" class="btn-dark btn-sm" onclick="show_frmModificarPerfil();">Modificar mi perfil</button>
-				<button type="button" class="btn-dark btn-sm" onclick="show_lstCatalogo()">Catálogo</button>
-				<button type="button" class="btn-dark btn-sm" onclick="show_lstPedidosRegistrados()">Pedidos registrados</button>
+
+
+			<!--Formulario registro nuevo cliente-->
+			<div id="registro" class="row section elemento" style="width: 90vw">
+				<div class="col-12"
+					style="background: url(Img/Fondo3.jpg); background-size: contain; background-repeat: no-repeat; background-position: right; margin-right: 0.2rem;">
+					<b>Introduzca sus datos para registrarse en nuestro sistema como cliente</b><br><br>
+					<table cellpadding="12">
+						<tbody>
+							<form name="formularioRegistro">
+								<tr>
+									<td>
+										<label>Usuario: </label>
+									</td>
+									<td>
+										<input name="usuario" type="text" value="">
+									</td>
+									<td>
+										<label>DNI: <em>(clave)</em></label>
+									</td>
+									<td>
+										<input name="dni" type="text" value="">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label>Nombre: </label>
+									</td>
+									<td>
+										<input name="nombre" type="text" value="">
+									</td>
+									<td>
+										<label>Apellidos: </label>
+									</td>
+									<td>
+										<input name="apellidos" type="text" value="">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label>Fecha de nacimiento: </label>
+									</td>
+									<td>
+										<input name="fecha" type="date" value="">
+									</td>
+									<td>
+										<label>Dirección: </label>
+									</td>
+									<td>
+										<input name="direccion" type="text" value="">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label>Teléfono: </label>
+									</td>
+									<td>
+										<input name="telefono" type="text" value="">
+									</td>
+									<td colspan="2" style="text-align: center">
+										<input name="botonRegistrar" type="button" value="Registrarse"
+											onclick="comprobarRegistro();">
+									</td>
+								</tr>
+							</form>
+						</tbody>
+					</table>
+				</div>
 			</div>
-		</div>
+
+			<!----------------------- Entramos a la pagina con un tipo de usuario cliente ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 		</center>
-
-<!-- Formularios-->
-		<div class="formularios row section">
-			<div id="divFrmAltaPedido" class="conditional form-group">
-				<form name="frmAltaPedido" id="frmAltaPedido">
-					<h2>Alta de pedido</h2>
-					<div class="row selectCatalogo">
-						<label for="selCatalogo">Producto deseado: </label>
-						<select class="form-control" name="selCatalogo" id="selCatalogo">
-							<option value="nada">Seleccione producto...</option>
-						</select>
-					</div>
-					<div class="row">
-						<div class="col-6">
-							<label for="txtPrecio">Precio/unidad: </label>
-							<input class="form-control" type="text" name="txtPrecioUnidad" id="txtPrecioUnidad" disabled>
-						</div>
-						<div class="col-6">
-							<label for="txtCantidad">Cantidad deseada:</label>
-							<input class="form-control" type="number" min="1" step="1" name="txtCantidad" id="txtCantidad">
-						</div>
-					</div>
-					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAltaPedido();">
-				</form>
-			</div>
-
-			<div id="divFrmBajaPedido" class="conditional form-group">
-				<form name="frmBajaPedido" id="frmBajaPedido">
-					<h2>Baja de pedido</h2>
-					<div class="row selectPedido">
-						<label for="selPedido">Pedido que desea borrar: </label>
-						<select class="form-control" name="comboPedido" id="comboPedido">
-							<option value="nada">Seleccione pedido...</option>
-						</select>
-					</div>
-					<div class="row">
-						<div class="col-6">
-							<label for="txtLineas">Líneas de pedido: </label>
-							<input class="form-control" type="text" name="txtLineas" id="txtLineas" disabled>
-						</div>
-						<div class="col-6">
-							<label for="txtTotal">Total:</label>
-							<input class="form-control" type="number" min="1" step="1" name="txtTotal" id="txtTotal">
-						</div>
-					</div>
-					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmBajaPedido();">
-				</form>
-			</div>
-
-
-			<div id="divFrmModificarCliente" class="conditional form-group">
-				<form name="frmModificarCliente" id="frmModificarCliente">
-					<h2>Modificar perfil de cliente</h2>
-					<div class="row">
-						<div class="col-4">
-							<label for="txtNombre">Nombre: </label>
-							<input class="form-control" type="text" name="txtNombre" id="txtNombre" disabled>
-						</div>
-						<div class="col-4">
-							<label for="txtApellidos">Apellidos:</label>
-							<input class="form-control" type="text" name="txtApellidos" id="txtApellidos" disabled>
-						</div>
-						<div class="col-4">
-							<label for="txtTelefono">Teléfono:</label>
-							<input class="form-control" type="text" name="txtTelefono" id="txtTelefono">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-12">
-							<label for="txtDireccion">Direccion: </label>
-							<input class="form-control" type="text" name="txtDireccion" id="txtDireccion">
-						</div>
-					</div>
-					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmModificarCliente();">
-				</form>
-			</div>
-		</div>
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!----------------------- Entramos a la pagina con un tipo de usuario operario ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-</center>
-		<div id="operario" class="elemento">
+		<div id="cliente" class="elemento">
 			<!--Cabecera principal mas pequeña modo navbar-->
 			<div class="cabecera" id="cabecera">
 				<header>
@@ -268,20 +158,19 @@
 						<div class="subtitulo">Fábrica de cerveza premium</div>
 					</div>
 				</header>
-
-<!-- Formularios-->
+			</div>
 			<center>
 				<br>
 				<div id="upobeer_btnsShow" class="row navbar">
 					<div class="col-12 col-md-5">
-						<h6 id="datosSesionOperario"><b>¡Bienvenido! Has entrado en modo operario como: </b></h6>
+						<h6 id="datosSesion"><b>¡Bienvenido! Has iniciado sesión como: </b></h6>
 					</div>
 					<div class="col-12 col-md-7" id="upobeer_btnsShowFrms">
-						<button type="button" class="btn-dark btn-sm" onclick="show_frmAnadirStock();">Añadir
-							stock</button>
-						<button type="button" class="btn-dark btn-sm" onclick="show_frmCambiarEstadoPedido();">Cambiar
-							estado de pedido</button>
-						<button type="button" class="btn-dark btn-sm" onclick="show_frmModificarPerfilOperario();">Modificar mi
+						<button type="button" class="btn-dark btn-sm" onclick="show_frmAltaPedido();">Alta
+							Pedido</button>
+						<button type="button" class="btn-dark btn-sm" onclick="show_frmBajaPedido();">Baja
+							Pedido</button>
+						<button type="button" class="btn-dark btn-sm" onclick="show_frmModificarPerfil();">Modificar mi
 							perfil</button>
 						<button type="button" class="btn-dark btn-sm" onclick="show_lstCatalogo()">Catálogo</button>
 						<button type="button" class="btn-dark btn-sm" onclick="show_lstPedidosRegistrados()">Pedidos
@@ -292,60 +181,59 @@
 
 			<!-- Formularios-->
 			<div class="formularios row section">
-				<div id="divAnadirStock" class="conditional form-group">
-					<form name="frmAnadirStock" id="frmAnadirStock">
-						<h2>Añadir stock</h2>
-						<div class="row selectProducto">
-							<label for="selProducto">Producto: </label>
-							<select class="form-control" name="selProducto" id="selProducto">
+				<div id="divFrmAltaPedido" class="conditional form-group">
+					<form name="frmAltaPedido" id="frmAltaPedido">
+						<h2>Alta de pedido</h2>
+						<div class="row selectCatalogo">
+							<label for="selCatalogo">Producto deseado: </label>
+							<select class="form-control" name="selCatalogo" id="selCatalogo">
 								<option value="nada">Seleccione producto...</option>
 							</select>
 						</div>
 						<div class="row">
-							<div class="col-12">
+							<div class="col-6">
+								<label for="txtPrecio">Precio/unidad: </label>
+								<input class="form-control" type="text" name="txtPrecioUnidad" id="txtPrecioUnidad"
+									disabled>
+							</div>
+							<div class="col-6">
 								<label for="txtCantidad">Cantidad deseada:</label>
-								<input class="form-control" type="number" value="1" min="1" step="1" name="txtCantidad"
+								<input class="form-control" type="number" min="1" step="1" name="txtCantidad"
 									id="txtCantidad">
 							</div>
 						</div>
-
-						<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAnadirStock();">
+						<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmAltaPedido();">
 					</form>
 				</div>
 
-				<div id="divCambiarEstado" class="conditional form-group">
-					<form name="frmCambiarEstado" id="frmCambiarEstado">
-						<h2>Cambiar estado de pedido</h2>
+				<div id="divFrmBajaPedido" class="conditional form-group">
+					<form name="frmBajaPedido" id="frmBajaPedido">
+						<h2>Baja de pedido</h2>
 						<div class="row selectPedido">
-							<label for="selPedidoLabel">Pedido: </label>
-							<select class="form-control" name="selPedido" id="selPedido">
+							<label for="selPedido">Pedido que desea borrar: </label>
+							<select class="form-control" name="comboPedido" id="comboPedido">
 								<option value="nada">Seleccione pedido...</option>
 							</select>
 						</div>
 						<div class="row">
 							<div class="col-6">
-								<label for="txtEstadoActualLabel">Estado actual:</label>
-								<select class="form-control" name="selEstadoActual" id="selEstadoActual" disabled="disabled">
-									
-								</select>
+								<label for="txtLineas">Líneas de pedido: </label>
+								<input class="form-control" type="text" name="txtLineas" id="txtLineas" disabled>
 							</div>
 							<div class="col-6">
-								<label for="estados">Estado a cambiar:</label>
-								<select class="form-control" name="selEstadoACambiar" id="selEstadoACambiar">
-									<option value="espera">Espera</option>
-									<option value="enviado">Enviado</option>
-									<option value="finalizado">Finalizado</option>
-								</select>
+								<label for="txtTotal">Total:</label>
+								<input class="form-control" type="number" min="1" step="1" name="txtTotal"
+									id="txtTotal">
 							</div>
 						</div>
-
-						<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmCambiarEstadoPedido();">
+						<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmBajaPedido();">
 					</form>
 				</div>
 
-				<div id="divFrmModificarOperario" class="conditional form-group">
-					<form name="frmModificarOperario" id="frmModificarOperario">
-						<h2>Modificar perfil de operario</h2>
+
+				<div id="divFrmModificarCliente" class="conditional form-group">
+					<form name="frmModificarCliente" id="frmModificarCliente">
+						<h2>Modificar perfil de cliente</h2>
 						<div class="row">
 							<div class="col-4">
 								<label for="txtNombre">Nombre: </label>
@@ -366,44 +254,249 @@
 								<input class="form-control" type="text" name="txtDireccion" id="txtDireccion">
 							</div>
 						</div>
-						<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmModificarOperario();">
+						<input class="btn btn-success" type="button" value="Enviar"
+							onclick="submit_frmModificarCliente();">
 					</form>
 				</div>
-
 			</div>
 		</div>
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!----------------------- Entramos a la pagina con un tipo de usuario operario ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+		</center>
+		<div id="operario" class="elemento">
+			<!--Cabecera principal mas pequeña modo navbar-->
+			<div class="cabecera" id="cabecera">
+				<header>
+					<a href=""><img src="Img/logo2.png" class="logo"></a>
+					<div class="titulos">
+						<div class="titulo">UpoBeer</div>
+						<div class="subtitulo">Fábrica de cerveza premium</div>
+					</div>
+				</header>
+
+				<!-- Formularios-->
+				<center>
+					<br>
+					<div id="upobeer_btnsShow" class="row navbar">
+						<div class="col-12 col-md-5">
+							<h6 id="datosSesionOperario"><b>¡Bienvenido! Has entrado en modo operario como: </b></h6>
+						</div>
+						<div class="col-12 col-md-7" id="upobeer_btnsShowFrms">
+							<button type="button" class="btn-dark btn-sm" onclick="show_frmAnadirStock();">Añadir
+								stock</button>
+							<button type="button" class="btn-dark btn-sm"
+								onclick="show_frmCambiarEstadoPedido();">Cambiar
+								estado de pedido</button>
+							<button type="button" class="btn-dark btn-sm"
+								onclick="show_frmModificarPerfilOperario();">Modificar mi
+								perfil</button>
+							<button type="button" class="btn-dark btn-sm" onclick="show_lstCatalogo()">Catálogo</button>
+							<button type="button" class="btn-dark btn-sm" onclick="show_lstPedidosRegistrados()">Pedidos
+								registrados</button>
+						</div>
+					</div>
+				</center>
+
+				<!-- Formularios-->
+				<div class="formularios row section">
+					<div id="divAnadirStock" class="conditional form-group">
+						<form name="frmAnadirStock" id="frmAnadirStock">
+							<h2>Añadir stock</h2>
+							<div class="row selectProducto">
+								<label for="selProducto">Producto: </label>
+								<select class="form-control" name="selProducto" id="selProducto">
+									<option value="nada">Seleccione producto...</option>
+								</select>
+							</div>
+							<div class="row">
+								<div class="col-12">
+									<label for="txtCantidad">Cantidad deseada:</label>
+									<input class="form-control" type="number" value="1" min="1" step="1"
+										name="txtCantidad" id="txtCantidad">
+								</div>
+							</div>
+
+							<input class="btn btn-success" type="button" value="Enviar"
+								onclick="submit_frmAnadirStock();">
+						</form>
+					</div>
+
+					<div id="divCambiarEstado" class="conditional form-group">
+						<form name="frmCambiarEstado" id="frmCambiarEstado">
+							<h2>Cambiar estado de pedido</h2>
+							<div class="row selectPedido">
+								<label for="selPedidoLabel">Pedido: </label>
+								<select class="form-control" name="selPedido" id="selPedido">
+									<option value="nada">Seleccione pedido...</option>
+								</select>
+							</div>
+							<div class="row">
+								<div class="col-6">
+									<label for="txtEstadoActualLabel">Estado actual:</label>
+									<select class="form-control" name="selEstadoActual" id="selEstadoActual"
+										disabled="disabled">
+
+									</select>
+								</div>
+								<div class="col-6">
+									<label for="estados">Estado a cambiar:</label>
+									<select class="form-control" name="selEstadoACambiar" id="selEstadoACambiar">
+										<option value="espera">Espera</option>
+										<option value="enviado">Enviado</option>
+										<option value="finalizado">Finalizado</option>
+									</select>
+								</div>
+							</div>
+
+							<input class="btn btn-success" type="button" value="Enviar"
+								onclick="submit_frmCambiarEstadoPedido();">
+						</form>
+					</div>
+
+					<div id="divFrmModificarOperario" class="conditional form-group">
+						<form name="frmModificarOperario" id="frmModificarOperario">
+							<h2>Modificar perfil de operario</h2>
+							<div class="row">
+								<div class="col-4">
+									<label for="txtNombre">Nombre: </label>
+									<input class="form-control" type="text" name="txtNombre" id="txtNombre" disabled>
+								</div>
+								<div class="col-4">
+									<label for="txtApellidos">Apellidos:</label>
+									<input class="form-control" type="text" name="txtApellidos" id="txtApellidos"
+										disabled>
+								</div>
+								<div class="col-4">
+									<label for="txtTelefono">Teléfono:</label>
+									<input class="form-control" type="text" name="txtTelefono" id="txtTelefono">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12">
+									<label for="txtDireccion">Direccion: </label>
+									<input class="form-control" type="text" name="txtDireccion" id="txtDireccion">
+								</div>
+							</div>
+							<input class="btn btn-success" type="button" value="Enviar"
+								onclick="submit_frmModificarOperario();">
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		<!----------------------- Entramos a la pagina con un tipo de usuario supervisor ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
+		</center>
+		<div id="supervisor" class="elemento">
+			<!--Cabecera principal mas pequeña modo navbar-->
+			<div class="cabecera" id="cabecera">
+				<header>
+					<a href=""><img src="Img/logo2.png" class="logo"></a>
+					<div class="titulos">
+						<div class="titulo">UpoBeer</div>
+						<div class="subtitulo">Fábrica de cerveza premium</div>
+					</div>
+				</header>
+
+				<!-- Formularios-->
+				<center>
+					<br>
+					<div id="upobeer_btnsShow" class="row navbar">
+						<div class="col-12 col-md-5">
+							<h6 id="datosSesionSupervisor"><b>¡Bienvenido! Has entrado en modo supervisor como: </b>
+							</h6>
+						</div>
+						<div class="col-12 col-md-7" id="upobeer_btnsShowFrms">
+							<button type="button" class="btn-dark btn-sm" onclick="show_frmAltaOperario();">Alta
+								operario</button>
+							<button type="button" class="btn-dark btn-sm" onclick="show_frmBajaOperario();">Baja
+								operario</button>
+							<button type="button" class="btn-dark btn-sm" onclick="show_frmAltaCerveza();">Alta
+								cerveza</button>
+							<button type="button" class="btn-dark btn-sm" onclick="show_frmBajaCerveza();">Baja
+								cerveza</button>
+							<button type="button" class="btn-dark btn-sm" onclick="show_frmAnadirStock();">Añadir
+								stock</button>
+							<button type="button" class="btn-dark btn-sm"
+								onclick="show_frmCambiarEstadoPedido();">Cambiar
+								estado de pedido</button>
+							<button type="button" class="btn-dark btn-sm"
+								onclick="show_frmModificarPerfilOperario();">Modificar mi
+								perfil</button>
+							<button type="button" class="btn-dark btn-sm" onclick="show_lstCatalogo()">Catálogo</button>
+							<button type="button" class="btn-dark btn-sm" onclick="show_lstPedidosRegistrados()">Pedidos
+								registrados</button>
+						</div>
+					</div>
+				</center>
+
+				<div class="formularios row section"></div>
+			</div>
+		</div>
+	</div>
 
 
-
-		<!-- Importación de scripts, por orden -->
-		<!-- Funciones que pueden usarse en todas las clases -->
-		<script src="js/classes/funciones.js"></script>
-		<!-- Clases ordenadas por sus dependencias -->
-		<script src="js/classes/Cerveza.js"></script>
-		<script src="js/classes/Vehiculo.js"></script>
-		<script src="js/classes/Envio.js"></script>
-		<script src="js/classes/LineaPedido.js"></script>
-		<script src="js/classes/Pedido.js"></script>
-		<script src="js/classes/Persona.js"></script>
-		<script src="js/classes/Cliente.js"></script>
-		<script src="js/classes/Operario.js"></script>
-		<script src="js/classes/Conductor.js"></script>
-		<script src="js/classes/UpoBeer.js"></script>
-		<script src="js/controlador.js"></script>
+	<!-- Importación de scripts, por orden -->
+	<!-- Funciones que pueden usarse en todas las clases -->
+	<script src="js/classes/funciones.js"></script>
+	<!-- Clases ordenadas por sus dependencias -->
+	<script src="js/classes/Cerveza.js"></script>
+	<script src="js/classes/Vehiculo.js"></script>
+	<script src="js/classes/Envio.js"></script>
+	<script src="js/classes/LineaPedido.js"></script>
+	<script src="js/classes/Pedido.js"></script>
+	<script src="js/classes/Persona.js"></script>
+	<script src="js/classes/Cliente.js"></script>
+	<script src="js/classes/Operario.js"></script>
+	<script src="js/classes/Conductor.js"></script>
+	<script src="js/classes/UpoBeer.js"></script>
+	<script src="js/controlador.js"></script>
 </body>
 
 </html>

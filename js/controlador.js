@@ -35,7 +35,12 @@ function revisarSwitch()
 	    console.log("se muestra operario");
 	    break;
 	  case 'supervisor':
-	    console.log('El kilogramo de Cerezas cuesta $3.00.');
+	    ocultarTodo();
+	  	let datosSupervisor = document.createElement("text");
+	  	datosSupervisor.textContent = usuario + ", " + clave;
+	  	document.querySelector("#datosSesionSupervisor").appendChild(datosSupervisor);
+		document.getElementById("supervisor").style.display = "inline";
+		console.log("se muestra supervisor");
 	    break;
 	}
 }

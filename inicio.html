@@ -530,23 +530,26 @@
 							</div>
 					</div>
 					</form>
-				</div>
 
-				<div class="formularios row section">
-					<div id="bajaOperario" class="conditional form-group">
-						<form name="frmAltaOperario" id="frmAltaOperario">
+					<div id="divBajaOperario" class="conditional form-group">
+						<form name="frmBajaOperario" id="frmBajaOperario">
 							<h2>Baja operario</h2>
-							<div class="row">
-								<div class="col-9">
+							<div class="row">	
 									<label for="selOperario">Supervisor: </label>
 									<select class="form-control" name="selOperario" id="selOperario">
-										
-									</select>
+									</select>	
+							</div>
+							<div class="row">
+								<div class="col-9">
+									<input class="btn btn-success" type="button" value="Dar de baja"
+										onclick="submit_frmBajaOperario();">
 								</div>
 							</div>
+						</form>
 					</div>
-					</form>
 				</div>
+
+
 
 			</div>
 		</div>

@@ -440,7 +440,7 @@ function submit_frmAltaOperario() {
 		sError += "\nNo se puede dejar en blanco el campo dirección";
 	}
 
-	if (oOperario.validarTelefono(sTelefono) !=true) {
+	if (oOperario.validarTelefono(sTelefono) != true) {
 		bValido = false;
 		sError += "\nDebe introducir un teléfono válido";
 	}
@@ -450,9 +450,43 @@ function submit_frmAltaOperario() {
 	}
 	else {
 		if (modelo.altaOperario(oOperario))
+		{
 			alert("Acción realizada con exito");
+			frmAltaOperario.reset();
+		}
 		else
 			alert("Ese operario ya existe");
 	}
 
+}
+
+function show_frmBajaOperario() {
+
+	ocultarForms();
+	frmBajaOperario.reset();
+	document.querySelector("#divBajaOperario").style.display = "block";
+
+	let comboOperarios = document.querySelector("#selOperario");
+	let option = null;
+
+	while (comboOperarios.hasChildNodes()) {
+		comboOperarios.removeChild(comboOperarios.firstChild);
+	}
+
+	for (let i = 0; i < modelo.tOperarios.length; i++) {
+		if (modelo.tOperarios[i].supervisor == false) {
+			option = document.createElement("option");
+			option.value = modelo.tOperarios[i].dni;
+			option.textContent = modelo.tOperarios[i].nombre + " - " + modelo.tOperarios[i].dni;
+			comboOperarios.appendChild(option);
+		}
+	}
+
+}
+
+function submit_frmBajaOperario(){
+
+	modelo.bajaOperario(frmBajaOperario.selOperario.value);
+	alert("Acción realizada con éxito");
+	show_frmBajaOperario();
 }

@@ -537,3 +537,35 @@ function submit_frmAltaCerveza(){
 		}
 
 }
+
+function show_frmBajaCerveza(){
+
+	ocultarForms();
+	frmBajaCerveza.reset();
+	document.querySelector("#divBajaCerveza").style.display = "block";
+
+	let comboCervezas = document.querySelector("#selCerveza");
+	let option = null;
+
+	while (comboCervezas.hasChildNodes()) {
+		comboCervezas.removeChild(comboCervezas.firstChild);
+	}
+
+	for (let i = 0; i < modelo.tCervezas.length; i++) {
+		
+			option = document.createElement("option");
+			option.value = modelo.tCervezas[i].idCerveza;
+			option.textContent = modelo.tCervezas[i].nombre + " - " + modelo.tCervezas[i].idCerveza;
+			comboCervezas.appendChild(option);
+		
+	}
+
+}
+
+function submit_frmBajaCerveza(){
+
+	modelo.bajaCerveza(frmBajaCerveza.selCerveza.value);
+	alert("Acción realizada con éxito");
+	show_frmBajaCerveza();
+
+}

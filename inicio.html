@@ -534,10 +534,10 @@
 					<div id="divBajaOperario" class="conditional form-group">
 						<form name="frmBajaOperario" id="frmBajaOperario">
 							<h2>Baja operario</h2>
-							<div class="row">	
-									<label for="selOperario">Supervisor: </label>
-									<select class="form-control" name="selOperario" id="selOperario">
-									</select>	
+							<div class="row">
+								<label for="selOperario">Operarios: </label>
+								<select class="form-control" name="selOperario" id="selOperario">
+								</select>
 							</div>
 							<div class="row">
 								<div class="col-9">
@@ -547,7 +547,7 @@
 							</div>
 						</form>
 					</div>
-					
+
 					<div id="divAltaCerveza" class="conditional form-group">
 						<form name="frmAltaCerveza" id="frmAltaCerveza">
 							<h2>Alta cerveza</h2>
@@ -558,27 +558,46 @@
 								</div>
 								<div class="col-6">
 									<label for="txtPorcentaje">Porcentaje de alcohol: </label>
-									<input class="form-control" type="number" step="1" name="txtPorcentaje" id="txtPorcentaje" value="0">
+									<input class="form-control" type="number" step="1" name="txtPorcentaje"
+										id="txtPorcentaje" value="0">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-6">
 									<label for="txtPrecio">Precio: </label>
-									<input class="form-control" type="number" step="0.01" name="txtPrecio" id="txtPrecio" value="1">
+									<input class="form-control" type="number" step="0.01" name="txtPrecio"
+										id="txtPrecio" value="1">
 								</div>
 								<div class="col-6">
 									<label for="txtStock">Stock de entrada: </label>
-									<input class="form-control" type="number" name="txtStock" value="100"
-										id="txtStock">
+									<input class="form-control" type="number" name="txtStock" value="100" id="txtStock">
 								</div>
 							</div>
-							
+
 							<div class="row">
 								<div class="col-6">
 									<input class="btn btn-success" type="button" value="Enviar"
 										onclick="submit_frmAltaCerveza();">
 								</div>
 							</div>
+						</form>
+					</div>
+
+					<div id="divBajaCerveza" class="conditional form-group">
+						<form name="frmBajaCerveza" id="frmBajaCerveza">
+							<h2>Baja cerveza</h2>
+							<div class="row">
+								<label for="selCerveza">Cervezas: </label>
+								<select class="form-control" name="selCerveza" id="selCerveza">
+								</select>
+							</div>
+							<div class="row">
+								<div class="col-9">
+									<input class="btn btn-success" type="button" value="Dar de baja"
+										onclick="submit_frmBajaCerveza();">
+								</div>
+							</div>
+						</form>
 					</div>
 
 				</div>
@@ -586,7 +605,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
 
 
 	<!-- Importación de scripts, por orden -->

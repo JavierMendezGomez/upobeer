@@ -1,6 +1,6 @@
 //INICIALIZAR MODELO
 var modelo = new UpoBeer();
-var tipo = "supervisor";
+var tipo = "ninguno";
 var usuario = "";
 var clave = "";
 document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
@@ -376,8 +376,10 @@ function submit_frmModificarOperario() {
 		cargarDatosOperario();
 	}
 	else
+	{
+		alert("No puede dejar en blanco ningún campo y debe introducir un teléfono válido");
 		cargarDatosOperario();
-
+	}
 }
 
 // Parte supervisor
@@ -568,4 +570,39 @@ function submit_frmBajaCerveza(){
 	alert("Acción realizada con éxito");
 	show_frmBajaCerveza();
 
+}
+
+function cargarDatosSupervisor() {
+	frmModificarSupervisor.txtNombre.value = modelo.buscarOperario(clave).nombre;
+	frmModificarSupervisor.txtApellidos.value = modelo.buscarOperario(clave).apellidos;
+	frmModificarSupervisor.txtDireccion.value = modelo.buscarOperario(clave).direccion;
+	frmModificarSupervisor.txtTelefono.value = modelo.buscarOperario(clave).telefono;
+}
+
+function show_frmModificarPerfilSupervisor(){
+
+	ocultarForms();
+	frmModificarSupervisor.reset();
+	cargarDatosSupervisor();
+	document.querySelector("#divFrmModificarSupervisor").style.display = "block";
+
+}
+
+function submit_frmModificarSupervisor(){
+
+	let operario = modelo.buscarOperario(clave);
+	let telefonoNuevo = frmModificarSupervisor.txtTelefono.value;
+	let direccionNueva = frmModificarSupervisor.txtDireccion.value;
+
+	if (telefonoNuevo != "" && direccionNueva != "" && operario.validarTelefono(telefonoNuevo)) {
+		operario.modificarTelefono(telefonoNuevo);
+		operario.modificarDireccion(direccionNueva);
+		alert("Perfil actualizado");
+		cargarDatosSupervisor();
+	}
+	else
+	{
+		alert("No puede dejar en blanco ningún campo y debe introducir un teléfono válido");
+		cargarDatosSupervisor();
+	}
 }

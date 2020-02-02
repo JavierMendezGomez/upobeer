@@ -467,7 +467,7 @@
 								onclick="show_frmCambiarEstadoPedido();">Cambiar
 								estado de pedido</button>
 							<button type="button" class="btn-dark btn-sm"
-								onclick="show_frmModificarPerfilOperario();">Modificar mi
+								onclick="show_frmModificarPerfilSupervisor();">Modificar mi
 								perfil</button>
 							<button type="button" class="btn-dark btn-sm" onclick="show_lstCatalogo()">Catálogo</button>
 							<button type="button" class="btn-dark btn-sm" onclick="show_lstPedidosRegistrados()">Pedidos
@@ -597,6 +597,35 @@
 										onclick="submit_frmBajaCerveza();">
 								</div>
 							</div>
+						</form>
+					</div>
+
+					<div id="divFrmModificarSupervisor" class="conditional form-group">
+						<form name="frmModificarSupervisor" id="frmModificarSupervisor">
+							<h2>Modificar perfil de supervisor</h2>
+							<div class="row">
+								<div class="col-4">
+									<label for="txtNombre">Nombre: </label>
+									<input class="form-control" type="text" name="txtNombre" id="txtNombre" disabled>
+								</div>
+								<div class="col-4">
+									<label for="txtApellidos">Apellidos:</label>
+									<input class="form-control" type="text" name="txtApellidos" id="txtApellidos"
+										disabled>
+								</div>
+								<div class="col-4">
+									<label for="txtTelefono">Teléfono:</label>
+									<input class="form-control" type="text" name="txtTelefono" id="txtTelefono">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12">
+									<label for="txtDireccion">Direccion: </label>
+									<input class="form-control" type="text" name="txtDireccion" id="txtDireccion">
+								</div>
+							</div>
+							<input class="btn btn-success" type="button" value="Enviar"
+								onclick="submit_frmModificarSupervisor();">
 						</form>
 					</div>
 

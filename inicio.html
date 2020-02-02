@@ -476,9 +476,81 @@
 					</div>
 				</center>
 
-				<div class="formularios row section"></div>
+				<div class="formularios row section">
+					<div id="divAltaOperario" class="conditional form-group">
+						<form name="frmAltaOperario" id="frmAltaOperario">
+							<h2>Alta operario</h2>
+							<div class="row">
+								<div class="col-4">
+									<label for="txtUsuario">Usuario: </label>
+									<input class="form-control" type="text" name="txtUsuario" id="txtUsuario">
+								</div>
+								<div class="col-4">
+									<label for="txtDni">DNI: </label>
+									<input class="form-control" type="text" name="txtDni" id="txtDni">
+								</div>
+								<div class="col-4">
+									<label for="txtNombre">Nombre: </label>
+									<input class="form-control" type="text" name="txtNombre" id="txtNombre">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-4">
+									<label for="txtApellidos">Apellidos: </label>
+									<input class="form-control" type="text" name="txtApellidos" id="txtApellidos">
+								</div>
+								<div class="col-4">
+									<label for="dFechaNacimiento">Fecha de nacimiento: </label>
+									<input class="form-control" type="date" name="dFechaNacimiento"
+										id="dFechaNacimiento">
+								</div>
+								<div class="col-4">
+									<label for="txtDireccion">Dirección: </label>
+									<input class="form-control" type="text" name="txtDireccion" id="txtDireccion">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-6">
+									<label for="txtTelefono">Teléfono: </label>
+									<input class="form-control" type="text" name="txtTelefono" id="txtTelefono">
+								</div>
+								<div class="col-6">
+									<label for="selSupervisor">Supervisor: </label>
+									<select class="form-control" name="selSupervisor" id="selSupervisor">
+										<option value="no">No</option>
+										<option value="si">Si</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-6">
+									<input class="btn btn-success" type="button" value="Enviar"
+										onclick="submit_frmAltaOperario();">
+								</div>
+							</div>
+					</div>
+					</form>
+				</div>
+
+				<div class="formularios row section">
+					<div id="bajaOperario" class="conditional form-group">
+						<form name="frmAltaOperario" id="frmAltaOperario">
+							<h2>Baja operario</h2>
+							<div class="row">
+								<div class="col-9">
+									<label for="selOperario">Supervisor: </label>
+									<select class="form-control" name="selOperario" id="selOperario">
+										
+									</select>
+								</div>
+							</div>
+					</div>
+					</form>
+				</div>
+
 			</div>
 		</div>
+	</div>
 	</div>
 
 

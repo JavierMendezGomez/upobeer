@@ -35,7 +35,8 @@ class Persona {
 	    return true;
             /*}*/
         } else {
-            throw 'Cliente.dni : formato no válido para DNI.';
+            //throw 'Cliente.dni : formato no válido para DNI.';
+            return false;
         }
     }
 
@@ -46,7 +47,9 @@ class Persona {
             return true;
         }
         else {
-            throw "Cliente.telefono : Teléfono erroneo, formato no válido";
+            //throw "Cliente.telefono : Teléfono erroneo, formato no válido";
+            //alert("Teléfono erroneo, formato no válido");
+            return false;
         }
     }
     
@@ -58,8 +61,10 @@ class Persona {
 	let fechaMin = new Date(hoy - mayoriaEdad);
 	if(fechaMin > dFechaNacimiento)
 	{
-	    throw "Cliente.fechaNacimiento : Fecha de nacimiento erronea, menor de 18 años";
-	}
+	    //throw "Cliente.fechaNacimiento : Fecha de nacimiento erronea, menor de 18 años";
+        //alert("Fecha de nacimiento erronea, menor de 18 años");
+        return false;
+    }
 	else{
 	    return true;
 	}

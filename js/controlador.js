@@ -1,6 +1,6 @@
 //INICIALIZAR MODELO
 var modelo = new UpoBeer();
-var tipo = "ninguno";
+var tipo = "supervisor";
 var usuario = "";
 var clave = "";
 document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
@@ -200,12 +200,14 @@ function submit_frmModificarCliente() {
 	let cliente = modelo.buscarCliente(clave);
 	let telefonoNuevo = frmModificarCliente.txtTelefono.value;
 	let direccionNueva = frmModificarCliente.txtDireccion.value;
-	if (telefonoNuevo != "" && direccionNueva != "") {
+	if (telefonoNuevo != "" && direccionNueva != "" && cliente.validarTelefono(telefonoNuevo)) {
 		cliente.modificarTelefono(telefonoNuevo);
 		cliente.modificarDireccion(direccionNueva);
+		alert("Perfil actualizado");
+		cargarDatosCliente();
 	}
-	alert("Perfil actualizado");
-	cargarDatosCliente();
+	else
+		cargarDatosCliente();
 }
 
 function show_lstCatalogo() {
@@ -262,7 +264,7 @@ function show_frmAnadirStock() {
 function submit_frmAnadirStock() {
 
 	let nombreProducto = frmAnadirStock.selProducto.value;
-	let cantidad = frmAnadirStock.txtCantidad.value;
+	let cantidad = parseInt(frmAnadirStock.txtCantidad.value);
 
 	for (let i = 0; i < modelo.tCervezas.length; i++) {
 		if (modelo.tCervezas[i].nombre == nombreProducto) {
@@ -367,11 +369,90 @@ function submit_frmModificarOperario() {
 	let operario = modelo.buscarOperario(clave);
 	let telefonoNuevo = frmModificarOperario.txtTelefono.value;
 	let direccionNueva = frmModificarOperario.txtDireccion.value;
-	if (telefonoNuevo != "" && direccionNueva != "") {
+	if (telefonoNuevo != "" && direccionNueva != "" && operario.validarTelefono(telefonoNuevo)) {
 		operario.modificarTelefono(telefonoNuevo);
 		operario.modificarDireccion(direccionNueva);
+		alert("Perfil actualizado");
+		cargarDatosOperario();
 	}
-	alert("Perfil actualizado");
-	cargarDatosCliente();
+	else
+		cargarDatosOperario();
+
+}
+
+// Parte supervisor
+
+function show_frmAltaOperario() {
+
+	ocultarForms();
+	frmAltaOperario.reset();
+	document.querySelector("#divAltaOperario").style.display = "block";
+
+}
+
+function submit_frmAltaOperario() {
+
+	let sUsuario = frmAltaOperario.txtUsuario.value;
+	let sDni = frmAltaOperario.txtDni.value;
+	let sNombre = frmAltaOperario.txtNombre.value;
+	let sApellidos = frmAltaOperario.txtApellidos.value;
+	let dFechaNacimiento = frmAltaOperario.dFechaNacimiento.value;
+	let sDireccion = frmAltaOperario.txtDireccion.value;
+	let sTelefono = frmAltaOperario.txtTelefono.value;
+	let bSupervisor;
+	let bValido = true;
+	let sError = "";
+
+	if (frmAltaOperario.selSupervisor.value == "si")
+		bSupervisor = true;
+	else
+		bSupervisor = false;
+
+	let oOperario = new Operario(sUsuario, sDni, sNombre, sApellidos, dFechaNacimiento, sDireccion, sTelefono, bSupervisor);
+
+	if (sUsuario == "") {
+		bValido = false;
+		sError += "No se puede dejar en blanco el campo usuario";
+	}
+
+	if (oOperario.validarDNI(sDni) != true) {
+		bValido = false;
+		sError += "\nDebe introducir un dni válido";
+	}
+
+	if (sNombre == "") {
+		bValido = false;
+		sError += "\nNo se puede dejar en blanco el campo nombre";
+	}
+
+	if (sApellidos == "") {
+		bValido = false;
+		sError += "\nNo se puede dejar en blanco el campo apellidos";
+	}
+
+	if (oOperario.validarFechaNacimiento(dFechaNacimiento) != true) {
+		bValido = false;
+		sError += "\nDebe ser mayor de edad";
+	}
+
+	if (sDireccion == "") {
+		bValido = false;
+		sError += "\nNo se puede dejar en blanco el campo dirección";
+	}
+
+	if (oOperario.validarTelefono(sTelefono) !=true) {
+		bValido = false;
+		sError += "\nDebe introducir un teléfono válido";
+	}
+
+	if (bValido == false) {
+		alert(sError);
+	}
+	else {
+		if (modelo.altaOperario(oOperario))
+			alert("Acción realizada con exito");
+		else
+			alert("Ese operario ya existe");
+	}
 
 }

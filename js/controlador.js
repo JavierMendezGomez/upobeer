@@ -1,6 +1,6 @@
 //INICIALIZAR MODELO
 var modelo = new UpoBeer();
-var tipo = "cliente";
+var tipo = "ninguno";
 var usuario = "";
 var clave = "";
 document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
@@ -171,7 +171,10 @@ function submit_frmBajaPedido(){
 function show_lstPedidosRegistrados(){
     ocultarForms();
     console.log(modelo.listadoPedidos(modelo.buscarCliente(clave)));
-    document.querySelector(".formularios").appendChild(modelo.listadoPedidos(modelo.buscarCliente(clave)));	
+	if(document.querySelector("#cliente").style.display == "none")
+    	document.querySelector("#operario .formularios").appendChild(modelo.listadoPedidos(modelo.buscarCliente(clave)));	
+	else
+    	document.querySelector("#cliente .formularios").appendChild(modelo.listadoPedidos(modelo.buscarCliente(clave)));	
 }
 
 function show_frmModificarPerfil(){
@@ -203,8 +206,10 @@ function submit_frmModificarCliente(){
 
 function show_lstCatalogo(){
 	ocultarForms();
-	document.querySelector(".formularios").appendChild(modelo.listadoCervezas());	
-
+	if(document.querySelector("#cliente").style.display == "none")
+		document.querySelector("#operario .formularios").appendChild(modelo.listadoCervezas());	
+	else
+		document.querySelector("#cliente .formularios").appendChild(modelo.listadoCervezas());
 }
 
 

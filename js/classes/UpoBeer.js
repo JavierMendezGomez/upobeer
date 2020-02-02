@@ -185,7 +185,17 @@ class UpoBeer {
     listadoPedidos(oCliente){
 	let oTabla=document.createElement("TABLE");
 	oTabla.className="table table-stripped";
-	let oTHead=oTabla.createTHead();
+	let oTHead=oTabla.createTHead();	
+	let oFila=document.createElement("TR");
+	oFila.id = "th";
+	oFila.insertCell(-1).textContent = "ID";
+	oFila.insertCell(-1).textContent = "Nombre";
+	oFila.insertCell(-1).textContent = "Apellidos";
+	oFila.insertCell(-1).textContent = "Lineas";
+	oFila.insertCell(-1).textContent = "Estado";
+	oFila.insertCell(-1).textContent = "Fecha";
+	oFila.insertCell(-1).textContent = "";
+	oTHead.appendChild(oFila);
 	let oTBody=oTabla.createTBody();
 
 	if(oCliente){
@@ -224,13 +234,21 @@ class UpoBeer {
     
     listadoCervezas(){
 	let oTabla=document.createElement("TABLE");
-	oTabla.className="table table-stripped";
+	oTabla.className="table table-stripped tablaCatalogo";
 	let oTHead=oTabla.createTHead();
+	let oFila=document.createElement("TR");
+	oFila.id = "th";
+	oFila.insertCell(-1).textContent = "Nombre";
+	oFila.insertCell(-1).textContent = "Porcentaje";
+	oFila.insertCell(-1).textContent = "Precio";
+	oFila.insertCell(-1).textContent = "Stock";
+	oFila.insertCell(-1).textContent = "";
+	oTHead.appendChild(oFila);
 	let oTBody=oTabla.createTBody();
 
 	this.tCervezas.forEach(function(cerveza){
 	    oTBody.appendChild(cerveza.toHTMLTableRow());
-	})
+	});
 
 	return oTabla;
     }

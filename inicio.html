@@ -194,6 +194,34 @@
 					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmBajaPedido();">
 				</form>
 			</div>
+
+
+			<div id="divFrmModificarCliente" class="conditional form-group">
+				<form name="frmModificarCliente" id="frmModificarCliente">
+					<h2>Modificar perfil de cliente</h2>
+					<div class="row">
+						<div class="col-4">
+							<label for="txtNombre">Nombre: </label>
+							<input class="form-control" type="text" name="txtNombre" id="txtNombre" disabled>
+						</div>
+						<div class="col-4">
+							<label for="txtApellidos">Apellidos:</label>
+							<input class="form-control" type="text" name="txtApellidos" id="txtApellidos" disabled>
+						</div>
+						<div class="col-4">
+							<label for="txtTelefono">Teléfono:</label>
+							<input class="form-control" type="text" name="txtTelefono" id="txtTelefono">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<label for="txtDireccion">Direccion: </label>
+							<input class="form-control" type="text" name="txtDireccion" id="txtDireccion">
+						</div>
+					</div>
+					<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmModificarCliente();">
+				</form>
+			</div>
 		</div>
 	</div>
 

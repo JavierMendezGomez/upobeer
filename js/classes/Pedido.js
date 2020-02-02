@@ -104,9 +104,9 @@ class Pedido {
         oCelda.textContent = this.estado;
 
         oCelda = oFila.insertCell(-1);
-	oCelda.textContent = this.fechaInicio;
-	
-	oCelda = oFila.insertCell(-1);
+		oCelda.textContent = this.fechaInicio;
+		
+		oCelda = oFila.insertCell(-1);
         oCelda.textContent = this.fechaFin;
 
         return oFila;

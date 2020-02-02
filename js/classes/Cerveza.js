@@ -43,13 +43,15 @@ class Cerveza {
 
     toHTMLTableRow(){
 	let oFila=document.createElement("TR");
-	oFila.insertCell(-1).textContent=this.idCerveza;
+    oFila.id = "filaCatalogo";
 	oFila.insertCell(-1).textContent=this.nombre;
 	oFila.insertCell(-1).textContent=this.porcentaje;
 	oFila.insertCell(-1).textContent=this.precio;
 	oFila.insertCell(-1).textContent=this.stock;
-	oFila.insertCell(-1).textContent=this.foto;
-
+    let foto = document.createElement("img");
+    foto.id= "fotoCatalogo";
+    foto.src = this.foto;
+    oFila.insertCell(-1).appendChild(foto);
 	return oFila;
     }
 }

@@ -65,13 +65,15 @@ class Persona {
 	}
     }
     modificarTelefono(sTelefono) {
-	try{
-	    if(validarTelefono(sTelefono)){
+    if(this.validarTelefono(sTelefono)){
 		this.telefono = sTelefono;
 		return true;
-	    }
-	} catch (e) {
-	    return false;
-	}
+    }
+    return false;
+    }
+
+    modificarDireccion(sDireccion) {
+        this.direccion = sDireccion;
+        return true;
     }
 }

@@ -1,6 +1,6 @@
 //INICIALIZAR MODELO
 var modelo = new UpoBeer();
-var tipo = "ninguno";
+var tipo = "cliente";
 var usuario = "";
 var clave = "";
 document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
@@ -49,6 +49,7 @@ function ocultarTodo()
 function ocultarForms()
 {
 	document.querySelectorAll(".conditional").forEach(function(element){element.style.display="none"});	
+	document.querySelectorAll(".table").forEach(function(element){element.style.display="none"});	
 }
 
 
@@ -171,6 +172,39 @@ function show_lstPedidosRegistrados(){
     ocultarForms();
     console.log(modelo.listadoPedidos(modelo.buscarCliente(clave)));
     document.querySelector(".formularios").appendChild(modelo.listadoPedidos(modelo.buscarCliente(clave)));	
+}
+
+function show_frmModificarPerfil(){
+	ocultarForms();
+	frmModificarCliente.reset();
+	cargarDatosCliente();
+	document.querySelector("#divFrmModificarCliente").style.display = "block";
+}
+
+function cargarDatosCliente(){
+	frmModificarCliente.txtNombre.value = modelo.buscarCliente(clave).nombre;
+	frmModificarCliente.txtApellidos.value = modelo.buscarCliente(clave).apellidos;
+	frmModificarCliente.txtDireccion.value = modelo.buscarCliente(clave).direccion;
+	frmModificarCliente.txtTelefono.value = modelo.buscarCliente(clave).telefono;
+}
+
+function submit_frmModificarCliente(){
+	let cliente = modelo.buscarCliente(clave);
+	let telefonoNuevo = frmModificarCliente.txtTelefono.value;
+	let direccionNueva = frmModificarCliente.txtDireccion.value;
+	if(telefonoNuevo != "" && direccionNueva != "")
+	{
+		cliente.modificarTelefono(telefonoNuevo);
+		cliente.modificarDireccion(direccionNueva);
+	}
+	alert("Perfil actualizado");
+	cargarDatosCliente();
+}
+
+function show_lstCatalogo(){
+	ocultarForms();
+	document.querySelector(".formularios").appendChild(modelo.listadoCervezas());	
+
 }
 
 

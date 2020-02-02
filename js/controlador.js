@@ -490,3 +490,50 @@ function submit_frmBajaOperario(){
 	alert("Acción realizada con éxito");
 	show_frmBajaOperario();
 }
+
+function show_frmAltaCerveza(){
+
+	ocultarForms();
+	frmAltaCerveza.reset();
+	document.querySelector("#divAltaCerveza").style.display = "block";
+
+}
+
+function submit_frmAltaCerveza(){
+
+	let sNombre = frmAltaCerveza.txtNombre.value;
+	let iPorcentaje = parseInt(frmAltaCerveza.txtPorcentaje.value);
+	let fPrecio = parseFloat(frmAltaCerveza.txtPrecio.value);
+	let iStock = parseInt(frmAltaCerveza.txtStock.value);
+	let bValido=true;
+	let sError="";
+	let oCerveza= new Cerveza(sNombre,iPorcentaje,fPrecio,iStock);
+
+	if(sNombre=="")
+	{
+		bValido=false;
+		sError+="No puede dejar en blanco el campo nombre";
+	}
+
+	if(oCerveza.validarPrecioUnidad(fPrecio)!=true)
+	{
+		bValido=false;
+		sError+="\nEl precio no puede ser ni inferior a 0 ni superior a 100";
+	}
+
+	if(bValido==false)
+		alert(sError);
+	else
+		{
+			if(modelo.altaCerveza(oCerveza)==false)
+			{
+				alert("Esa cerveza ya está dada de alta");
+			}
+			else
+			{
+				alert("Acción realizada con éxito");
+				frmAltaCerveza.reset();
+			}
+		}
+
+}

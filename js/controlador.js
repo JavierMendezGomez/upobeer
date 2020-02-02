@@ -63,8 +63,8 @@ function showRegistro(){
 modelo.altaCliente(new Cliente("user1","11111111A","Cliente1","Ap","1997-08-12","C/Mesina","111111111"));
 modelo.altaCliente(new Cliente("user2","11111111B","Cliente2","Ap","1993-04-16","C/Mesina","111111111"));
 modelo.altaCliente(new Cliente("user3","11111111C","Cliente2","Ap","1994-09-22","C/Mesina","111111111"));
-modelo.altaOperario(new Cliente("user4","11111111D","Operario1","Ap","1997-08-12","C/Mesina","111111111",true));
-modelo.altaOperario(new Cliente("user5","11111111E","Operario2","Ap","1997-08-12","C/Mesina","111111111",false));
+modelo.altaOperario(new Operario("user4","11111111D","Operario1","Ap","1997-08-12","C/Mesina","111111111",true));
+modelo.altaOperario(new Operario("user5","11111111E","Operario2","Ap","1997-08-12","C/Mesina","111111111",false));
 modelo.altaCerveza(new Cerveza("Cruzcampo",11,3.50,200));
 modelo.altaCerveza(new Cerveza("Radler",9,4.50,200));
 modelo.altaCerveza(new Cerveza("Hamstel",12,3,200));

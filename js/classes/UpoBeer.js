@@ -63,7 +63,7 @@ class UpoBeer {
     }
     bajaCerveza(idCerveza){
 	this.tCervezas=this.tCervezas.filter(function(cerveza){
-	    cerveza.idCerveza!=idCerveza;
+	    return cerveza.idCerveza!=idCerveza;
 	});
     }
 

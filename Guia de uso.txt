@@ -1,0 +1,22 @@
+El programa se inicia en inicio.html, donde pide usuario y contraseña para poder acceder al sistema.
+Hay 3 tipos de usuario:
+
+-Cliente (user1 - 11111111A)
+-Operario (oper2 - 11111111E)
+-Supervisor (oper1 - 11111111D)
+
+También tienes la opción de registrarte como un nuevo cliente para poder acceder.
+El cliente puede dar de alta/baja sus pedidos, modificar su perfil, listar el catálogo de cervezas y sus pedidos registrados. Sólo podrá dar de baja los pedidos que tengan estado en espera, si ya estan en preparación o envío no. Además, sólo puede dar de alta un pedido por día, pero con varios tipos de cerveza en distintas líneas de pedido.
+
+El operario puede añadir stock a tipos de cerveza, cambiar los estados de los pedidos registrados, modificar su perfil, listar el catálogo y todos los pedidos registrados.
+
+El supervisor puede hacer todo lo que hace el operario, y además dar de alta/baja nuevos operarios o cervezas dentro del sistema.
+
+A tener en cuenta que para registrar un nuevo cliente o un nuevo operario, la fecha de nacimiento debe ser mayor de 18 años ya que trabajamos en una empresa cervecera.
+
+Trabajo realizado por:
+
+Andrea Fernández Hita
+Emilio Alejandro Guillén Ramos
+Javier Méndez Gómez
+

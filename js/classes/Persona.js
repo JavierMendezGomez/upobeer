@@ -57,9 +57,14 @@ class Persona {
     validarFechaNacimiento(dFechaNacimiento)
     {
     	let hoy = new Date();
-	let mayoriaEdad = 1000 * 60 * 60 * 24 * 365 * 18; //18 años en milisegundos
-	let fechaMin = new Date(hoy - mayoriaEdad);
-	if(fechaMin > dFechaNacimiento)
+	console.log(hoy);
+    let mayoriaEdad = 1000 * 60 * 60 * 24 * 365 * 18; //18 años en milisegundos
+	   console.log(mayoriaEdad);
+    let fechaMin = new Date(hoy - mayoriaEdad);
+     console.log(fechaMin);
+     console.log(dFechaNacimiento);
+     console.log(fechaMin < dFechaNacimiento);
+	if(fechaMin < dFechaNacimiento)
 	{
 	    //throw "Cliente.fechaNacimiento : Fecha de nacimiento erronea, menor de 18 años";
         //alert("Fecha de nacimiento erronea, menor de 18 años");

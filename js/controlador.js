@@ -97,7 +97,7 @@ function comprobarRegistro() {
 	var dni = formularioRegistro.dni.value;
 	var nombre = formularioRegistro.nombre.value;
 	var apellidos = formularioRegistro.apellidos.value;
-	var fecha = formularioRegistro.fecha.value;
+	var fecha = new Date(formularioRegistro.fecha.value);
 	var direccion = formularioRegistro.direccion.value;
 	var telefono = formularioRegistro.telefono.value;
 	if (usuarioNuevo == "" || dni == "" || nombre == "" || apellidos == "" || fecha == "" || direccion == "" || telefono == "")
@@ -397,7 +397,7 @@ function submit_frmAltaOperario() {
 	let sDni = frmAltaOperario.txtDni.value;
 	let sNombre = frmAltaOperario.txtNombre.value;
 	let sApellidos = frmAltaOperario.txtApellidos.value;
-	let dFechaNacimiento = frmAltaOperario.dFechaNacimiento.value;
+	let dFechaNacimiento = new Date(frmAltaOperario.dFechaNacimiento.value);
 	let sDireccion = frmAltaOperario.txtDireccion.value;
 	let sTelefono = frmAltaOperario.txtTelefono.value;
 	let bSupervisor;

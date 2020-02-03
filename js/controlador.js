@@ -62,17 +62,20 @@ function showRegistro() {
 
 
 //Datos de ejemplo
-modelo.altaCliente(new Cliente("user1", "11111111A", "Cliente1", "Ap", "1997-08-12", "C/Mesina", "111111111"));
+let cliente1 = new Cliente("user1", "11111111A", "Cliente1", "Ap", "1997-08-12", "C/Mesina", "111111111");
+modelo.altaCliente(cliente1);
 modelo.altaCliente(new Cliente("user2", "11111111B", "Cliente2", "Ap", "1993-04-16", "C/Mesina", "111111111"));
 modelo.altaCliente(new Cliente("user3", "11111111C", "Cliente2", "Ap", "1994-09-22", "C/Mesina", "111111111"));
-modelo.altaOperario(new Operario("user4", "11111111D", "Operario1", "Ap", "1997-08-12", "C/Mesina", "111111111", true));
-modelo.altaOperario(new Operario("user5", "11111111E", "Operario2", "Ap", "1997-08-12", "C/Mesina", "111111111", false));
-modelo.altaCerveza(new Cerveza("Cruzcampo", 11, 3.50, 200));
-modelo.altaCerveza(new Cerveza("Radler", 9, 4.50, 200));
-modelo.altaCerveza(new Cerveza("Hamstel", 12, 3, 200));
-modelo.altaCerveza(new Cerveza("Alhambra", 14, 4.20, 200));
-modelo.altaPedido(new Pedido(new Cliente("user16", "11114111A", "Clientfde1", "A32p", "1991-08-12", "C/Mesdina", "111111111"), null));
-modelo.altaPedido(new Pedido(new Cliente("user143", "11114131A", "Clientfdfsdfe1", "A323p", "1971-08-12", "C/Mefsdsdina", "111111111"), null));
+modelo.altaOperario(new Operario("oper1", "11111111D", "Operario1", "Ap", "1997-08-12", "C/Mesina", "111111111", true));
+modelo.altaOperario(new Operario("oper2", "11111111E", "Operario2", "Ap", "1997-08-12", "C/Mesina", "111111111", false));
+let cerveza1 = new Cerveza("Cruzcampo", 11, 3.50, 200);
+modelo.altaCerveza(cerveza1);
+let cerveza2 = new Cerveza("Radler", 9, 4.50, 200);
+modelo.altaCerveza(cerveza2);
+let cerveza4 = modelo.altaCerveza(new Cerveza("Alhambra", 14, 4.20, 200));
+let pedido1 = modelo.altaPedido(new Pedido(new Cliente("user1", "11111111A", "Cliente1", "Ap", "1997-08-12", "C/Mesina", "111111111"), []));
+let pedido2 = modelo.altaPedido(new Pedido(new Cliente("user2", "11111111B", "Cliente1", "Ap", "1971-08-12", "C/Venecia", "111111111"), []));
+pedido1.insertarLineaPedido(cerveza1,30);
 
 function comprobarUsuario() {
 
@@ -121,22 +124,19 @@ function crearComboCatalogo() {
 	let select = modelo.comboCatalogo();
 	document.querySelector(".selectCatalogo").appendChild(select);
 	frmAltaPedido.txtPrecioUnidad.value = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value).precio;
-
 }
 
 function actualizaDatosAlta() {
 	frmAltaPedido.txtPrecioUnidad.value = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value).precio;
 }
 
-
 function submit_frmAltaPedido() {
 	let producto = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value);
 	let cliente = modelo.buscarCliente(clave);
-	pedido = modelo.altaPedido(new Pedido(cliente, []));
 	if (pedido == undefined) {
-		console.log(pedido);
-		pedido.insertarLineaPedido(new LineaPedido(producto, frmAltaPedido.txtCantidad));
+		pedido = modelo.altaPedido(new Pedido(cliente, []));
 	}
+	pedido.insertarLineaPedido(new LineaPedido(producto, frmAltaPedido.txtCantidad));
 }
 
 function show_frmBajaPedido() {
@@ -146,8 +146,6 @@ function show_frmBajaPedido() {
 	frmBajaPedido.comboPedidos.addEventListener("change", actualizaDatosAlta);
 	document.querySelector("#divFrmBajaPedido").style.display = "block";
 }
-
-var pedido;
 
 function crearComboPedidos() {
 	document.querySelector("#frmBajaPedido > div.row.selectPedido > select").remove();
@@ -160,18 +158,15 @@ function actualizaDatosBaja() {
 	frmBajaPedido.txtTotal.value = modelo.buscarPedido(frmBajaPedido.selectPedido.selectedOptions[0].value).precioTotal();
 }
 
-
 function submit_frmBajaPedido() {
-	let producto = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value);
-	let cliente = modelo.buscarCliente(clave);
-	if (pedido == undefined)
+	let idPedido = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value);
+	if (idPedido != -1)
 		pedido = modelo.altaPedido(new Pedido(cliente, []));
 	pedido.insertarLineaPedido(new LineaPedido(producto, frmAltaPedido.txtCantidad));
 }
 
 function show_lstPedidosRegistrados() {
 	ocultarForms();
-	console.log(modelo.listadoPedidos(modelo.buscarCliente(clave)));
 	if (document.querySelector("#cliente").style.display == "none")
 		if (document.querySelector("#operario").style.display == "none") {
 			document.querySelector("#supervisor .formularios").appendChild(modelo.listadoPedidos(modelo.buscarCliente(clave)));

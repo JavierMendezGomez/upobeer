@@ -4,7 +4,6 @@ class Cerveza {
     constructor(sNombre,fPorcentaje,fPrecio,iStock)
     {
         this.idCerveza=modelo.contadorCervezas+1;
-	modelo.contadorCervezas++;
         this.nombre=sNombre;
         this.porcentaje=fPorcentaje;
         this.precio=fPrecio;

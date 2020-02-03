@@ -40,8 +40,10 @@ class UpoBeer {
     }
 
     altaPedido(oPedido){
-	if(this.buscarPedido(oPedido.idPedido)==undefined){
+    	//Si no existe el pedido y si existe el cliente
+	if(this.buscarPedido(oPedido.idPedido)==undefined && this.buscarCliente(oPedido.cliente.dni) != undefined){
     	    this.tPedidos.push(oPedido);
+    	    this.contadorPedidos++;
     	    return oPedido;
 	}
     	return false;
@@ -53,7 +55,9 @@ class UpoBeer {
     }
     altaCerveza(oCerveza){
     	if(this.buscarCerveza(oCerveza.idCerveza) == undefined){
-    	    return this.tCervezas.push(oCerveza);
+    	    this.tCervezas.push(oCerveza);
+    	    this.contadorCervezas++;
+    	    return true;
 	}
     	return false;
     }
@@ -228,8 +232,8 @@ class UpoBeer {
 	} else {
 	    this.tPedidos.forEach(function(pedido){
 		let option = document.createElement("OPTION");
-		option.value = pedido.idPedido;
-		option.textContent = pedido.fecha;
+		option.value = -1;
+		option.textContent = "No tiene pedidos pendientes";
 		select.appendChild(option);
 	    })  
 	}

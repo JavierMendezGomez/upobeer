@@ -43,6 +43,7 @@ class Cerveza {
     toHTMLTableRow(){
 	let oFila=document.createElement("TR");
     oFila.id = "filaCatalogo";
+    oFila.classList = "contenidoTabla";
 	oFila.insertCell(-1).textContent=this.nombre;
 	oFila.insertCell(-1).textContent=this.porcentaje;
 	oFila.insertCell(-1).textContent=this.precio;

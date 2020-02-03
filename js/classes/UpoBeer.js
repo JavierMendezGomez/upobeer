@@ -50,7 +50,7 @@ class UpoBeer {
     }
     bajaPedido(idPedido){
 	this.tPedidos=this.tPedidos.filter(function(pedido){
-	    pedido.idPedido!=idPedido;
+	    return pedido.idPedido!=idPedido;
 	});
     }
     altaCerveza(oCerveza){
@@ -113,10 +113,10 @@ class UpoBeer {
 	});
     }
     buscarPedido(multiParam){
-	if(typeof multiParam== "Cliente"){
+	if(typeof multiParam == "object"){
 	    let oCliente=multiParam;
 		return this.tPedidos.filter(function(oPedido_iterado){
-		    return (oPedido_iterado.cliente.dni == dni);
+		    return (oPedido_iterado.cliente.dni == oCliente.dni);
 		});
 	} else {
 	    let idPedido=multiParam;
@@ -192,10 +192,10 @@ class UpoBeer {
 	let oTHead=oTabla.createTHead();	
 	let oFila=document.createElement("TR");
 	oFila.id = "th";
-	oFila.insertCell(-1).textContent = "ID";
 	oFila.insertCell(-1).textContent = "Nombre";
 	oFila.insertCell(-1).textContent = "Apellidos";
-	oFila.insertCell(-1).textContent = "Lineas";
+	oFila.insertCell(-1).textContent = "Nº Lineas";
+	oFila.insertCell(-1).textContent = "Tipos";
 	oFila.insertCell(-1).textContent = "Estado";
 	oFila.insertCell(-1).textContent = "Fecha";
 	oFila.insertCell(-1).textContent = "";
@@ -219,23 +219,21 @@ class UpoBeer {
 	let select=document.createElement("SELECT");
 	select.name="comboPedidos";
 	select.className="form-control";
-	
-	if(oCliente){
-	    this.tPedidos.forEach(function(pedido){
-		if(pedido.cliente.dni==oCliente.dni){
+	let pedidosCliente = this.buscarPedido(oCliente);
+	if(pedidosCliente.length != 0){
+	    pedidosCliente.forEach(function(pedido){
+		if(pedido.estado == "espera"){
 		    let option = document.createElement("OPTION");
 		    option.value = pedido.idPedido;
-		    option.textContent = pedido.fecha;
+		    option.textContent = pedido.fechaInicio;
 		    select.appendChild(option);
 		}
-	    })
+	    });
 	} else {
-	    this.tPedidos.forEach(function(pedido){
 		let option = document.createElement("OPTION");
 		option.value = -1;
 		option.textContent = "No tiene pedidos pendientes";
 		select.appendChild(option);
-	    })  
 	}
 	return select;
     }

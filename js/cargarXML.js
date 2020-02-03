@@ -1,4 +1,4 @@
-let oXML = loadXMLDoc("UpoBeer.xml");
+let oXML = loadXMLDoc("../UpoBeer.xml");
 
 //Petición síncrona para cargar el XML
 function loadXMLDoc(filename) {

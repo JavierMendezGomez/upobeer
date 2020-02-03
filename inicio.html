@@ -210,9 +210,9 @@
 					<form name="frmBajaPedido" id="frmBajaPedido">
 						<h2>Baja de pedido</h2>
 						<div class="row selectPedido">
-							<label for="selPedido">Pedido que desea borrar: </label>
+							<label for="comboPedido">Pedido que desea borrar: </label>
 							<select class="form-control" name="comboPedido" id="comboPedido">
-								<option value="nada">Seleccione pedido...</option>
+								<option value="-1"></option>
 							</select>
 						</div>
 						<div class="row">
@@ -221,9 +221,9 @@
 								<input class="form-control" type="text" name="txtLineas" id="txtLineas" disabled>
 							</div>
 							<div class="col-6">
-								<label for="txtTotal">Total:</label>
+								<label for="txtTotal">Total (€):</label>
 								<input class="form-control" type="number" min="1" step="1" name="txtTotal"
-									id="txtTotal">
+									id="txtTotal" disabled>
 							</div>
 						</div>
 						<input class="btn btn-success" type="button" value="Enviar" onclick="submit_frmBajaPedido();">

@@ -87,10 +87,8 @@ class Pedido {
     toHTMLTableRow(){
 
 	let oFila = document.createElement("TR");
+    oFila.classList = "contenidoTabla";
         let oCelda = oFila.insertCell(-1);
-        oCelda.textContent = this.idPedido;
-
-        oCelda = oFila.insertCell(-1);
         oCelda.textContent = this.cliente.nombre;
 
         oCelda = oFila.insertCell(-1);
@@ -98,6 +96,15 @@ class Pedido {
 
         oCelda = oFila.insertCell(-1);
         oCelda.textContent = this.tLineasPedido.length;
+
+        let tiposCervezaPedidos = "";
+		this.tLineasPedido.forEach(function(pedido){
+			tiposCervezaPedidos += pedido.producto.nombre + ", ";
+		});
+		tiposCervezaPedidos = tiposCervezaPedidos.substring(0, tiposCervezaPedidos.length-2);
+
+        oCelda = oFila.insertCell(-1);
+        oCelda.textContent = tiposCervezaPedidos;
 
         oCelda = oFila.insertCell(-1);
         oCelda.textContent = this.estado;

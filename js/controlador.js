@@ -605,3 +605,23 @@ function submit_frmModificarSupervisor(){
 		cargarDatosSupervisor();
 	}
 }
+
+function load_XMLFromFile(){
+    
+    let xmlString;
+    let xmlDoc;
+    uploadText().then(function(text){
+	xmlString=text;
+	console.log(xmlString);
+	let parser = new DOMParser();
+	xmlDoc = parser.parseFromString(xmlString, "text/xml");
+	console.log(xmlDoc);
+	cargarDatosUpoBeerXML(xmlDoc);
+    });
+}
+
+function save_XMLFile(){
+    let oXML=exportarDatosUpoBeerXML();
+    let xmlTextIndented=formatXML(oXML.outerHTML);
+    download("document/xml","UpoBeer.xml",xmlTextIndented);
+}

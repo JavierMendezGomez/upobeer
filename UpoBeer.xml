@@ -1,17 +1,34 @@
 <upobeer>
-    <cervezas>
-        <cerveza idcerveza="1" nombre="Cruzcampo" porcentaje="11" precio="3.5" stock="200" foto="Img/beer/1.jpg"></cerveza>
-        <cerveza idcerveza="2" nombre="Radler" porcentaje="9" precio="4.5" stock="200" foto="Img/beer/2.jpg"></cerveza>
-        <cerveza idcerveza="3" nombre="Hamstel" porcentaje="12" precio="3" stock="200" foto="Img/beer/3.jpg"></cerveza>
-        <cerveza idcerveza="4" nombre="Alhambra" porcentaje="14" precio="4.2" stock="200" foto="Img/beer/4.jpg"></cerveza>
-    </cervezas>
-    <clientes>
-        <cliente dni="11111111A" nombre="Cliente1" apellidos="Ap" fechanacimiento="1997-08-12" direccion="C/Mesina" telefono="111111111" usuario="user1"></cliente>
-        <cliente dni="11111111B" nombre="Cliente2" apellidos="Ap" fechanacimiento="1993-04-16" direccion="C/Mesina" telefono="111111111" usuario="user2"></cliente>
-        <cliente dni="11111111C" nombre="Cliente2" apellidos="Ap" fechanacimiento="1994-09-22" direccion="C/Mesina" telefono="111111111" usuario="user3"></cliente>
-    </clientes>
-    <operarios>
-        <operario dni="11111111D" nombre="Operario1" apellidos="Ap" fechanacimiento="1997-08-12" direccion="C/Mesina" telefono="111111111" usuario="user4"></operario>
-        <operario dni="11111111E" nombre="Operario2" apellidos="Ap" fechanacimiento="1997-08-12" direccion="C/Mesina" telefono="111111111" usuario="user5"></operario>
-    </operarios>
+  <cervezas>
+    <cerveza idcerveza="1" nombre="Cruzcampo" porcentaje="11" precio="3.5" stock="2000" foto="Img/beer/1.jpg">
+    </cerveza>
+    <cerveza idcerveza="2" nombre="Radler" porcentaje="9" precio="4.5" stock="2000" foto="Img/beer/2.jpg">
+    </cerveza>
+    <cerveza idcerveza="3" nombre="Amstel" porcentaje="12" precio="3.9" stock="2000" foto="Img/beer/3.jpg">
+    </cerveza>
+    <cerveza idcerveza="4" nombre="Alhambra" porcentaje="14" precio="4.2" stock="2000" foto="Img/beer/4.jpg">
+    </cerveza>
+    <cerveza idcerveza="5" nombre="Cruzcampo" porcentaje="11" precio="3.5" stock="2000" foto="Img/beer/5.jpg">
+    </cerveza>
+    <cerveza idcerveza="6" nombre="Radler" porcentaje="9" precio="4.5" stock="2000" foto="Img/beer/6.jpg">
+    </cerveza>
+    <cerveza idcerveza="7" nombre="Amstel" porcentaje="12" precio="3.9" stock="2000" foto="Img/beer/7.jpg">
+    </cerveza>
+    <cerveza idcerveza="8" nombre="Alhambra" porcentaje="14" precio="4.2" stock="2000" foto="Img/beer/8.jpg">
+    </cerveza>
+  </cervezas>
+  <clientes>
+    <cliente dni="11111111F" nombre="Cliente4" apellidos="Ap" fechanacimiento="1997-08-12" direccion="C/Mesina" telefono="111111111" usuario="user1">
+    </cliente>
+    <cliente dni="11111111G" nombre="Cliente5" apellidos="Ap" fechanacimiento="1993-04-16" direccion="C/Mesina" telefono="111111111" usuario="user2">
+    </cliente>
+    <cliente dni="11111111H" nombre="Cliente6" apellidos="Ap" fechanacimiento="1994-09-22" direccion="C/Mesina" telefono="111111111" usuario="user3">
+    </cliente>
+  </clientes>
+  <operarios>
+    <operario dni="11111111I" nombre="Operario3" apellidos="Ap" fechanacimiento="1997-08-12" direccion="C/Mesina" telefono="111111111" usuario="oper1" supervisor="true">
+    </operario>
+    <operario dni="11111111J" nombre="Operario4" apellidos="Ap" fechanacimiento="1997-08-12" direccion="C/Mesina" telefono="111111111" usuario="oper2" supervisor="false">
+    </operario>
+  </operarios>
 </upobeer>

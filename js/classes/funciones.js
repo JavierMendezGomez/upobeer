@@ -4,6 +4,85 @@ Date.prototype.addDays = function(days) {
     return date;
 }
 
+//
+function download(mimeType,filename, text) {
+    if(!mimeType){
+	mimeType="text/plain";
+    }
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:'+mimeType+';charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
+function formatXML(xml) {
+    var formatted = '';
+    var reg = /(>)(<)(\/*)/g;
+    xml = xml.replace(reg, '$1\r\n$2$3');
+    var pad = 0;
+    jQuery.each(xml.split('\r\n'), function(index, node) {
+        var indent = 0;
+        if (node.match( /.+<\/\w[^>]*>$/ )) {
+            indent = 0;
+        } else if (node.match( /^<\/\w/ )) {
+            if (pad != 0) {
+                pad -= 1;
+            }
+        } else if (node.match( /^<\w[^>]*[^\/]>.*$/ )) {
+            indent = 1;
+        } else {
+            indent = 0;
+        }
+
+        var padding = '';
+        for (var i = 0; i < pad; i++) {
+            padding += '  ';
+        }
+
+        formatted += padding + node + '\r\n';
+        pad += indent;
+    });
+
+    return formatted;
+}
+
+/**
+ * Creates a file upload dialog and returns text in promise
+ * @returns {Promise<any>}
+ */
+function uploadText() {
+    return new Promise((resolve) => {
+        // create file input
+        const uploader = document.createElement('input')
+        uploader.type = 'file'
+        uploader.style.display = 'none'
+
+        // listen for files
+        uploader.addEventListener('change', () => {
+            const files = uploader.files
+
+            if (files.length) {
+                const reader = new FileReader()
+                reader.addEventListener('load', () => {
+                    uploader.parentNode.removeChild(uploader)
+                    resolve(reader.result)
+                })
+                reader.readAsText(files[0])
+            }
+        })
+
+        // trigger input
+        document.body.appendChild(uploader)
+        uploader.click()
+    })
+}
+
 // Sirve para establecer o modificar el valor de una cookie
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();

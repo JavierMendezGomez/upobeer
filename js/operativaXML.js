@@ -11,12 +11,11 @@ function loadXMLDoc(filename) {
 }
 
 
-function cargarDatosUpoBeerXML(){
-    let oXML = loadXMLDoc("/UpoBeer.xml");
+function cargarDatosUpoBeerXML(oXML){
     //sacar clientes
     let nodeListCervezas=oXML.querySelectorAll("cerveza");
     let nodeArrayCervezas=Array.prototype.slice.call(nodeListCervezas);
-
+    
     nodeArrayCervezas.forEach(function(nodeCerveza){
 	console.log(nodeCerveza);
 	let nombre=nodeCerveza.getAttribute("nombre");
@@ -39,12 +38,12 @@ function cargarDatosUpoBeerXML(){
 	let telefono=nodeCliente.getAttribute("telefono");
 	modelo.altaCliente(new Cliente(usuario,dni,nombre,apellidos,fechaNacimiento,direccion,telefono));
     });
-
+    
     let nodeListOperarios=oXML.querySelectorAll("operario");
     let nodeArrayOperarios=Array.prototype.slice.call(nodeListOperarios);
     nodeArrayOperarios.forEach(function(nodeOperario){
 	let usuario=nodeOperario.getAttribute("usuario");
-	let supervisor=nodeOperario.getAttribute("supervisor");
+	let supervisor=nodeOperario.getAttribute("supervisor")=="1"?true:false;
 	let dni=nodeOperario.getAttribute("dni");
 	let nombre=nodeOperario.getAttribute("nombre");
 	let apellidos=nodeOperario.getAttribute("apellidos");

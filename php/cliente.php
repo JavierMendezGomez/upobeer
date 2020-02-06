@@ -59,7 +59,7 @@ break;
 case "delete":
     $neededKey="dni";
     if(!$inputFieldsAssoc[$neededKey]){
-        throw new Exception("Falta {$neededKey}"
+        throw new Exception("Falta {$neededKey}");
     }else{
         $sql="
 delete from cliente 

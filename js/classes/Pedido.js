@@ -1,5 +1,4 @@
 class Pedido {
-
     constructor(oCliente,tLineasPedido)
     {
 	this.idPedido=modelo.contadorPedidos+1;
@@ -87,7 +86,7 @@ class Pedido {
     toHTMLTableRow(){
 
 	let oFila = document.createElement("TR");
-    oFila.classList = "contenidoTabla";
+	oFila.classList = "contenidoTabla";
         let oCelda = oFila.insertCell(-1);
         oCelda.textContent = this.cliente.nombre;
 

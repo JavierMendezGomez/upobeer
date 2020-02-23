@@ -1,18 +1,25 @@
 // [x]
 class LineaPedido {
 
-    constructor(producto,iCantidad)
+    constructor(producto,cantidad)
     {
         this.producto=producto;
-        this.cantidad=iCantidad;
-        this.precioLinea = (this.producto.precio * this.cantidad);
+	if(this.validarCantidad(cantidad)){
+            this.cantidad=cantidad;
+	}
+        
+    }
+    get precioLinea(){
+	return (this.producto.precio * this.cantidad);
     }
 
     validarCantidad(cantidad)
     {
-    	//Me he inventado un max de 1000 por pedido por si se te cuela un cero al pedir
-    	if(cantidad <= 0 || cantidad > 1000  || cantidad <= this.producto.stock)
+	cantidad=parseInt(cantidad);
+	let stock=parseInt(this.producto.stock);
+    	if(cantidad <= 0 || cantidad >= stock){
     	    return false;
+	}
 	else
 	    return true;
     }

@@ -14,57 +14,190 @@ class UpoBeer {
 	this.contadorVehiculos=0;
     }
 
+    peticionBBDD(parametros,objeto,alertar){
+	let oAjax = new XMLHttpRequest();
+	//Se le envía directamente el cliente o lo que sea, como un objeto, no como parámetros
+	Object.assign(parametros,objeto);
+	let oURLSearchParams=new URLSearchParams(parametros);
+	oURLSearchParams.forEach(function(value,key){
+	    if(value=="true")
+		oURLSearchParams.set(key,1);
+	    else if (value=="false")
+		oURLSearchParams.set(key,0);
+	});
+	
+	oAjax.open("POST", "/php/ajax.php",false);
+	oAjax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	
+        //Asociar manejador de evento de la respuesta
+	let bHecho=false;
+	console.log(oURLSearchParams.toString());
+        oAjax.addEventListener("readystatechange", function(){
+	    let oAjax = this;
+            if (oAjax.readyState == 4){
+		if(oAjax.status == 200) {
+		    bHecho=true;
+		} else {
+		    bHecho=false;
+		}
+		console.log(oAjax.responseText);
+	    }
+	},false);
+	oAjax.send(oURLSearchParams.toString());
+	if(bHecho){
+	    return JSON.parse(oAjax.responseText);
+	} else {
+	    return false
+	}
+    }
+    
     /* MÉTODOS */
+    modificarPersona(oPersona){
+	let parametros={
+	    object: (oPersona.constructor.name),
+	    operation: "updateonepk"
+	};
+	if(this.peticionBBDD(parametros,oPersona).rowsaffected==1)
+	    return true;
+	else
+	    return false;
+    }
+    
     /** Alta y baja de cosas */
     altaCliente(oCliente){
-    	if(this.buscarCliente(oCliente.dni) == undefined){
-	    return this.tClientes.push(oCliente); //Devuelve length del array que si es positivo es como true
-	}
-    	return false;
+	let parametros={
+	    object: "Cliente",
+	    operation: "insertone"
+	};
+	if(this.peticionBBDD(parametros,oCliente).rowsaffected==1)
+	    return oCliente;
+	else
+	    return false;	   
     }
     bajaCliente(dni){
-	this.tClientes=this.tClientes.filter(function(cliente){
-	    cliente.dni!=dni;
-	});
+	let parametros={
+	    object: "Cliente",
+	    operation: "deleteonepk"
+	};
+	let objeto={dni:dni};
+	if(this.peticionBBDD(parametros,objeto).rowsaffected==1)
+	    return true;
+	else
+	    return false;
     }
     altaOperario(oOperario){
-    	if(this.buscarOperario(oOperario.dni) == undefined){
-	    return this.tOperarios.push(oOperario);
-	}
-    	return false;
+    	let parametros={
+	    object: "Operario",
+	    operation: "insertone"
+	};
+	if(this.peticionBBDD(parametros,oOperario).rowsaffected==1)
+	    return oOperario;
+	else
+	    return false;
     }
     bajaOperario(dni){
-	this.tOperarios=this.tOperarios.filter(function(operario){
-	    operario.dni!=dni;
-	});
+	let parametros={
+	    object: "Operario",
+	    operation: "deleteonepk"
+	};
+	let objeto={dni:dni};
+	if(this.peticionBBDD(parametros,objeto))
+	    return true;
+	else
+	    return false;
     }
 
     altaPedido(oPedido){
-    	//Si no existe el pedido y si existe el cliente
-	if(this.buscarPedido(oPedido.idPedido)==undefined && this.buscarCliente(oPedido.cliente.dni) != undefined){
-    	    this.tPedidos.push(oPedido);
-    	    this.contadorPedidos++;
-    	    return oPedido;
+	let parametros={
+	    object: "Pedido",
+	    operation: "insertone"
+	};
+	let objeto={};
+	Object.assign(objeto,oPedido);
+	objeto.dniCliente=oPedido.cliente.dni;
+	objeto.fechaInicio=ISODateString_noTime(oPedido.fechaInicio);
+	if(objeto.fechaFin)
+	    objeto.fechaFin=ISODateString_noTime(oPedido.fechaFin);
+	delete objeto.cliente;
+	delete objeto.tLineasPedido;
+	
+	let JSONRecibido=this.peticionBBDD(parametros,objeto);
+	if(JSONRecibido.rowsaffected==1){
+	    oPedido.idPedido=JSONRecibido.insertid;
+
+	    oPedido.tLineasPedido.forEach(function(oLineaPedido_iterar){
+		let parametros={
+		    object: "LineaPedido",
+		    operation: "insertone"
+		};
+		let objeto={
+		    idPedido : oPedido.idPedido,
+		    idCerveza : oLineaPedido_iterar.producto.idCerveza,
+		    cantidad : oLineaPedido_iterar.cantidad,
+		};
+		let JSONRecibido=this.peticionBBDD(parametros,objeto);
+		if(!JSONRecibido)
+		    return false;
+	    });
+	    
+	    return oPedido;
 	}
-    	return false;
+	else
+	    return false;
+    }
+    insertarLineaPedido(idPedido,oLineaPedido){
+	let parametros={
+	    object: "LineaPedido",
+	    operation: "insertone"
+	};
+	let objeto={
+	    idPedido : idPedido,
+	    idProducto : oLineaPedido.producto.idCerveza,
+	    cantidad : oLineaPedido.cantidad,
+	};
+	
+	let JSONRecibido=this.peticionBBDD(parametros,objeto);
+	if(JSONRecibido.rowsAffected==1){
+	    return oLineaPedido;
+	}
+	else{
+	    return false;
+	}
     }
     bajaPedido(idPedido){
-	this.tPedidos=this.tPedidos.filter(function(pedido){
-	    return pedido.idPedido!=idPedido;
-	});
+	let parametros={
+	    object: "Pedido",
+	    operation: "deleteonepk"
+	};
+	let objeto={idPedido:idPedido};
+	if(this.peticionBBDD(parametros,objeto))
+	    return true;
+	else
+	    return false;
     }
     altaCerveza(oCerveza){
-    	if(this.buscarCerveza(oCerveza.idCerveza) == undefined){
-    	    this.tCervezas.push(oCerveza);
-    	    this.contadorCervezas++;
-    	    return true;
+	let parametros={
+	    object: "Cerveza",
+	    operation: "insertone"
+	};
+	let JSONRecibido=this.peticionBBDD(parametros,oCerveza);
+	if(JSONRecibido.rowsaffected==1){
+	    oCerveza.idCerveza=JSONRecibido.insertid;
+	    return oCerveza;
 	}
-    	return false;
+	else
+	    return false;
     }
     bajaCerveza(idCerveza){
-	this.tCervezas=this.tCervezas.filter(function(cerveza){
-	    return cerveza.idCerveza!=idCerveza;
-	});
+	let parametros={
+	    object: "Cerveza",
+	    operation: "deleteonepk"
+	};
+	let objeto={idCerveza:idCerveza};
+	if(this.peticionBBDD(parametros,objeto))
+	    return true;
+	else
+	    return false;
     }
 
     //Cosas necesarias para envío
@@ -93,43 +226,122 @@ class UpoBeer {
     
     /** Buscar cosas */
     buscarCerveza(idCerveza){
-    	return this.tCervezas.find(function(oCerveza_iterada){
-    	    return oCerveza_iterada.idCerveza == idCerveza;
-    	});
-    }
-    buscarCliente(dni){
-	return this.tClientes.find(function(oCliente_iterado){
-	    return oCliente_iterado.dni == dni;
-	});
-    }
-    buscarOperario(dni){
-	return this.tOperarios.find(function(oOperario_iterado){
-	    return (oOperario_iterado.dni == dni);
-	});
-    }
-    buscarSupervisor(dni){
-	return this.tOperarios.find(function(oOperario_iterado){
-	    return (oOperario_iterado.dni == dni && oOperario_iterado.supervisor == true);
-	});
-    }
-    buscarPedido(multiParam){
-	if(typeof multiParam == "object"){
-	    let oCliente=multiParam;
-		return this.tPedidos.filter(function(oPedido_iterado){
-		    return (oPedido_iterado.cliente.dni == oCliente.dni);
-		});
+	let parametros={
+	    object: "Cerveza",
+	    operation: "selectonepk"
+	};
+	let objeto={idCerveza:idCerveza};
+	
+	let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	if(JSONRecibido){
+	    let JSONCerveza=JSONRecibido.resultdata[0];
+	    let oCerveza=new Cerveza();
+	    Object.assign(oCerveza,JSONCerveza);
+	    return oCerveza;
 	} else {
-	    let idPedido=multiParam;
-	    return this.tPedidos.find(function(oPedido_iterado){
-		return (oPedido_iterado.idPedido == idPedido);
-	    });
+	    return false;
 	}
     }
-    
     buscarCliente(dni){
-	return this.tClientes.find(function(oCliente_iterado){
-	    return (oCliente_iterado.dni == dni);
-	});
+	let parametros={
+	    object: "Cliente",
+	    operation: "selectonepk"
+	};
+	let objeto={dni:dni};
+	
+	let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	if(JSONRecibido){
+	    let JSONCliente=JSONRecibido.resultdata[0];
+	    let oCliente=new Cliente();
+	    Object.assign(oCliente,JSONCliente);
+	    return oCliente;
+	} else {
+	    return false;
+	}
+    }
+    buscarOperario(dni){
+	let parametros={
+	    object: "Operario",
+	    operation: "selectonepk"
+	};
+	let objeto={dni:dni};
+	
+	let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	if(JSONRecibido){
+	    let JSONOperario=JSONRecibido.resultdata[0];
+	    let oOperario=new Operario();
+	    Object.assign(oOperario,JSONOperario);
+	    return oOperario;
+	} else {
+	    return false;
+	}
+    }
+    buscarSupervisor(dni){
+	let parametros={
+	    object: "Operario",
+	    operation: "selectonepk"
+	};
+	let objeto={dni:dni};
+	
+	let JSONRecibido=this.peticionBBDD(parametros,objeto);
+	if(JSONRecibido){
+	    let JSONOperario=JSONRecibido.resultdata[0];
+	    let oOperario=new Operario();
+	    Object.assign(oOperario,JSONOperario);
+	    if(oOperario.supervisor)
+		return oOperario;
+	    else
+		return false;
+	} else {
+	    return false;
+	}
+    }
+    buscarPedido(multiParam){
+	if(multiParam.constructor.name=="Cliente"){
+	    let oCliente=multiParam;
+	    let parametros={
+		object: "Pedido",
+		operation: "selectall"
+	    };
+	    let objeto={};
+	    
+	    let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	    if(JSONRecibido){  
+		let arrayOPedidos=[];
+		let _this=this;
+		JSONRecibido.resultdata.forEach(function(JSONPedido){
+		    let oPedido=new Pedido();
+		    Object.assign(oPedido,JSONPedido);
+		    oPedido.cliente=_this.buscarCliente(oPedido.dniCliente);
+		    delete oPedido.dniCliente;
+		    oPedido.fechaInicio=new Date(oPedido.fechaInicio);
+		    oPedido.fechaFin=new Date(oPedido.fechaFin);
+		    arrayOPedidos.push(oPedido);
+		});
+		return arrayOPedidos.filter(function(oPedido_iterado){
+		    return (oPedido_iterado.cliente.dni == oCliente.dni);
+		});
+	    } else {
+		return false;
+	    } 
+	} else {
+	    let idPedido=multiParam;
+	    let parametros={
+		object: "Pedido",
+		operation: "selectonepk"
+	    };
+	    let objeto={idPedido:idPedido};
+	    
+	    let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	    if(JSONRecibido){  
+		let JSONPedido=JSONRecibido.resultdata[0];
+		let oPedido=new Pedido();
+		Object.assign(oPedido,JSONPedido);
+		return oPedido;
+	    }else{
+		return false;
+	    }
+	}
     }
 
     //cosas necesarias para envío
@@ -149,17 +361,17 @@ class UpoBeer {
     comprobarUsuario(usuario,clave)
     {    	
     	//La clave es el dni, el usuario es unico
-    	if(this.buscarCliente(clave) != undefined)
+    	if(this.buscarCliente(clave) != false)
     	{
     	    if(this.buscarCliente(clave).usuario == usuario)
 	        tipo = "cliente";
     	}
-        else if(this.buscarSupervisor(clave) != undefined)
+        else if(this.buscarSupervisor(clave) != false)
         {
     	    if(this.buscarSupervisor(clave).usuario == usuario)
 	        tipo = "supervisor";
 	}
-        else if(this.buscarOperario(clave) != undefined)
+        else if(this.buscarOperario(clave) != false)
         {
     	    if(this.buscarOperario(clave).usuario == usuario)
 	        tipo = "operario";
@@ -172,7 +384,7 @@ class UpoBeer {
     
     comprobarRegistro(usuario,dni,nombre,apellidos,fecha,direccion,telefono)
     {
-    	if(this.buscarCliente(dni) != undefined)
+    	if(this.buscarCliente(dni) != false)
     	{
 	    console.log("No se puede crear el cliente. Ya existía un cliente con el mismo DNI.");
 	    return false;
@@ -203,15 +415,28 @@ class UpoBeer {
 	let oTBody=oTabla.createTBody();
 
 	if(oCliente){
-	    this.tPedidos.forEach(function(pedido){
-		if(pedido.cliente.dni==oCliente.dni){
-		    oTBody.appendChild(pedido.toHTMLTableRow());
-		}
-	    })
-	} else {
-	    this.tPedidos.forEach(function(pedido){
+	    console.log(oCliente);
+	    let pedido=this.buscarPedido(oCliente);
+	    
+	    if(pedido.length!=0)
 		oTBody.appendChild(pedido.toHTMLTableRow());
-	    })  
+	} else {
+	    let oCliente=multiParam;
+	    let parametros={
+		object: "Pedido",
+		operation: "selectall"
+	    };
+	    let objeto={};
+	    
+	    let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	    if(JSONRecibido){  
+		let arrayOPedidos=[];
+		JSONRecibido.resultdata.forEach(function(JSONPedido){
+		    let oPedido=new Pedido();
+		    Object.assign(oPedido,JSONPedido);
+		    oTBody.appendChild(oPedido.toHTMLTableRow());
+		});
+	    } 
 	}
 	return oTabla;
     }
@@ -252,22 +477,51 @@ class UpoBeer {
 	oTHead.appendChild(oFila);
 	let oTBody=oTabla.createTBody();
 
-	this.tCervezas.forEach(function(cerveza){
-	    oTBody.appendChild(cerveza.toHTMLTableRow());
-	});
-
+	//
+	let parametros={
+	    object: "Cerveza",
+	    operation: "selectall"
+	};
+	let objeto={};
+	
+	let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	//
+	if(JSONRecibido){  
+	    let arrayOCervezas=[];
+	    JSONRecibido.resultdata.forEach(function(JSONCerveza){
+		let oCerveza=new Cerveza();
+		Object.assign(oCerveza,JSONCerveza);
+		oTBody.appendChild(oCerveza.toHTMLTableRow());
+	    });
+	}
 	return oTabla;
     }
     comboCatalogo(){
 	let select = document.createElement("SELECT");
 	select.name="comboCatalogo";
 	select.className="form-control";
-	this.tCervezas.forEach(function(element){
-	    let option = document.createElement("OPTION");
-	    option.value = element.idCerveza;
-	    option.textContent = element.nombre+" - "+element.porcentaje+"% alcohol";
-	    select.appendChild(option);
-	});
+	//
+	let parametros={
+	    object: "Cerveza",
+	    operation: "selectall"
+	};
+	let objeto={};
+	
+	let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	//
+	if(JSONRecibido){
+	    JSONRecibido.resultdata.forEach(function(JSONCerveza){
+		let oCerveza=new Cerveza();
+		Object.assign(oCerveza,JSONCerveza);
+		console.log(oCerveza);
+		let option = document.createElement("OPTION");
+		option.value = oCerveza.idCerveza;
+		option.dataset.porcentaje=oCerveza.porcentaje;
+		option.dataset.precio=oCerveza.precio;
+		option.textContent = oCerveza.nombre+" - "+oCerveza.porcentaje+"% alcohol";
+		select.appendChild(option);
+	    });
+	}
 	return select;
     }
 
@@ -277,10 +531,21 @@ class UpoBeer {
 	let oTHead=oTabla.createTHead();
 	let oTBody=oTabla.createTBody();
 
-	this.tClientes.forEach(function(cliente){
-	    oTBody.appendChild(cliente.toHTMLTableRow());
-	})
-
+	//
+	let parametros={
+	    object: "Cliente",
+	    operation: "selectall"
+	};
+	let objeto={};
+	
+	let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	if(JSONRecibido){
+	    JSONRecibido.resultdata.forEach(function(JSONCliente){
+		let oCliente=new Cliente();
+		Object.assign(oCliente,JSONCliente);
+		oTBody.appendChild(oCliente.toHTMLTableRow());
+	    });
+	}
 	return oTabla;
     }
 
@@ -290,9 +555,21 @@ class UpoBeer {
 	let oTHead=oTabla.createTHead();
 	let oTBody=oTabla.createTBody();
 
-	this.tOperarios.forEach(function(operario){
-	    oTBody.appendChild(operario.toHTMLTableRow());
-	})
+	//
+	let parametros={
+	    object: "Operario",
+	    operation: "selectall"
+	};
+	let objeto={};
+	
+	let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	if(JSONRecibido){  
+	    JSONRecibido.resultdata.forEach(function(JSONOperario){
+		let oOperario=new Operario();
+		Object.assign(oOperario,JSONOperario);
+		oTBody.appendChild(oOperario.toHTMLTableRow());
+	    });
+	}
 
 	return oTabla;
     }

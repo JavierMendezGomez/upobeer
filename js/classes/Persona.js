@@ -58,28 +58,28 @@ class Persona {
     {
     	let hoy = new Date();
 	console.log(hoy);
-    let mayoriaEdad = 1000 * 60 * 60 * 24 * 365 * 18; //18 años en milisegundos
-	   console.log(mayoriaEdad);
-    let fechaMin = new Date(hoy - mayoriaEdad);
-     console.log(fechaMin);
-     console.log(dFechaNacimiento);
-     console.log(fechaMin < dFechaNacimiento);
+	let mayoriaEdad = 1000 * 60 * 60 * 24 * 365 * 18; //18 años en milisegundos
+	console.log(mayoriaEdad);
+	let fechaMin = new Date(hoy - mayoriaEdad);
+	console.log(fechaMin);
+	console.log(dFechaNacimiento);
+	console.log(fechaMin < dFechaNacimiento);
 	if(fechaMin < dFechaNacimiento)
 	{
 	    //throw "Cliente.fechaNacimiento : Fecha de nacimiento erronea, menor de 18 años";
-        //alert("Fecha de nacimiento erronea, menor de 18 años");
-        return false;
-    }
+            //alert("Fecha de nacimiento erronea, menor de 18 años");
+            return false;
+	}
 	else{
 	    return true;
 	}
     }
     modificarTelefono(sTelefono) {
-    if(this.validarTelefono(sTelefono)){
-		this.telefono = sTelefono;
-		return true;
-    }
-    return false;
+	if(this.validarTelefono(sTelefono)){
+	    this.telefono = sTelefono;
+	    return true;
+	}
+	return false;
     }
 
     modificarDireccion(sDireccion) {

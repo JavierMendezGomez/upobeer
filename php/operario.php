@@ -1,19 +1,37 @@
 <?php
-$operations=["insert","delete"];
+$tables=array(
+    "cerveza"=>array(
+        "inputfields"=>["idcerveza","nombre","porcentaje","precio","stock","foto"],
+        "insertfields"=>["nombre","porcentaje","precio","stock","foto"],
+    ),
+    "operario"=>array(
+        "inputfields"=>["usuario","dni","nombre","apellidos","fechanacimiento","direccion","telefono","supervisor"],
+        "insertfields"=>["usuario","dni","nombre","apellidos","fechanacimientxo","direccion","telefono","supervisor"],
+    ),
+    "cliente"=>array(
+        "inputfields"=>["usuario","dni","nombre","apellidos","fechanacimiento","direccion","telefono","supervisor"],
+        "insertfields"=>["usuario","dni","nombre","apellidos","fechanacimiento","direccion","telefono","supervisor"],
+    ),
+    "pedido"=>array(
 
+    ),
+    "lineapedido"=>array(
+
+    ),
+);
+
+
+$operations=["insert","delete"];
 $operationSelected;
-foreach($operations as $operationIter){
-    if(isset($_POST["operation"])
-       &&$_POST["operation"]==$operationIter){
-        $operationSelected=$_POST["operation"];
-    }
-}
+if(isset($_POST["operation"]))
+    foreach($operations as $operationIter)
+        if($_POST["operation"]==$operationIter)
+            $operationSelected=$_POST["operation"];
 
 $inputFields=["usuario","dni","nombre","apellidos","fechanacimiento","direccion","telefono","supervisor"];
 $inputFieldsAssoc=array();
-foreach($inputFields as $field){
+foreach($inputFields as $field)
     $inputFieldsAssoc[$field]=isset($_POST[$field]) ? $_POST[$field] : false;
-}
 
 /////////////////////////////////
 $status="noop";
@@ -54,41 +72,41 @@ values($neededParametersString)
         $status="error";
         $message=$e;
     }
-break;
+    break;
     
 case "delete":
     $neededKey="dni";
     if(!$inputFieldsAssoc[$neededKey]){
         throw new Exception("Falta {$neededKey}"
-    }else{
-        $sql="
+                            }else{
+            $sql="
 delete from operario 
  where {$neededKey}=:{$neededKey}
 ";
-        $executeAssoc=array();
-        $executeAssoc[$neededKey]=$inputFieldsAssoc[$neededKey];
+            $executeAssoc=array();
+            $executeAssoc[$neededKey]=$inputFieldsAssoc[$neededKey];
         
-        try{
-            $stmt=$conn->prepare($sql);
-            $stmt->execute($executeAssoc);
-            $status="success";
+            try{
+                $stmt=$conn->prepare($sql);
+                $stmt->execute($executeAssoc);
+                $status="success";
             
-        } catch(PDOException $e){
-            $status="error";
-            $message=$e;
+            } catch(PDOException $e){
+                $status="error";
+                $message=$e;
             
+            }
         }
+        break;    
     }
-    break;    
-}
 
-$output=array(
-    "status"=>$status,
-    "message"=>$message,
-);
-if($operationSelected=="insert"){
-    $output["insertId"]=$insertId;
-}
+    $output=array(
+        "status"=>$status,
+        "message"=>$message,
+    );
+    if($operationSelected=="insert"){
+        $output["insertId"]=$insertId;
+    }
 
-header("ContentType: application/json");
-echo $output;
+    header("ContentType: application/json");
+    echo $output;

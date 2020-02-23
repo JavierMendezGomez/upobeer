@@ -122,23 +122,25 @@ function show_frmAltaPedido() {
 var pedido;
 
 function crearComboCatalogo() {
-	document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").remove();
-	let select = modelo.comboCatalogo();
-	document.querySelector(".selectCatalogo").appendChild(select);
-	frmAltaPedido.txtPrecioUnidad.value = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value).precio;
+    document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").remove();
+    let select = modelo.comboCatalogo();
+    document.querySelector(".selectCatalogo").appendChild(select);
+    frmAltaPedido.txtPrecioUnidad.value = frmAltaPedido.comboCatalogo.selectedOptions[0].dataset.precio;
 }
 
 function actualizaDatosAlta() {
-	frmAltaPedido.txtPrecioUnidad.value = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value).precio;
+    frmAltaPedido.txtPrecioUnidad.value = frmAltaPedido.comboCatalogo.selectedOptions[0].dataset.precio;
 }
 
 function submit_frmAltaPedido() {
-	let producto = modelo.buscarCerveza(document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").selectedOptions[0].value);
-	let cliente = modelo.buscarCliente(clave);
-	if (pedido == undefined) {
-		pedido = modelo.altaPedido(new Pedido(cliente, []));
-	}
-	pedido.insertarLineaPedido(new LineaPedido(producto, frmAltaPedido.txtCantidad.value));
+    let producto = modelo.buscarCerveza(frmAltaPedido.comboCatalogo.value);
+    let clienteActual = modelo.buscarCliente(clave);
+    if (pedido == undefined) {
+	pedido = modelo.altaPedido(new Pedido(clienteActual, []));
+    }
+    console.log()
+    let lineaPedido=new LineaPedido(producto, frmAltaPedido.txtCantidad.value);
+    modelo.insertarLineaPedido(pedido.idPedido,lineaPedido);
 }
 
 function show_frmBajaPedido() {
@@ -150,7 +152,6 @@ function show_frmBajaPedido() {
 }
 
 function crearComboPedidos() {
-
 	document.querySelector("#frmBajaPedido > div.row.selectPedido > select").remove();
 	let select = modelo.comboPedidos(modelo.buscarCliente(clave));
 	document.querySelector(".selectPedido").appendChild(select);
@@ -158,12 +159,13 @@ function crearComboPedidos() {
 }
 
 function actualizaDatosBaja() {
-	frmBajaPedido.txtLineas.value = modelo.buscarPedido(frmBajaPedido.comboPedidos.selectedOptions[0].value).tLineasPedido.length;
-	frmBajaPedido.txtTotal.value = modelo.buscarPedido(frmBajaPedido.comboPedidos.selectedOptions[0].value).precioTotal();
+    let oPedido=modelo.buscarPedido(frmBajaPedido.comboPedidos.value);
+    frmBajaPedido.txtLineas.value = oPedido.tLineasPedido.length;
+    frmBajaPedido.txtTotal.value = oPedido.precioTotal();
 }
 
 function submit_frmBajaPedido() {
-	let idPedido = frmBajaPedido.comboPedidos.selectedOptions[0].value;
+	let idPedido = frmBajaPedido.comboPedidos.value;
 	if(idPedido != -1)
 		modelo.bajaPedido(idPedido);
 	crearComboPedidos();
@@ -173,7 +175,7 @@ function show_lstPedidosRegistrados() {
 	ocultarForms();
 	if (document.querySelector("#cliente").style.display == "none")
 		if (document.querySelector("#operario").style.display == "none") {
-			document.querySelector("#supervisor .formularios").appendChild(modelo.listadoPedidos(modelo.buscarCliente(clave)));
+		    document.querySelector("#supervisor .formularios").appendChild(modelo.listadoPedidos(modelo.buscarCliente(clave)));
 		}
 		else
 			document.querySelector("#operario .formularios").appendChild(modelo.listadoPedidos(modelo.buscarCliente(clave)));
@@ -189,10 +191,11 @@ function show_frmModificarPerfil() {
 }
 
 function cargarDatosCliente() {
-	frmModificarCliente.txtNombre.value = modelo.buscarCliente(clave).nombre;
-	frmModificarCliente.txtApellidos.value = modelo.buscarCliente(clave).apellidos;
-	frmModificarCliente.txtDireccion.value = modelo.buscarCliente(clave).direccion;
-	frmModificarCliente.txtTelefono.value = modelo.buscarCliente(clave).telefono;
+    cliente=modelo.buscarCliente(clave);
+	frmModificarCliente.txtNombre.value = cliente.nombre;
+	frmModificarCliente.txtApellidos.value = cliente.apellidos;
+	frmModificarCliente.txtDireccion.value = cliente.direccion;
+	frmModificarCliente.txtTelefono.value = cliente.telefono;
 }
 
 function submit_frmModificarCliente() {
@@ -201,7 +204,8 @@ function submit_frmModificarCliente() {
 	let direccionNueva = frmModificarCliente.txtDireccion.value;
 	if (telefonoNuevo != "" && direccionNueva != "" && cliente.validarTelefono(telefonoNuevo)) {
 		cliente.modificarTelefono(telefonoNuevo);
-		cliente.modificarDireccion(direccionNueva);
+	        cliente.modificarDireccion(direccionNueva);
+	    	modelo.modificarPersona(cliente);
 		alert("Perfil actualizado");
 		cargarDatosCliente();
 	}

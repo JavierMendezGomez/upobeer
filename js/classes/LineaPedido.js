@@ -4,24 +4,10 @@ class LineaPedido {
     constructor(producto,cantidad)
     {
         this.producto=producto;
-	if(this.validarCantidad(cantidad)){
-            this.cantidad=cantidad;
-	}
-        
+        this.cantidad=cantidad;
     }
     get precioLinea(){
 	return (this.producto.precio * this.cantidad);
-    }
-
-    validarCantidad(cantidad)
-    {
-	cantidad=parseInt(cantidad);
-	let stock=parseInt(this.producto.stock);
-    	if(cantidad <= 0 || cantidad >= stock){
-    	    return false;
-	}
-	else
-	    return true;
     }
 
     toHTMLTableRow(){

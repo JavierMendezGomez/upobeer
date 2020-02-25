@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Javier Méndez Gómez
- * @license AGPLV3
+ * @license GPLV3
  */
 class Upobeer_ajax{
     private $operations=["insertone","updateonepk","deleteonepk","selectonepk","selectall"];

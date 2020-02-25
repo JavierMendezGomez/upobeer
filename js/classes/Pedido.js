@@ -1,7 +1,7 @@
 class Pedido {
-    constructor(oCliente,tLineasPedido)
+    constructor(oCliente,tLineasPedido,idPedido)
     {
-	this.idPedido=modelo.contadorPedidos+1;
+	this.idPedido=idPedido;
 	this.cliente=oCliente;
 	if(tLineasPedido)
 	    this.tLineasPedido=tLineasPedido;

@@ -14,40 +14,37 @@ class UpoBeer {
 	this.contadorVehiculos=0;
     }
 
-    peticionBBDD(parametros,objeto,alertar){
-	let oAjax = new XMLHttpRequest();
-	//Se le envía directamente el cliente o lo que sea, como un objeto, no como parámetros
+    jQAjaxPost(parametros,objeto,alertar){
+	let url="/php/ajax.php";
 	Object.assign(parametros,objeto);
-	let oURLSearchParams=new URLSearchParams(parametros);
-	oURLSearchParams.forEach(function(value,key){
-	    if(value=="true")
-		oURLSearchParams.set(key,1);
-	    else if (value=="false")
-		oURLSearchParams.set(key,0);
-	});
-	
-	oAjax.open("POST", "/php/ajax.php",false);
-	oAjax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	
-        //Asociar manejador de evento de la respuesta
+
 	let bHecho=false;
-	console.log(oURLSearchParams.toString());
-        oAjax.addEventListener("readystatechange", function(){
-	    let oAjax = this;
-            if (oAjax.readyState == 4){
-		if(oAjax.status == 200) {
-		    bHecho=true;
-		} else {
-		    bHecho=false;
-		}
-		console.log(oAjax.responseText);
-	    }
-	},false);
-	oAjax.send(oURLSearchParams.toString());
+	let datosRecibidos;
+	$.post(url, parametros)
+	    .done(function(response){datosRecibidos=response; bHecho=true})
+	    .fail(function(){bHecho=false;});
+
 	if(bHecho){
-	    return JSON.parse(oAjax.responseText);
+	    return datosRecibidos;
 	} else {
-	    return false
+	    return false;
+	}
+    }
+
+    jQAjaxGet(parametros,objeto,alertar){
+	let url="/php/ajax.php";
+	Object.assign(parametros,objeto);
+
+	let bHecho=false;
+	let datosRecibidos;
+	$.get(url, parametros)
+	    .done(function(response){datosRecibidos=response; bHecho=true})
+	    .fail(function(){bHecho=false;});
+
+	if(bHecho){
+	    return datosRecibidos;
+	} else {
+	    return false;
 	}
     }
     
@@ -57,7 +54,7 @@ class UpoBeer {
 	    object: (oPersona.constructor.name),
 	    operation: "updateonepk"
 	};
-	if(this.peticionBBDD(parametros,oPersona).rowsaffected==1)
+	if(this.jQAjaxPost(parametros,oPersona).rowsaffected==1)
 	    return true;
 	else
 	    return false;
@@ -69,7 +66,7 @@ class UpoBeer {
 	    object: "Cliente",
 	    operation: "insertone"
 	};
-	if(this.peticionBBDD(parametros,oCliente).rowsaffected==1)
+	if(this.jQAjaxPost(parametros,oCliente).rowsaffected==1)
 	    return oCliente;
 	else
 	    return false;	   
@@ -80,7 +77,7 @@ class UpoBeer {
 	    operation: "deleteonepk"
 	};
 	let objeto={dni:dni};
-	if(this.peticionBBDD(parametros,objeto).rowsaffected==1)
+	if(this.jQAjaxPost(parametros,objeto).rowsaffected==1)
 	    return true;
 	else
 	    return false;
@@ -90,7 +87,7 @@ class UpoBeer {
 	    object: "Operario",
 	    operation: "insertone"
 	};
-	if(this.peticionBBDD(parametros,oOperario).rowsaffected==1)
+	if(this.jQAjaxPost(parametros,oOperario).rowsaffected==1)
 	    return oOperario;
 	else
 	    return false;
@@ -101,7 +98,7 @@ class UpoBeer {
 	    operation: "deleteonepk"
 	};
 	let objeto={dni:dni};
-	if(this.peticionBBDD(parametros,objeto))
+	if(this.jQAjaxPost(parametros,objeto))
 	    return true;
 	else
 	    return false;
@@ -121,7 +118,7 @@ class UpoBeer {
 	delete objeto.cliente;
 	delete objeto.tLineasPedido;
 	
-	let JSONRecibido=this.peticionBBDD(parametros,objeto);
+	let JSONRecibido=this.jQAjaxPost(parametros,objeto);
 	if(JSONRecibido.rowsaffected==1){
 	    oPedido.idPedido=JSONRecibido.insertid;
 
@@ -135,7 +132,7 @@ class UpoBeer {
 		    idCerveza : oLineaPedido_iterar.producto.idCerveza,
 		    cantidad : oLineaPedido_iterar.cantidad,
 		};
-		let JSONRecibido=this.peticionBBDD(parametros,objeto);
+		let JSONRecibido=this.jQAjaxPost(parametros,objeto);
 		if(!JSONRecibido)
 		    return false;
 	    });
@@ -156,7 +153,7 @@ class UpoBeer {
 	    cantidad : oLineaPedido.cantidad,
 	};
 	
-	let JSONRecibido=this.peticionBBDD(parametros,objeto);
+	let JSONRecibido=this.jQAjaxPost(parametros,objeto);
 	if(JSONRecibido.rowsAffected==1){
 	    return oLineaPedido;
 	}
@@ -170,7 +167,7 @@ class UpoBeer {
 	    operation: "deleteonepk"
 	};
 	let objeto={idPedido:idPedido};
-	if(this.peticionBBDD(parametros,objeto))
+	if(this.jQAjaxPost(parametros,objeto))
 	    return true;
 	else
 	    return false;
@@ -180,7 +177,7 @@ class UpoBeer {
 	    object: "Cerveza",
 	    operation: "insertone"
 	};
-	let JSONRecibido=this.peticionBBDD(parametros,oCerveza);
+	let JSONRecibido=this.jQAjaxPost(parametros,oCerveza);
 	if(JSONRecibido.rowsaffected==1){
 	    oCerveza.idCerveza=JSONRecibido.insertid;
 	    return oCerveza;
@@ -194,7 +191,7 @@ class UpoBeer {
 	    operation: "deleteonepk"
 	};
 	let objeto={idCerveza:idCerveza};
-	if(this.peticionBBDD(parametros,objeto))
+	if(this.jQAjaxPost(parametros,objeto))
 	    return true;
 	else
 	    return false;
@@ -232,7 +229,7 @@ class UpoBeer {
 	};
 	let objeto={idCerveza:idCerveza};
 	
-	let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	let JSONRecibido=this.jQAjaxPost(parametros,objeto,false);
 	if(JSONRecibido){
 	    let JSONCerveza=JSONRecibido.resultdata[0];
 	    let oCerveza=new Cerveza();
@@ -249,7 +246,7 @@ class UpoBeer {
 	};
 	let objeto={dni:dni};
 	
-	let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	let JSONRecibido=this.jQAjaxGet(parametros,objeto,false);
 	if(JSONRecibido){
 	    let JSONCliente=JSONRecibido.resultdata[0];
 	    let oCliente=new Cliente();
@@ -266,7 +263,7 @@ class UpoBeer {
 	};
 	let objeto={dni:dni};
 	
-	let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	let JSONRecibido=this.jQAjaxGet(parametros,objeto,false);
 	if(JSONRecibido){
 	    let JSONOperario=JSONRecibido.resultdata[0];
 	    let oOperario=new Operario();
@@ -283,7 +280,7 @@ class UpoBeer {
 	};
 	let objeto={dni:dni};
 	
-	let JSONRecibido=this.peticionBBDD(parametros,objeto);
+	let JSONRecibido=this.jQAjaxGet(parametros,objeto);
 	if(JSONRecibido){
 	    let JSONOperario=JSONRecibido.resultdata[0];
 	    let oOperario=new Operario();
@@ -305,7 +302,7 @@ class UpoBeer {
 	    };
 	    let objeto={};
 	    
-	    let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	    let JSONRecibido=this.jQAjaxGet(parametros,objeto,false);
 	    if(JSONRecibido){  
 		let arrayOPedidos=[];
 		let _this=this;
@@ -332,7 +329,7 @@ class UpoBeer {
 	    };
 	    let objeto={idPedido:idPedido};
 	    
-	    let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	    let JSONRecibido=this.jQAjaxPost(parametros,objeto,false);
 	    if(JSONRecibido){  
 		let JSONPedido=JSONRecibido.resultdata[0];
 		let oPedido=new Pedido();
@@ -428,7 +425,7 @@ class UpoBeer {
 	    };
 	    let objeto={};
 	    
-	    let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	    let JSONRecibido=this.jQAjaxPost(parametros,objeto,false);
 	    if(JSONRecibido){  
 		let arrayOPedidos=[];
 		JSONRecibido.resultdata.forEach(function(JSONPedido){
@@ -484,7 +481,7 @@ class UpoBeer {
 	};
 	let objeto={};
 	
-	let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	let JSONRecibido=this.jQAjaxPost(parametros,objeto,false);
 	//
 	if(JSONRecibido){  
 	    let arrayOCervezas=[];
@@ -507,7 +504,7 @@ class UpoBeer {
 	};
 	let objeto={};
 	
-	let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	let JSONRecibido=this.jQAjaxPost(parametros,objeto,false);
 	//
 	if(JSONRecibido){
 	    JSONRecibido.resultdata.forEach(function(JSONCerveza){
@@ -538,7 +535,7 @@ class UpoBeer {
 	};
 	let objeto={};
 	
-	let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	let JSONRecibido=this.jQAjaxPost(parametros,objeto,false);
 	if(JSONRecibido){
 	    JSONRecibido.resultdata.forEach(function(JSONCliente){
 		let oCliente=new Cliente();
@@ -562,7 +559,7 @@ class UpoBeer {
 	};
 	let objeto={};
 	
-	let JSONRecibido=this.peticionBBDD(parametros,objeto,false);
+	let JSONRecibido=this.jQAjaxPost(parametros,objeto,false);
 	if(JSONRecibido){  
 	    JSONRecibido.resultdata.forEach(function(JSONOperario){
 		let oOperario=new Operario();

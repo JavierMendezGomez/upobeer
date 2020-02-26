@@ -55,7 +55,8 @@ function jsAjaxPostSync(parametros){
 class UpoBeer {   
     /* CONSTRUCTOR */
     constructor(){
-	this.tCervezas=localStorage.setItem("tCervezas",[]);
+	this.tCervezas=[];
+	localStorage.setItem("tCervezas",this.tCervezas);
 	this.tPedidos=[];
 	this.tClientes=[];
 	this.tOperarios=[];

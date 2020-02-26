@@ -3,18 +3,47 @@ var modelo = new UpoBeer();
 var tipo = "ninguno";
 var usuario = "";
 var clave = "";
-document.getElementById("enlaceRegistro").addEventListener("click", showRegistro);
 document.getElementById("logoInicio").addEventListener("click", revisarSwitch);
 document.getElementById("selPedido").addEventListener("change", cambioComboEstados);
 revisarSwitch();
+
+document.getElementById("botonIniciarSesion").addEventListener("click",cargarMenuSesion);
+document.getElementById("botonCrearCuenta").addEventListener("click",cargarCrearCuenta);
+
+function cargarMenuSesion(){
+
+    $("#formularios div:not('#inicio')").hide();
+
+    // Verifico si ya he cargado el formulario antes
+    
+        $("#formularios").load("formularios/inicio_sesion.html",
+            function() {
+                $.getScript("js/inicioSesion.js");
+            });
+
+    
+
+}
+
+function cargarCrearCuenta(){
+
+    $("#formularios div:not('#registro')").hide();
+
+   
+        $("#formularios").load("formularios/registro.html",
+            function() {
+                $.getScript("js/altaUsuario.js");
+            });
+
+   
+
+}
 
 function revisarSwitch() {
 	switch (tipo) {
 		case 'ninguno':
 			ocultarTodo();
 			document.querySelector("#cabeceraInicio").style.display = "inline";
-			document.querySelector("#inicio").style.display = "inline";
-			document.getElementById("registro").style.display = "none";
 			console.log("se muestra ninguno");
 			break;
 		case 'cliente':

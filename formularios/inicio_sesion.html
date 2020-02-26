@@ -1,0 +1,33 @@
+<!--Formulario inicio sesion-->
+<div id="inicio" class="row section elemento">
+    <div class="col-12"
+     style="background: url(Img/Fondo3.jpg); background-size: contain; background-repeat: no-repeat; background-position: right; margin-right: 0.2rem;">
+    <b>Introduzca sus datos para iniciar sesión en nuestro sistema</b><br><br>
+    <form name="formularioInicio">
+        <table cellpadding="10">
+        <tr>
+            <td>
+            <label>Introduzca su usuario: </label>
+            </td>
+            <td>
+            <input name="usuario" type="text" value="" autofocus>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <label>Introduzca su contraseña: </label>
+            </td>
+            <td>
+            <input name="clave" type="password" value="">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center">
+            <input name="botonComprobar" type="button" value="Entrar"
+                   onclick="comprobarUsuario();"><br>
+            </td>
+        </tr>
+        </table><br>
+    </form>
+    </div>
+</div>

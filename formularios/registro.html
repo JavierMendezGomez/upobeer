@@ -1,0 +1,67 @@
+<!--Formulario registro nuevo cliente-->
+<div id="registro" class="row section elemento" style="width: 90vw">
+    <div class="col-12"
+     style="background: url(Img/Fondo3.jpg); background-size: contain; background-repeat: no-repeat; background-position: right; margin-right: 0.2rem;">
+    <b>Introduzca sus datos para registrarse en nuestro sistema como cliente</b><br><br>
+    <form name="formularioRegistro">
+        <table cellpadding="12">
+        <tbody>
+            <tr>
+            <td>
+                <label>Usuario: </label>
+            </td>
+            <td>
+                <input name="usuario" type="text" value="">
+            </td>
+            <td>
+                <label>DNI: <em>(clave)</em></label>
+            </td>
+            <td>
+                <input name="dni" type="text" value="">
+            </td>
+            </tr>
+            <tr>
+            <td>
+                <label>Nombre: </label>
+            </td>
+            <td>
+                <input name="nombre" type="text" value="">
+            </td>
+            <td>
+                <label>Apellidos: </label>
+            </td>
+            <td>
+                <input name="apellidos" type="text" value="">
+            </td>
+            </tr>
+            <tr>
+            <td>
+                <label>Fecha de nacimiento: </label>
+            </td>
+            <td>
+                <input name="fecha" type="date" value="">
+            </td>
+            <td>
+                <label>Dirección: </label>
+            </td>
+            <td>
+                <input name="direccion" type="text" value="">
+            </td>
+            </tr>
+            <tr>
+            <td>
+                <label>Teléfono: </label>
+            </td>
+            <td>
+                <input name="telefono" type="text" value="">
+            </td>
+            <td colspan="2" style="text-align: center">
+                <input name="botonRegistrar" type="button" value="Registrarse"
+                   onclick="comprobarRegistro();">
+            </td>
+            </tr>
+        </tbody>
+        </table>
+    </form>
+    </div>
+</div>

@@ -37,109 +37,17 @@
 		    </header>
 		</div>
 
-
-		<!--Formulario inicio sesion-->
-		<div id="inicio" class="row section elemento">
-		    <div class="col-12"
-			 style="background: url(Img/Fondo3.jpg); background-size: contain; background-repeat: no-repeat; background-position: right; margin-right: 0.2rem;">
-			<b>Introduzca sus datos para iniciar sesión en nuestro sistema</b><br><br>
-			<form name="formularioInicio">
-			    <table cellpadding="10">
-				<tr>
-				    <td>
-					<label>Introduzca su usuario: </label>
-				    </td>
-				    <td>
-					<input name="usuario" type="text" value="" autofocus>
-				    </td>
-				</tr>
-				<tr>
-				    <td>
-					<label>Introduzca su contraseña: </label>
-				    </td>
-				    <td>
-					<input name="clave" type="password" value="">
-				    </td>
-				</tr>
-				<tr>
-				    <td colspan="2" style="text-align: center">
-					<input name="botonComprobar" type="button" value="Entrar"
-					       onclick="comprobarUsuario();"><br>
-				    </td>
-				</tr>
-			    </table><br>
-			</form>
-			<a id="enlaceRegistro" href="#">¿No tienes cuenta? Regístrate</a>
-		    </div>
-		</div>
-
-		<!--Formulario registro nuevo cliente-->
-		<div id="registro" class="row section elemento" style="width: 90vw">
-		    <div class="col-12"
-			 style="background: url(Img/Fondo3.jpg); background-size: contain; background-repeat: no-repeat; background-position: right; margin-right: 0.2rem;">
-			<b>Introduzca sus datos para registrarse en nuestro sistema como cliente</b><br><br>
-			<form name="formularioRegistro">
-			    <table cellpadding="12">
-				<tbody>
-				    <tr>
-					<td>
-					    <label>Usuario: </label>
-					</td>
-					<td>
-					    <input name="usuario" type="text" value="">
-					</td>
-					<td>
-					    <label>DNI: <em>(clave)</em></label>
-					</td>
-					<td>
-					    <input name="dni" type="text" value="">
-					</td>
-				    </tr>
-				    <tr>
-					<td>
-					    <label>Nombre: </label>
-					</td>
-					<td>
-					    <input name="nombre" type="text" value="">
-					</td>
-					<td>
-					    <label>Apellidos: </label>
-					</td>
-					<td>
-					    <input name="apellidos" type="text" value="">
-					</td>
-				    </tr>
-				    <tr>
-					<td>
-					    <label>Fecha de nacimiento: </label>
-					</td>
-					<td>
-					    <input name="fecha" type="date" value="">
-					</td>
-					<td>
-					    <label>Dirección: </label>
-					</td>
-					<td>
-					    <input name="direccion" type="text" value="">
-					</td>
-				    </tr>
-				    <tr>
-					<td>
-					    <label>Teléfono: </label>
-					</td>
-					<td>
-					    <input name="telefono" type="text" value="">
-					</td>
-					<td colspan="2" style="text-align: center">
-					    <input name="botonRegistrar" type="button" value="Registrarse"
-						   onclick="comprobarRegistro();">
-					</td>
-				    </tr>
-				</tbody>
-			    </table>
-			</form>
-		    </div>
-		</div>
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+			<ul class="navbar-nav" id="menuNavegacion"><li class="nav-item">
+				<a class="nav-link" href="#" id="botonIniciarSesion">Iniciar Sesion</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#" id="botonCrearCuenta">Usuario nuevo</a>
+			</li>
+			</ul>
+		</nav>
+		<div id="formularios"></div>
+		
 		
 		<!----------------------- Entramos a la pagina con un tipo de usuario cliente ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 	    </center>
@@ -628,7 +536,10 @@
 	    
 	</div><!-- container-fluid -->
 
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="jquery/jquery-1.11.0.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
 	<!-- Importación de scripts, por orden -->
 	<!-- Funciones que pueden usarse en todas las clases -->
 	<script src="js/classes/funciones.js"></script>

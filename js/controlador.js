@@ -7,35 +7,35 @@ document.getElementById("logoInicio").addEventListener("click", revisarSwitch);
 document.getElementById("selPedido").addEventListener("change", cambioComboEstados);
 revisarSwitch();
 
-document.getElementById("botonIniciarSesion").addEventListener("click",cargarMenuSesion);
-document.getElementById("botonCrearCuenta").addEventListener("click",cargarCrearCuenta);
+document.getElementById("botonIniciarSesion").addEventListener("click", cargarMenuSesion);
+document.getElementById("botonCrearCuenta").addEventListener("click", cargarCrearCuenta);
 
-function cargarMenuSesion(){
+function cargarMenuSesion() {
 
-    $("#formularios div:not('#inicio')").hide();
+	$("#formularios div:not('#inicio')").hide();
 
-    // Verifico si ya he cargado el formulario antes
-    
-        $("#formularios").load("formularios/inicio_sesion.html",
-            function() {
-                $.getScript("js/inicioSesion.js");
-            });
+	// Verifico si ya he cargado el formulario antes
 
-    
+	$("#formularios").load("formularios/inicio_sesion.html",
+		function () {
+			$.getScript("js/inicioSesion.js");
+		});
+
+
 
 }
 
-function cargarCrearCuenta(){
+function cargarCrearCuenta() {
 
-    $("#formularios div:not('#registro')").hide();
+	$("#formularios div:not('#registro')").hide();
 
-   
-        $("#formularios").load("formularios/registro.html",
-            function() {
-                $.getScript("js/altaUsuario.js");
-            });
 
-   
+	$("#formularios").load("formularios/registro.html",
+		function () {
+			$.getScript("js/altaUsuario.js");
+		});
+
+
 
 }
 
@@ -51,7 +51,12 @@ function revisarSwitch() {
 			let datos = document.createElement("text");
 			datos.textContent = usuario + ", " + clave;
 			document.querySelector("#datosSesion").appendChild(datos);
-			document.getElementById("cliente").style.display = "inline";
+			// Verifico si ya he cargado el formulario antes
+
+			$("#formularios").load("formularios/cliente.html",
+				function () {
+					$.getScript("js/prueba.js");
+				});
 			console.log("se muestra cliente");
 			break;
 		case 'operario':
@@ -106,7 +111,7 @@ let cerveza3 = modelo.altaCerveza(new Cerveza("Amstel", 12, 3.9, 2000));
 let cerveza4 = modelo.altaCerveza(new Cerveza("Alhambra", 14, 4.20, 2000));
 let pedido1 = modelo.altaPedido(new Pedido(cliente1, []));
 let pedido2 = modelo.altaPedido(new Pedido(new Cliente("user3", "11111111C", "Cliente2", "Ap", "1994-09-22", "C/Mesina", "111111111"), []));
-pedido1.insertarLineaPedido(new LineaPedido(cerveza1,40));
+pedido1.insertarLineaPedido(new LineaPedido(cerveza1, 40));
 
 function comprobarUsuario() {
 
@@ -151,25 +156,25 @@ function show_frmAltaPedido() {
 var pedido;
 
 function crearComboCatalogo() {
-    document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").remove();
-    let select = modelo.comboCatalogo();
-    document.querySelector(".selectCatalogo").appendChild(select);
-    frmAltaPedido.txtPrecioUnidad.value = frmAltaPedido.comboCatalogo.selectedOptions[0].dataset.precio;
+	document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").remove();
+	let select = modelo.comboCatalogo();
+	document.querySelector(".selectCatalogo").appendChild(select);
+	frmAltaPedido.txtPrecioUnidad.value = frmAltaPedido.comboCatalogo.selectedOptions[0].dataset.precio;
 }
 
 function actualizaDatosAlta() {
-    frmAltaPedido.txtPrecioUnidad.value = frmAltaPedido.comboCatalogo.selectedOptions[0].dataset.precio;
+	frmAltaPedido.txtPrecioUnidad.value = frmAltaPedido.comboCatalogo.selectedOptions[0].dataset.precio;
 }
 
 function submit_frmAltaPedido() {
-    let producto = modelo.buscarCerveza(frmAltaPedido.comboCatalogo.value);
-    let clienteActual = modelo.buscarCliente(clave);
-    if (pedido == undefined) {
-	pedido = modelo.altaPedido(new Pedido(clienteActual, []));
-    }
-    console.log()
-    let lineaPedido=new LineaPedido(producto, frmAltaPedido.txtCantidad.value);
-    modelo.insertarLineaPedido(pedido.idPedido,lineaPedido);
+	let producto = modelo.buscarCerveza(frmAltaPedido.comboCatalogo.value);
+	let clienteActual = modelo.buscarCliente(clave);
+	if (pedido == undefined) {
+		pedido = modelo.altaPedido(new Pedido(clienteActual, []));
+	}
+	console.log()
+	let lineaPedido = new LineaPedido(producto, frmAltaPedido.txtCantidad.value);
+	modelo.insertarLineaPedido(pedido.idPedido, lineaPedido);
 }
 
 function show_frmBajaPedido() {
@@ -188,14 +193,14 @@ function crearComboPedidos() {
 }
 
 function actualizaDatosBaja() {
-    let oPedido=modelo.buscarPedido(frmBajaPedido.comboPedidos.value);
-    frmBajaPedido.txtLineas.value = oPedido.tLineasPedido.length;
-    frmBajaPedido.txtTotal.value = oPedido.precioTotal();
+	let oPedido = modelo.buscarPedido(frmBajaPedido.comboPedidos.value);
+	frmBajaPedido.txtLineas.value = oPedido.tLineasPedido.length;
+	frmBajaPedido.txtTotal.value = oPedido.precioTotal();
 }
 
 function submit_frmBajaPedido() {
 	let idPedido = frmBajaPedido.comboPedidos.value;
-	if(idPedido != -1)
+	if (idPedido != -1)
 		modelo.bajaPedido(idPedido);
 	crearComboPedidos();
 }
@@ -204,7 +209,7 @@ function show_lstPedidosRegistrados() {
 	ocultarForms();
 	if (document.querySelector("#cliente").style.display == "none")
 		if (document.querySelector("#operario").style.display == "none") {
-		    document.querySelector("#supervisor .formularios").appendChild(modelo.listadoPedidos(modelo.buscarCliente(clave)));
+			document.querySelector("#supervisor .formularios").appendChild(modelo.listadoPedidos(modelo.buscarCliente(clave)));
 		}
 		else
 			document.querySelector("#operario .formularios").appendChild(modelo.listadoPedidos(modelo.buscarCliente(clave)));
@@ -220,7 +225,7 @@ function show_frmModificarPerfil() {
 }
 
 function cargarDatosCliente() {
-    cliente=modelo.buscarCliente(clave);
+	cliente = modelo.buscarCliente(clave);
 	frmModificarCliente.txtNombre.value = cliente.nombre;
 	frmModificarCliente.txtApellidos.value = cliente.apellidos;
 	frmModificarCliente.txtDireccion.value = cliente.direccion;
@@ -233,8 +238,8 @@ function submit_frmModificarCliente() {
 	let direccionNueva = frmModificarCliente.txtDireccion.value;
 	if (telefonoNuevo != "" && direccionNueva != "" && cliente.validarTelefono(telefonoNuevo)) {
 		cliente.modificarTelefono(telefonoNuevo);
-	        cliente.modificarDireccion(direccionNueva);
-	    	modelo.modificarPersona(cliente);
+		cliente.modificarDireccion(direccionNueva);
+		modelo.modificarPersona(cliente);
 		alert("Perfil actualizado");
 		cargarDatosCliente();
 	}
@@ -407,8 +412,7 @@ function submit_frmModificarOperario() {
 		alert("Perfil actualizado");
 		cargarDatosOperario();
 	}
-	else
-	{
+	else {
 		alert("No puede dejar en blanco ningún campo y debe introducir un teléfono válido");
 		cargarDatosOperario();
 	}
@@ -483,8 +487,7 @@ function submit_frmAltaOperario() {
 		alert(sError);
 	}
 	else {
-		if (modelo.altaOperario(oOperario))
-		{
+		if (modelo.altaOperario(oOperario)) {
 			alert("Acción realizada con exito");
 			frmAltaOperario.reset();
 		}
@@ -518,14 +521,14 @@ function show_frmBajaOperario() {
 
 }
 
-function submit_frmBajaOperario(){
+function submit_frmBajaOperario() {
 
 	modelo.bajaOperario(frmBajaOperario.selOperario.value);
 	alert("Acción realizada con éxito");
 	show_frmBajaOperario();
 }
 
-function show_frmAltaCerveza(){
+function show_frmAltaCerveza() {
 
 	ocultarForms();
 	frmAltaCerveza.reset();
@@ -533,46 +536,41 @@ function show_frmAltaCerveza(){
 
 }
 
-function submit_frmAltaCerveza(){
+function submit_frmAltaCerveza() {
 
 	let sNombre = frmAltaCerveza.txtNombre.value;
 	let iPorcentaje = parseInt(frmAltaCerveza.txtPorcentaje.value);
 	let fPrecio = parseFloat(frmAltaCerveza.txtPrecio.value);
 	let iStock = parseInt(frmAltaCerveza.txtStock.value);
-	let bValido=true;
-	let sError="";
-	let oCerveza= new Cerveza(sNombre,iPorcentaje,fPrecio,iStock);
+	let bValido = true;
+	let sError = "";
+	let oCerveza = new Cerveza(sNombre, iPorcentaje, fPrecio, iStock);
 
-	if(sNombre=="")
-	{
-		bValido=false;
-		sError+="No puede dejar en blanco el campo nombre";
+	if (sNombre == "") {
+		bValido = false;
+		sError += "No puede dejar en blanco el campo nombre";
 	}
 
-	if(oCerveza.validarPrecioUnidad(fPrecio)!=true)
-	{
-		bValido=false;
-		sError+="\nEl precio no puede ser ni inferior a 0 ni superior a 100";
+	if (oCerveza.validarPrecioUnidad(fPrecio) != true) {
+		bValido = false;
+		sError += "\nEl precio no puede ser ni inferior a 0 ni superior a 100";
 	}
 
-	if(bValido==false)
+	if (bValido == false)
 		alert(sError);
-	else
-		{
-			if(modelo.altaCerveza(oCerveza)==false)
-			{
-				alert("Esa cerveza ya está dada de alta");
-			}
-			else
-			{
-				alert("Acción realizada con éxito");
-				frmAltaCerveza.reset();
-			}
+	else {
+		if (modelo.altaCerveza(oCerveza) == false) {
+			alert("Esa cerveza ya está dada de alta");
 		}
+		else {
+			alert("Acción realizada con éxito");
+			frmAltaCerveza.reset();
+		}
+	}
 
 }
 
-function show_frmBajaCerveza(){
+function show_frmBajaCerveza() {
 
 	ocultarForms();
 	frmBajaCerveza.reset();
@@ -586,17 +584,17 @@ function show_frmBajaCerveza(){
 	}
 
 	for (let i = 0; i < modelo.tCervezas.length; i++) {
-		
-			option = document.createElement("option");
-			option.value = modelo.tCervezas[i].idCerveza;
-			option.textContent = modelo.tCervezas[i].nombre + " - " + modelo.tCervezas[i].idCerveza;
-			comboCervezas.appendChild(option);
-		
+
+		option = document.createElement("option");
+		option.value = modelo.tCervezas[i].idCerveza;
+		option.textContent = modelo.tCervezas[i].nombre + " - " + modelo.tCervezas[i].idCerveza;
+		comboCervezas.appendChild(option);
+
 	}
 
 }
 
-function submit_frmBajaCerveza(){
+function submit_frmBajaCerveza() {
 
 	modelo.bajaCerveza(frmBajaCerveza.selCerveza.value);
 	alert("Acción realizada con éxito");
@@ -611,7 +609,7 @@ function cargarDatosSupervisor() {
 	frmModificarSupervisor.txtTelefono.value = modelo.buscarOperario(clave).telefono;
 }
 
-function show_frmModificarPerfilSupervisor(){
+function show_frmModificarPerfilSupervisor() {
 
 	ocultarForms();
 	frmModificarSupervisor.reset();
@@ -620,7 +618,7 @@ function show_frmModificarPerfilSupervisor(){
 
 }
 
-function submit_frmModificarSupervisor(){
+function submit_frmModificarSupervisor() {
 
 	let operario = modelo.buscarOperario(clave);
 	let telefonoNuevo = frmModificarSupervisor.txtTelefono.value;
@@ -632,29 +630,28 @@ function submit_frmModificarSupervisor(){
 		alert("Perfil actualizado");
 		cargarDatosSupervisor();
 	}
-	else
-	{
+	else {
 		alert("No puede dejar en blanco ningún campo y debe introducir un teléfono válido");
 		cargarDatosSupervisor();
 	}
 }
 
-function load_XMLFromFile(){
-    
-    let xmlString;
-    let xmlDoc;
-    uploadText().then(function(text){
-	xmlString=text;
-	console.log(xmlString);
-	let parser = new DOMParser();
-	xmlDoc = parser.parseFromString(xmlString, "text/xml");
-	console.log(xmlDoc);
-	cargarDatosUpoBeerXML(xmlDoc);
-    });
+function load_XMLFromFile() {
+
+	let xmlString;
+	let xmlDoc;
+	uploadText().then(function (text) {
+		xmlString = text;
+		console.log(xmlString);
+		let parser = new DOMParser();
+		xmlDoc = parser.parseFromString(xmlString, "text/xml");
+		console.log(xmlDoc);
+		cargarDatosUpoBeerXML(xmlDoc);
+	});
 }
 
-function save_XMLFile(){
-    let oXML=exportarDatosUpoBeerXML();
-    let xmlTextIndented=formatXML(oXML.outerHTML);
-    download("document/xml","UpoBeer.xml",xmlTextIndented);
+function save_XMLFile() {
+	let oXML = exportarDatosUpoBeerXML();
+	let xmlTextIndented = formatXML(oXML.outerHTML);
+	download("document/xml", "UpoBeer.xml", xmlTextIndented);
 }

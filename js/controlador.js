@@ -91,6 +91,7 @@ function showRegistro() {
 
 
 //Datos de ejemplo
+/*
 let cliente1 = new Cliente("user1", "11111111A", "Cliente1", "Ap", "1997-08-12", "C/Mesina", "111111111");
 modelo.altaCliente(cliente1);
 let cliente2 = new Cliente("user2", "11111111B", "Cliente2", "Ap", "1993-04-16", "C/Mesina", "111111111");
@@ -104,6 +105,7 @@ let cerveza2 = new Cerveza("Radler", 9, 4.50, 2000);
 modelo.altaCerveza(cerveza2);
 let cerveza3 = modelo.altaCerveza(new Cerveza("Amstel", 12, 3.9, 2000));
 let cerveza4 = modelo.altaCerveza(new Cerveza("Alhambra", 14, 4.20, 2000));
+*/
 let pedido1 = modelo.altaPedido(new Pedido(cliente1, []));
 let pedido2 = modelo.altaPedido(new Pedido(new Cliente("user3", "11111111C", "Cliente2", "Ap", "1994-09-22", "C/Mesina", "111111111"), []));
 pedido1.insertarLineaPedido(new LineaPedido(cerveza1,40));

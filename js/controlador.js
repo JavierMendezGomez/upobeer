@@ -3,10 +3,10 @@ var modelo = new UpoBeer();
 var tipo = "supervisor";
 var usuario = "";
 var clave = "";
+
 document.getElementById("logoInicio").addEventListener("click", revisarSwitch);
 document.getElementById("selPedido").addEventListener("change", cambioComboEstados);
 revisarSwitch();
-
 document.getElementById("botonIniciarSesion").addEventListener("click",cargarMenuSesion);
 document.getElementById("botonCrearCuenta").addEventListener("click",cargarCrearCuenta);
 

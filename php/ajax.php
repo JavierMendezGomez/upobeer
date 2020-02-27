@@ -106,7 +106,8 @@ class Upobeer_ajax{
                 $missingFields=true;
             }
             if(!$missingFields) {
-                $neededParametersArray[]=":".$field;
+                $whereString .=" AND ${field} = :${field} ";
+                //                $neededParametersArray[]=":".$field;
                 $executeAssoc[$field]=isset($this->inputFieldsAssoc[$field]);
             }
         }
@@ -319,11 +320,12 @@ class Upobeer_ajax{
                     $this->parametersOK=true;
                     extract($wherePkHelperAssoc);
                     $executeAssoc=$wherePkExecuteAssoc;
-            
+
                     $sql="
                     select * from {$this->objectSelected}
                     ".$whereString;
-           
+                    $this->sql=$sql;
+                    
                     try{
                         $stmt=$conn->prepare($sql);
                         $stmt->execute($executeAssoc);
@@ -378,7 +380,8 @@ class Upobeer_ajax{
             "operationselected"=>$this->operationSelected,
             "firstpassok"=>$this->firstPassOK,
             "parametersok"=>$this->parametersOK,
-            "transactionok"=>$this->transactionOK
+            "transactionok"=>$this->transactionOK,
+            "sql"=>$this->sql,
         );
         switch ($this->operationSelected){
         case "insertone":

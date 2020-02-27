@@ -131,7 +131,7 @@ class UpoBeer {
 	    });
 	});
     }
-    async cargarPedidos(){
+    cargarPedidos(){
 	this.tPedidos=[];
 	let parametrosPedidos={
 	    object: "Pedido",
@@ -144,38 +144,35 @@ class UpoBeer {
 	let coleccionPedidos={};
 	let _this=this; //copia de this para las funciones implícitas. Si no no rula
 
-	let promesa = new Promise(function(){
-	    jQAjaxGet(parametrosPedidos).then(function(datosRecibidosPedidos){
-		datosRecibidosPedidos.resultdata.forEach(function(datosPedido){
-		    let oPedido= new Pedido(_this.buscarCliente(datosPedido.dniCliente),
-					    undefined,
-					    datosPedido.idPedido);
-		    //Meter el pedido a medio construir en la colección de pedidos (...)
-		    coleccionPedidos[oPedido.idPedido]=oPedido;
-		    //(...) y también en el array tPedidos. Como JS es por referencia no tiene que
-		    //haber más problema. Lo del objeto colección era para poder tener una especie
-		    //de array asociativo.
-		    _this.tPedidos.push(coleccionPedidos[oPedido.idPedido]);
-		});
-		
-		// Ahora sacar todas las líneas de pedido en bloque e ir asignándoselas a cada
-		// pedido ya guardado
-		let parametrosLineasPedidos={
-		    object: "LineaPedido",
-		    operation: "selectall"
-		};
-		jQAjaxGet(parametrosLineasPedidos).then(function(datosRecibidosLineasPedidos){
-		    datosRecibidosLineasPedidos.resultdata.forEach(function(datosLineaPedido){
-			//generar la línea de pedido
-			let oLineaPedido= new LineaPedido(_this.buscarCerveza(datosLineaPedido.idCerveza),
-							  datosLineaPedido.cantidad);
-			//asignar en la colección de pedidos ducha línea al pedido correspondiente
-			coleccionPedidos[datosLineaPedido.idPedido].tLineasPedido.push(oLineaPedido);
-		    });
+	jQAjaxGet(parametrosPedidos).then(function(datosRecibidosPedidos){
+	    datosRecibidosPedidos.resultdata.forEach(function(datosPedido){
+		let oPedido= new Pedido(_this.buscarCliente(datosPedido.dniCliente),
+					undefined,
+					datosPedido.idPedido);
+		//Meter el pedido a medio construir en la colección de pedidos (...)
+		coleccionPedidos[oPedido.idPedido]=oPedido;
+		//(...) y también en el array tPedidos. Como JS es por referencia no tiene que
+		//haber más problema. Lo del objeto colección era para poder tener una especie
+		//de array asociativo.
+		_this.tPedidos.push(coleccionPedidos[oPedido.idPedido]);
+	    });
+	    
+	    // Ahora sacar todas las líneas de pedido en bloque e ir asignándoselas a cada
+	    // pedido ya guardado
+	    let parametrosLineasPedidos={
+		object: "LineaPedido",
+		operation: "selectall"
+	    };
+	    jQAjaxGet(parametrosLineasPedidos).then(function(datosRecibidosLineasPedidos){
+		datosRecibidosLineasPedidos.resultdata.forEach(function(datosLineaPedido){
+		    //generar la línea de pedido
+		    let oLineaPedido= new LineaPedido(_this.buscarCerveza(datosLineaPedido.idCerveza),
+						      datosLineaPedido.cantidad);
+		    //asignar en la colección de pedidos ducha línea al pedido correspondiente
+		    coleccionPedidos[datosLineaPedido.idPedido].tLineasPedido.push(oLineaPedido);
 		});
 	    });
 	});
-	await promesa;
     }
     
     /***ALTAS***/
@@ -188,8 +185,9 @@ class UpoBeer {
 		operation: "insertone"
 	    };
 	    //A los parámetros se le meten todos los atributos de Cliente
+	    oCliente.fechaNacimiento=ISODateString_noTime(new Date(oCliente.fechaNacimiento));
 	    Object.assign(parametros,oCliente);
-	    console.log("aaaaa");
+	    
 	    //Se ve si la petición ha insertado filas
 	    if(jsAjaxPostSync(parametros).rowsaffected==1){
 		//y devolver
@@ -218,6 +216,7 @@ class UpoBeer {
 		object: (oPersona.constructor.name),
 		operation: "updateonepk"
 	    };
+	    oPersona.fechaNacimiento=ISODateString_noTime(new Date(oPersona.fechaNacimiento));
 	    Object.assign(parametros,oPersona);
 	    if(jsAjaxPostSync(parametros).rowsaffected==1){
 		oPersona_guardada=oPersona;
@@ -237,12 +236,11 @@ class UpoBeer {
 		operation: "insertone"
 	    };
 	    //A los parámetros se le meten todos los atributos de Operario
+	    oOperario.fechaNacimiento=ISODateString_noTime(new Date(oOperario.fechaNacimiento));
 	    Object.assign(parametros,oOperario);
 
 	    //Se ve si la petición ha insertado filas
 	    if(jsAjaxPostSync(parametros).rowsaffected==1){
-		//meter en el array interno
-		this.tOperarios.push(oOperario);
 		//y devolver
 		return oOperario;
 	    }
@@ -292,9 +290,6 @@ class UpoBeer {
 		    oPedido.idPedido=datosRecibidos.insertid;
 		});
 
-		//por fin, meter pedido en el array interno
-		console.log(oPedido);
-		this.tPedidos.push(oPedido);
 		return oPedido;
 		
 	    } else
@@ -335,9 +330,6 @@ class UpoBeer {
 	let datosRecibidos=jsAjaxPostSync(parametros);
 	if(datosRecibidos.rowsaffected==1){
 	    oCerveza.idCerveza=datosRecibidos.insertid;
-	    //meter en el array interno de cervezas
-	    this.tCervezas.push(oCerveza);
-	    //y devolver
 	    return oCerveza;
 	}
 	else
@@ -518,7 +510,7 @@ class UpoBeer {
 		idCerveza:idCerveza
 	    };
 	    let datosCerveza=jsAjaxGetSync(parametros).resultdata[0];
-	    if(datosCerveza!=undefined){
+	    if(datosCerveza){
 		oCerveza=new Cerveza(datosCerveza.nombre,
 				     datosCerveza.porcentaje,
 				     datosCerveza.precio,
@@ -542,6 +534,7 @@ class UpoBeer {
 		    return (oPedido_iterado.cliente.dni == oCliente.dni);
 		});	
 	    }
+	    
 	    return arrayoPedidos;
 	    
 	} else {
@@ -549,14 +542,13 @@ class UpoBeer {
 	    let oPedido=this.tPedidos.find(function(oPedido_iterado){
 		return (oPedido_iterado.idPedido == idPedido);
 	    });
-	    console.log(idPedido);
 	    if(oPedido==undefined){
 		this.cargarPedidos();
 		oPedido=this.tPedidos.find(function(oPedido_iterado){
 		    return (oPedido_iterado.idPedido == idPedido);
 		});
-		if(oPedido)
-		    console.log(oPedido);
+		if(oPedido==undefined)
+		    return false;
 	    }
 	    return oPedido;
 	}

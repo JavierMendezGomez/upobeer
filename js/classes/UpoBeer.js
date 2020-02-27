@@ -343,7 +343,7 @@ class UpoBeer {
 	    operation: "deleteonepk",
 	    dni:dni
 	};
-	if(jQAjaxPost(parametros).rowsaffected==1){
+	if(jsAjaxPostSync(parametros).rowsaffected==1){
 	    this.tClientes=this.tClientes.filter(function(cliente){
 		cliente.dni!=dni;
 	    });
@@ -358,7 +358,7 @@ class UpoBeer {
 	    operation: "deleteonepk",
 	    dni:dni
 	};
-	if(jQAjaxPost(parametros)){
+	if(jsAjaxPostSync(parametros)){
 	    this.tOperarios=this.tOperarios.filter(function(operario){
 		operario.dni!=dni;
 	    });
@@ -384,7 +384,7 @@ class UpoBeer {
 	    operation: "deleteonepk",
 	    idPedido:idPedido
 	};
-	if(jQAjaxPost(parametros)){
+	if(jsAjaxPostSync(parametros)){
 	    this.tPedidos=this.tPedidos.filter(function(pedido){
 		return pedido.idPedido!=idPedido;
 	    });

@@ -1,5 +1,5 @@
 async function jQAjaxPost(parametros){
-    let url="/php/ajax.php";
+    let url="php/ajax.php";
 
     let datosRecibidos=await $.post(url, parametros);
 
@@ -7,7 +7,7 @@ async function jQAjaxPost(parametros){
 }
 
 async function jQAjaxGet(parametros){
-    let url="/php/ajax.php";
+    let url="php/ajax.php";
 
     let datosRecibidos=await $.get(url, parametros);
     
@@ -25,7 +25,7 @@ function jsAjaxGetSync(parametros){
 	    oURLSearchParams.set(key,0);
     });
     
-    oAjax.open("GET", "/php/ajax.php?"+oURLSearchParams.toString(),false);
+    oAjax.open("GET", "php/ajax.php?"+oURLSearchParams.toString(),false);
     //Asociar manejador de evento de la respuesta, comentado por si acaso
     //oAjax.addEventListener("readystatechange", function(){},false);
     oAjax.send();
@@ -42,7 +42,7 @@ function jsAjaxPostSync(parametros){
 	    oURLSearchParams.set(key,0);
     });
     
-    oAjax.open("POST", "/php/ajax.php",false);
+    oAjax.open("POST", "php/ajax.php",false);
     oAjax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     //Asociar manejador de evento de la respuesta, comentado por si acaso
     //oAjax.addEventListener("readystatechange", function(){},false);

@@ -1,6 +1,6 @@
 //INICIALIZAR MODELO
 var modelo = new UpoBeer();
-var tipo = "supervisor";
+var tipo = "ninguno";
 var usuario = "";
 var clave = "";
 

@@ -10,16 +10,19 @@ class Upobeer_ajax{
             "inputfieldnames"=>["idCerveza","nombre","porcentaje","precio","stock","foto"],
             "insertfieldnames"=>["nombre","porcentaje","precio","stock","foto"],
             "pkfieldnames"=>["idCerveza"],
+            "nullablefieldnames"=>[]
         ),
         "Operario"=>array(
             "inputfieldnames"=>["usuario","dni","nombre","apellidos","fechaNacimiento","direccion","telefono","supervisor"],
             "insertfieldnames"=>["usuario","dni","nombre","apellidos","fechaNacimiento","direccion","telefono","supervisor"],
             "pkfieldnames"=>["dni"],
+            "nullablefieldnames"=>[]
         ),
         "Cliente"=>array(
             "inputfieldnames"=>["usuario","dni","nombre","apellidos","fechaNacimiento","direccion","telefono"],
             "insertfieldnames"=>["usuario","dni","nombre","apellidos","fechaNacimiento","direccion","telefono"],
             "pkfieldnames"=>["dni"],
+            "nullablefieldnames"=>[]
         ),
         "Pedido"=>array(
             "inputfieldnames"=>["idPedido","dniCliente","estado","fechaInicio","fechaFin"],
@@ -31,11 +34,13 @@ class Upobeer_ajax{
             "inputfieldnames"=>["idPedido","idProducto","cantidad"],
             "insertfieldnames"=>["idPedido","idProducto","cantidad"],
             "pkfieldnames"=>["idPedido","idProducto"],
+            "nullablefieldnames"=>[]
         ),
     );
 
     protected $status="noop";
     protected $messages=[];
+    protected $sql;
     private $operationSelected=null;
     private $objectSelected;
     private $inputFieldsAssoc;

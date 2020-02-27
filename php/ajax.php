@@ -375,8 +375,16 @@ class Upobeer_ajax{
         }
     }
     private function bringOutput(){
-        if($this->status=="error")
-            http_response_code(400);
+        if($this->status=="success"){
+            if($this->rowsAffected>0)
+                http_response_code(201);
+        }
+        if($this->status=="error"){
+            if(!$this->parametersOK)
+                http_response_code(400);
+            else
+                http_response_code(409);
+        }
         
         $output=array(
             "status"=>$this->status,

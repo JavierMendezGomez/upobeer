@@ -55,7 +55,7 @@ function jsAjaxPostSync(parametros){
 class UpoBeer {   
     /* CONSTRUCTOR */
     constructor(){
-	this.tCervezas=localStorage.setItem("tCervezas",[]);
+	this.tCervezas=[];
 	this.tPedidos=[];
 	this.tClientes=[];
 	this.tOperarios=[];
@@ -189,11 +189,9 @@ class UpoBeer {
 	    };
 	    //A los parámetros se le meten todos los atributos de Cliente
 	    Object.assign(parametros,oCliente);
-
+	    console.log("aaaaa");
 	    //Se ve si la petición ha insertado filas
 	    if(jsAjaxPostSync(parametros).rowsaffected==1){
-		//meter en el array interno
-		this.tClientes.push(oCliente);
 		//y devolver
 		return oCliente;
 	    }
@@ -232,7 +230,7 @@ class UpoBeer {
     }
     altaOperario(oOperario){
 	//primero comprobar si ya existe
-    	if(this.buscarOperario(oOperario.dni)){
+    	if(!this.buscarOperario(oOperario.dni)){
 	    //Meter en la BBDD
 	    let parametros={
 		object: "Operario",
@@ -333,7 +331,8 @@ class UpoBeer {
 	    object: "Cerveza",
 	    operation: "insertone"
 	};
-	let datosRecibidos=jsAjaxPostSync(parametros,oCerveza);
+	Object.assign(parametros,oCerveza);
+	let datosRecibidos=jsAjaxPostSync(parametros);
 	if(datosRecibidos.rowsaffected==1){
 	    oCerveza.idCerveza=datosRecibidos.insertid;
 	    //meter en el array interno de cervezas
@@ -421,7 +420,7 @@ class UpoBeer {
 		dni:dni
 	    };
 	    let datosCliente=jsAjaxGetSync(parametros).resultdata[0];
-	    if(datosCliente!=undefined){
+	    if(datosCliente){
 		oCliente=new Cliente(datosCliente.usuario,
 				     datosCliente.dni,
 				     datosCliente.nombre,
@@ -454,7 +453,8 @@ class UpoBeer {
 	    let datosOperario=jsAjaxGetSync(parametros)
 		.resultdata
 		.find(function(datosOperario){return datosOperario.supervisor==false});
-	    if(datosOperario!=undefined){
+	    console.log(datosOperario);
+	    if(datosOperario){
 		oOperario=new Operario(datosOperario.usuario,
 				       datosOperario.dni,
 				       datosOperario.nombre,
@@ -487,7 +487,7 @@ class UpoBeer {
 	    let datosOperario=jsAjaxGetSync(parametros)
 		.resultdata
 		.find(function(datosOperario){return datosOperario.supervisor==true});
-	    if(datosOperario!=undefined){
+	    if(datosOperario){
 		oOperario=new Operario(datosOperario.usuario,
 				       datosOperario.dni,
 				       datosOperario.nombre,
@@ -555,7 +555,7 @@ class UpoBeer {
 		oPedido=this.tPedidos.find(function(oPedido_iterado){
 		    return (oPedido_iterado.idPedido == idPedido);
 		});
-		if(oPedido!=undefined)
+		if(oPedido)
 		    console.log(oPedido);
 	    }
 	    return oPedido;

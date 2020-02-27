@@ -1,3 +1,5 @@
+create database upobeer;
+use upobeer;
 create table Cerveza(
        idCerveza int auto_increment primary key,
        nombre varchar(30) not null,

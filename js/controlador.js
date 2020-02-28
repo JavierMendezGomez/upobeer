@@ -9,6 +9,7 @@ document.getElementById("selPedido").addEventListener("change", cambioComboEstad
 revisarSwitch();
 document.getElementById("botonIniciarSesion").addEventListener("click",cargarMenuSesion);
 document.getElementById("botonCrearCuenta").addEventListener("click",cargarCrearCuenta);
+document.getElementById("botonQueSomos").addEventListener("click",cargarQueSomos);
 
 function cargarMenuSesion(){
 
@@ -36,6 +37,18 @@ function cargarCrearCuenta(){
             });
 
    
+
+}
+
+function cargarQueSomos(){
+
+	$("#formularios div:not('#queSomos')").hide();
+
+   
+        $("#formularios").load("formularios/que_somos.html",
+            function() {
+                $.getScript("js/inicioSesion.js");
+            });
 
 }
 

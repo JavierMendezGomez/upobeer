@@ -130,7 +130,7 @@ function comprobarUsuario() {
 	if (tipo != "ninguno")
 		revisarSwitch();
 	else
-		alert("Usuario incorrecto");
+		crearDialog("Usuario incorrecto");
 }
 
 function comprobarRegistro() {
@@ -143,13 +143,13 @@ function comprobarRegistro() {
 	var direccion = formularioRegistro.direccion.value;
 	var telefono = formularioRegistro.telefono.value;
 	if (usuarioNuevo == "" || dni == "" || nombre == "" || apellidos == "" || fecha == "" || direccion == "" || telefono == "")
-		alert("Debe rellenar todos los campos");
+		crearDialog("Debe rellenar todos los campos");
 	else if (this.modelo.comprobarRegistro(usuarioNuevo, dni, nombre, apellidos, fecha, direccion, telefono)) {
-		alert("Registrado ok");
+		crearDialog("Registrado ok");
 		revisarSwitch();
 	}
 	else
-		alert("Error, ya existe ese dni");
+		crearDialog("Error, ya existe ese dni");
 
 }
 
@@ -670,4 +670,11 @@ function save_XMLFile(){
     let oXML=exportarDatosUpoBeerXML();
     let xmlTextIndented=formatXML(oXML.outerHTML);
     download("document/xml","UpoBeer.xml",xmlTextIndented);
+}
+
+//DIALOG JQUERY UI
+function crearDialog(mensaje){
+    var capaDialog="<div title='Información'><p>"+mensaje+"</p></div>";
+    $(capaDialog).dialog(
+        {resizable:false,modal:true});
 }

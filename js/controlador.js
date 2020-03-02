@@ -139,7 +139,7 @@ function comprobarRegistro() {
 	var dni = formularioRegistro.dni.value;
 	var nombre = formularioRegistro.nombre.value;
 	var apellidos = formularioRegistro.apellidos.value;
-	var fecha = new Date(formularioRegistro.fecha.value);
+	var fecha = formularioRegistro.fecha.value.split("/").reverse().join("/");
 	var direccion = formularioRegistro.direccion.value;
 	var telefono = formularioRegistro.telefono.value;
 	if (usuarioNuevo == "" || dni == "" || nombre == "" || apellidos == "" || fecha == "" || direccion == "" || telefono == "")

@@ -444,8 +444,7 @@ class UpoBeer {
 	    };
 	    let datosOperario=jsAjaxGetSync(parametros)
 		.resultdata
-		.find(function(datosOperario){return datosOperario.supervisor==false});
-	    console.log(datosOperario);
+		.find(function(datosOperario){return datosOperario.supervisor=="0"});
 	    if(datosOperario){
 		oOperario=new Operario(datosOperario.usuario,
 				       datosOperario.dni,
@@ -462,9 +461,9 @@ class UpoBeer {
     }
     
     buscarSupervisor(dni){
-	/*Primero ver si la operario está en el array de operarios interno*/
+	/*Primero ver si el operario está en el array de operarios interno y si es supervisor*/
 	let oOperario=this.tOperarios.find(function(oOperario_iterado){
-    	    return oOperario_iterado.dni == dni;
+    	    return (oOperario_iterado.dni == dni && oOperario_iterado.supervisor == "1");
     	});
 	/*Después, si no se ha encontrado la operario,refrescar la BBDD y volver a pedirla*/
 	if(oOperario==undefined){
@@ -478,7 +477,7 @@ class UpoBeer {
 	    };
 	    let datosOperario=jsAjaxGetSync(parametros)
 		.resultdata
-		.find(function(datosOperario){return datosOperario.supervisor==true});
+		.find(function(datosOperario){return datosOperario.supervisor=="1"});
 	    if(datosOperario){
 		oOperario=new Operario(datosOperario.usuario,
 				       datosOperario.dni,
@@ -528,7 +527,7 @@ class UpoBeer {
 	    let arrayoPedidos=this.tPedidos.filter(function(oPedido_iterado){
 		return (oPedido_iterado.cliente.dni == oCliente.dni);
 	    });
-	    if(oPedido.length==0){
+	    if(arrayoPedidos.length==0){
 		this.cargarPedidos();
 		arrayoPedidos=this.tPedidos.filter(function(oPedido_iterado){
 		    return (oPedido_iterado.cliente.dni == oCliente.dni);
@@ -556,19 +555,29 @@ class UpoBeer {
     
     /** Comprobar usuarios*/
     comprobarUsuario(usuario,clave){
-	let tipo=""
+	let tipo="ninguno";
     	//La clave es el dni, el usuario es unico
     	if(this.buscarCliente(clave) != false)
+    	{
     	    if(this.buscarCliente(clave).usuario == usuario)
-	        tipo = "cliente";
+	        	tipo = "cliente";
+    	}
         else if(this.buscarSupervisor(clave) != false)
+        {
     	    if(this.buscarSupervisor(clave).usuario == usuario)
-	        tipo = "supervisor";
+    	    {
+		        tipo = "supervisor";
+		    }
+		}
         else if(this.buscarOperario(clave) != false)
+        {
+
     	    if(this.buscarOperario(clave).usuario == usuario)
-	        tipo = "operario";
-	setCookie(clave,tipo,365);
-	console.log(tipo);
+    	    {
+		        tipo = "operario";
+		    }
+		}
+		console.log(tipo);
         return tipo;
     }
     comprobarRegistro(usuario,dni,nombre,apellidos,fecha,direccion,telefono){

@@ -22,8 +22,6 @@ function cargarMenuSesion(){
                 $.getScript("js/inicioSesion.js");
             });
 
-    
-
 }
 
 function cargarCrearCuenta(){
@@ -169,11 +167,11 @@ function crearComboCatalogo() {
     document.querySelector("#frmAltaPedido > div.row.selectCatalogo > select").remove();
     let select = modelo.comboCatalogo();
     document.querySelector(".selectCatalogo").appendChild(select);
-    frmAltaPedido.txtPrecioUnidad.value = frmAltaPedido.comboCatalogo.selectedOptions[0].dataset.precio;
+    frmAltaPedido.txtPrecioUnidad.value = modelo.buscarCerveza(frmAltaPedido.comboCatalogo.selectedOptions[0].value).precio;
 }
 
 function actualizaDatosAlta() {
-    frmAltaPedido.txtPrecioUnidad.value = frmAltaPedido.comboCatalogo.selectedOptions[0].dataset.precio;
+    frmAltaPedido.txtPrecioUnidad.value = modelo.buscarCerveza(frmAltaPedido.comboCatalogo.selectedOptions[0].value).precio;
 }
 
 function submit_frmAltaPedido() {
@@ -604,7 +602,7 @@ function show_frmBajaCerveza(){
 		
 			option = document.createElement("option");
 			option.value = modelo.tCervezas[i].idCerveza;
-			option.textContent = modelo.tCervezas[i].nombre + " - " + modelo.tCervezas[i].idCerveza;
+			option.textContent = modelo.tCervezas[i].nombre + " - " + modelo.tCervezas[i].porcentaje + "%";
 			comboCervezas.appendChild(option);
 		
 	}

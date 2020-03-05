@@ -1,0 +1,32 @@
+#+TITLE: Uso de AJAX en Upobeer
+
+* Funciones utilidad
+** js/classes/Upobeer.js:1 async function jQAjaxPost(parametros)
+ Función que envuelve una petición AJAX asíncrona con el método POST
+ y los parámetros proporcionados como un objeto JavaScript.
+ Devuelve una promesa vinculada a los datos recibidos.
+
+ Esta función se utiliza varias veces en la clase UpoBeer.
+
+** js/classes/Upobeer.js:9 async function jQAjaxPost(parametros)
+ Función que envuelve una petición AJAX asíncrona con el método GET
+ y los parámetros proporcionados como un objeto JavaScript.
+ Devuelve una promesa vinculada a los datos recibidos.
+
+ Esta función se utiliza varias veces en la clase UpoBeer.
+
+** js/classes/Upobeer.js:17 function jsAjaxGetSync(parametros)
+ Función que envuelve una petición XMLHttpRequest realizada
+ con JavaScript plano y el método GET.
+ Recibe los parámetros en forma de objeto JavaScript.
+ Devuelve el contenido de la respuesta parseado con JSON.parse()
+
+ Esta función se utiliza varias veces en la clase UpoBeer.
+
+** js/classes/Upobeer.js:34 function jsAjaxPostSync
+ Función que envuelve una petición XMLHttpRequest realizada
+ con JavaScript plano y el método POST.
+ Recibe los parámetros en forma de objeto JavaScript.
+ Devuelve el contenido de la respuesta parseado con JSON.parse()
+
+ Esta función se utiliza varias veces en la clase UpoBeer.

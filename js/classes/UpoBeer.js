@@ -556,27 +556,19 @@ class UpoBeer {
     
     /** Comprobar usuarios*/
     comprobarUsuario(usuario,clave){
-	let tipo="ninguno";
+		let tipo="ninguno";
     	//La clave es el dni, el usuario es unico
-    	if(this.buscarCliente(clave) != false)
+    	if(this.buscarCliente(clave) != false && this.buscarCliente(clave).usuario == usuario)
     	{
-    	    if(this.buscarCliente(clave).usuario == usuario)
 	        	tipo = "cliente";
     	}
-        else if(this.buscarSupervisor(clave) != false)
+        else if(this.buscarSupervisor(clave) != false && this.buscarSupervisor(clave).usuario == usuario)
         {
-    	    if(this.buscarSupervisor(clave).usuario == usuario)
-    	    {
 		        tipo = "supervisor";
-		    }
 		}
-        else if(this.buscarOperario(clave) != false)
+        else if(this.buscarOperario(clave) != false && this.buscarOperario(clave).usuario == usuario)
         {
-
-    	    if(this.buscarOperario(clave).usuario == usuario)
-    	    {
 		        tipo = "operario";
-		    }
 		}
 		console.log(tipo);
         return tipo;

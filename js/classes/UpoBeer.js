@@ -74,7 +74,7 @@ class UpoBeer {
     
     /* MÉTODOS */
     cargarClientes(){
-	this.tClientes=[];localStorage.setItem("tClientes",JSON.stringify(this.tClientes));
+	this.tClientes=[];
 	let parametros={
 	    object: "Cliente",
 	    operation: "selectall"
@@ -92,9 +92,10 @@ class UpoBeer {
 		_this.tClientes.push(oCliente);
 	    });
 	});
+	setTimeout(function(){localStorage.setItem("tClientes",JSON.stringify(_this.tClientes))},1500);
     }
     cargarOperarios(){
-	this.tOperarios=[];localStorage.setItem("tOperarios",JSON.stringify(this.tOperarios));
+	this.tOperarios=[];
 	let parametros={
 	    object: "Operario",
 	    operation: "selectall"
@@ -113,9 +114,10 @@ class UpoBeer {
 		_this.tOperarios.push(oOperario);
 	    });
 	});
+	setTimeout(function(){localStorage.setItem("tOperarios",JSON.stringify(_this.tOperarios))},1500);
     }
     cargarCervezas(){
-	this.tCervezas=[]; localStorage.setItem("tCervezas",JSON.stringify(this.tCervezas)); 
+	this.tCervezas=[];
 	let parametros={
 	    object: "Cerveza",
 	    operation: "selectall"
@@ -131,6 +133,7 @@ class UpoBeer {
 		_this.tCervezas.push(oCerveza);
 	    });
 	});
+	setTimeout(function(){localStorage.setItem("tCervezas",JSON.stringify(_this.tCervezas))},1500);
     }
     cargarPedidos(){
 	this.tPedidos=[];
@@ -243,6 +246,7 @@ class UpoBeer {
 	    //Se ve si la petición ha insertado filas
 	    if(jsAjaxPostSync(parametros).rowsaffected==1){
 		//y devolver
+		this.cargarOperarios();
 		return oOperario;
 	    }
 	    else
@@ -556,27 +560,19 @@ class UpoBeer {
     
     /** Comprobar usuarios*/
     comprobarUsuario(usuario,clave){
-	let tipo="ninguno";
+		let tipo="ninguno";
     	//La clave es el dni, el usuario es unico
-    	if(this.buscarCliente(clave) != false)
+    	if(this.buscarCliente(clave) != false && this.buscarCliente(clave).usuario == usuario)
     	{
-    	    if(this.buscarCliente(clave).usuario == usuario)
 	        	tipo = "cliente";
     	}
-        else if(this.buscarSupervisor(clave) != false)
+        else if(this.buscarSupervisor(clave) != false && this.buscarSupervisor(clave).usuario == usuario)
         {
-    	    if(this.buscarSupervisor(clave).usuario == usuario)
-    	    {
 		        tipo = "supervisor";
-		    }
 		}
-        else if(this.buscarOperario(clave) != false)
+        else if(this.buscarOperario(clave) != false && this.buscarOperario(clave).usuario == usuario)
         {
-
-    	    if(this.buscarOperario(clave).usuario == usuario)
-    	    {
 		        tipo = "operario";
-		    }
 		}
 		console.log(tipo);
         return tipo;

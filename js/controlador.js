@@ -16,7 +16,6 @@ function cargarMenuSesion(){
 	    // Oculto todos los formularios menos este
     $("form:not('#formularioInicio')").parent().hide("normal");
 
-
     // Verifico si ya he cargado el formulario antes
     if ($('#formularioInicio').size() == 0) {
         $("<div>").appendTo('#formularios').load("js/inicio_sesion.html",
@@ -28,33 +27,37 @@ function cargarMenuSesion(){
         // Lo muestro si está oculto
         $('#formularioInicio').parent().show("normal");
     }
-
 }
 
 function cargarCrearCuenta(){
 
     $("#formularios div:not('#registro')").hide();
 
+	if ($('#formularioRegistro').size() == 0) {
    
-        $("#formularios").append($("#formularios").load("formularios/registro.html",
+        $("<div>").appendTo('#formularios').load("formularios/registro.html",
             function() {
                 $.getScript("js/altaUsuario.js");
-            }));
-
-   
-
+            });
+    } else {
+        // Lo muestro si está oculto
+        $('#formularioInicio').parent().show("normal");
+    }
 }
 
 function cargarQueSomos(){
 
 	$("#formularios div:not('#queSomos')").hide();
 
-   
-        $("#formularios").append($("#formularios").load("formularios/que_somos.html",
+   	if ($('#formularioInicio').size() == 0) {
+        $("<div>").appendTo('#formularios').load("formularios/que_somos.html",
             function() {
                 $.getScript("js/inicioSesion.js");
-            }));
-
+            });
+	} else {
+        // Lo muestro si está oculto
+        $('#formularioInicio').parent().show("normal");
+    }
 }
 
 function revisarSwitch() {
@@ -128,41 +131,7 @@ let pedido1 = modelo.altaPedido(new Pedido(cliente1, []));
 let pedido2 = modelo.altaPedido(new Pedido(new Cliente("user3", "11111111C", "Cliente2", "Ap", "1994-09-22", "C/Mesina", "111111111"), []));
 pedido1.insertarLineaPedido(new LineaPedido(cerveza1,40));
 
-function comprobarUsuario() {
 
-	usuario = formularioInicio.usuario.value;
-	clave = formularioInicio.clave.value;
-	console.log(usuario + ", " + clave);
-	tipo = this.modelo.comprobarUsuario(usuario, clave);
-	if (tipo != "ninguno")
-	{
-		revisarSwitch();
-	}
-	else
-	{
-		crearDialog("Usuario incorrecto");
-	}
-}
-
-function comprobarRegistro() {
-
-	var usuarioNuevo = formularioRegistro.usuario.value;
-	var dni = formularioRegistro.dni.value;
-	var nombre = formularioRegistro.nombre.value;
-	var apellidos = formularioRegistro.apellidos.value;
-	var fecha = formularioRegistro.fecha.value.split("/").reverse().join("/");
-	var direccion = formularioRegistro.direccion.value;
-	var telefono = formularioRegistro.telefono.value;
-	if (usuarioNuevo == "" || dni == "" || nombre == "" || apellidos == "" || fecha == "" || direccion == "" || telefono == "")
-		crearDialog("Debe rellenar todos los campos");
-	else if (this.modelo.comprobarRegistro(usuarioNuevo, dni, nombre, apellidos, fecha, direccion, telefono)) {
-		crearDialog("Registrado ok");
-		revisarSwitch();
-	}
-	else
-		crearDialog("Error, ya existe ese dni");
-
-}
 
 function show_frmAltaPedido() {
 	ocultarForms();

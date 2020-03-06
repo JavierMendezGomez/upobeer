@@ -254,7 +254,6 @@ class UpoBeer {
 	}
     }
     altaPedido(oPedido){
-	console.log(oPedido);
 	if(oPedido.idPedido==undefined
 	   || this.buscarPedido(oPedido.idPedido)==undefined
 	   && this.buscarCliente(oPedido.cliente.dni) != undefined){
@@ -275,7 +274,6 @@ class UpoBeer {
 	    Object.assign(parametros,objeto);
 	    
 	    let datosRecibidos=jsAjaxPostSync(parametros);
-	    console.log(datosRecibidos);
 	    if(datosRecibidos.rowsaffected==1){
 		oPedido.idPedido=datosRecibidos.insertid;
 

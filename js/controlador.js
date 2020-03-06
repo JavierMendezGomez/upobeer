@@ -13,14 +13,21 @@ document.getElementById("botonQueSomos").addEventListener("click",cargarQueSomos
 
 function cargarMenuSesion(){
 
-    $("#formularios div:not('#inicio')").hide();
+	    // Oculto todos los formularios menos este
+    $("form:not('#formularioInicio')").parent().hide("normal");
+
 
     // Verifico si ya he cargado el formulario antes
-    
-        $("#formularios").load("formularios/inicio_sesion.html",
+    if ($('#formularioInicio').size() == 0) {
+        $("<div>").appendTo('#formularios').load("js/inicio_sesion.html",
             function() {
                 $.getScript("js/inicioSesion.js");
             });
+
+    } else {
+        // Lo muestro si está oculto
+        $('#formularioInicio').parent().show("normal");
+    }
 
 }
 
@@ -29,10 +36,10 @@ function cargarCrearCuenta(){
     $("#formularios div:not('#registro')").hide();
 
    
-        $("#formularios").load("formularios/registro.html",
+        $("#formularios").append($("#formularios").load("formularios/registro.html",
             function() {
                 $.getScript("js/altaUsuario.js");
-            });
+            }));
 
    
 
@@ -43,10 +50,10 @@ function cargarQueSomos(){
 	$("#formularios div:not('#queSomos')").hide();
 
    
-        $("#formularios").load("formularios/que_somos.html",
+        $("#formularios").append($("#formularios").load("formularios/que_somos.html",
             function() {
                 $.getScript("js/inicioSesion.js");
-            });
+            }));
 
 }
 

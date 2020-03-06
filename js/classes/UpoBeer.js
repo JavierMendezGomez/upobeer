@@ -1,3 +1,4 @@
+
 async function jQAjaxPost(parametros){
     let url="php/ajax.php";
 
@@ -26,11 +27,11 @@ function jsAjaxGetSync(parametros){
     });
     
     oAjax.open("GET", "php/ajax.php?"+oURLSearchParams.toString(),false);
-    //Asociar manejador de evento de la respuesta, comentado por si acaso
-    //oAjax.addEventListener("readystatechange", function(){},false);
     oAjax.send();
     return JSON.parse(oAjax.responseText);
 }
+
+
 function jsAjaxPostSync(parametros){
     let oAjax = new XMLHttpRequest();
     //Se le envía directamente el cliente o lo que sea, como un objeto, no como parámetros
@@ -73,7 +74,7 @@ class UpoBeer {
     
     /* MÉTODOS */
     cargarClientes(){
-	this.tClientes=[];
+	this.tClientes=[];localStorage.setItem("tClientes",JSON.stringify(this.tClientes));
 	let parametros={
 	    object: "Cliente",
 	    operation: "selectall"
@@ -93,7 +94,7 @@ class UpoBeer {
 	});
     }
     cargarOperarios(){
-	this.tOperarios=[];
+	this.tOperarios=[];localStorage.setItem("tOperarios",JSON.stringify(this.tOperarios));
 	let parametros={
 	    object: "Operario",
 	    operation: "selectall"
@@ -114,7 +115,7 @@ class UpoBeer {
 	});
     }
     cargarCervezas(){
-	this.tCervezas=[];
+	this.tCervezas=[]; localStorage.setItem("tCervezas",JSON.stringify(this.tCervezas)); 
 	let parametros={
 	    object: "Cerveza",
 	    operation: "selectall"
